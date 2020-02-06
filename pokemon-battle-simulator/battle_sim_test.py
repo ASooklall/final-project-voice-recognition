@@ -1,6 +1,7 @@
 import speech_recognition as sr
 import pyaudio
 import pygame, thorpy
+import keyboard
 
 pokemon_list = [
 {'name':'pikachu','stats': {'health':3,'attack':1,'defense':1,'speed':1,'current_health':3}, 
@@ -99,6 +100,10 @@ def dict_test2():
 
     
 
-dict_test2()
+print('press t to talk')
 
-print (pkmn1)
+while True:
+    if keyboard.read_key() == "t":
+        dict_test2()
+        print (pkmn1)
+        break
