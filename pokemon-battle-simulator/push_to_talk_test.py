@@ -103,7 +103,5 @@ def dict_test2():
 
 print('press t to talk')
 
-while True:
-    if keyboard.read_key() == "t":
-        dict_test2()
-        break
+keyboard.wait('t')
+dict_test2()
