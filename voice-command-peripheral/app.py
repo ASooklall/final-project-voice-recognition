@@ -33,19 +33,42 @@ def rec_z():
     except sr.WaitTimeoutError:
         print('Please issue a voice command.')
 
-print('press "esc" to talk')
-if keyboard.read_key() == "esc":
-    sentence = rec_z()
-    for letter in sentence:
-        keyboard.press_and_release(letter)
-        time.sleep(0.1)
+# print('press "esc" to talk')
+# if keyboard.read_key() == "esc":
+#     sentence = rec_z()
+#     for letter in sentence:
+#         keyboard.press_and_release(letter)
+#         time.sleep(0.1)
 
+def basic_commands(word):
+    if word in ['a', 'yes']:
+        keyboard.press_and_release('j')
+    elif word in ['b', 'no', 'back']:
+        keyboard.press_and_release('k')
+    elif word in ['up']:
+        keyboard.press_and_release('w')
+    elif word in ['left']:
+        keyboard.press_and_release('a')
+    elif word in ['down']:
+        keyboard.press_and_release('s')
+    elif word in ['right']:
+        keyboard.press_and_release('d')
 
-# print('Sequence [X] or Special [C]')
-# while True:
-#     if keyboard.read_key() == "x":
-#         print('You have chosen Sequence')
-#         rec_z()
-#     if keyboard.read_key() == 'c':
-#         print('You have chosen Special')
-
+while True:
+    print('Sequence [X] or Special [C]? Press "esc" to escape')
+    pressed_key = keyboard.read_key()
+    print(pressed_key)
+    if pressed_key == "x":
+        print('You have chosen Sequence. Pls talk')
+        seq = rec_z()
+        seq_list = seq.split()
+        for c in seq_list:
+            basic_commands(c)
+            time.sleep(0.1)
+    elif pressed_key == 'c':
+        print('You have chosen Special. Pls talk')
+        spe = rec_z()
+        basic_commands(spe)
+    elif pressed_key == 'esc':
+        break
+    time.sleep(0.1)
