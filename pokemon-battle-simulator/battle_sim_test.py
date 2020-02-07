@@ -29,8 +29,8 @@ pokemon_list = [
 ]
 
 # assign global test variables
-global pkmn1
-global pkmn2, mvnm1, mvnm2
+# global pkmn1
+# global pkmn2, mvnm1, mvnm2
 
 def rec_z():
     try:
@@ -74,6 +74,7 @@ def dict_test2():
         for pokemon in pokemon_list:
 
             if pokemon['name'] == pokemon_name:
+                global pkmn1
                 flag = True
                 temp_moves = pokemon['moves']   # becomes our movelist
                 choose_pokemon = pokemon
@@ -89,6 +90,7 @@ def dict_test2():
         for mvs in temp_moves:
             if mvs['name'] in move_audio:
 #                 print(mvs)
+                global mvnm1
                 choose_move = mvs
                 choose_move_name = mvs['name']
                 mvnm1 = choose_move_name #test
@@ -105,5 +107,5 @@ print('press t to talk')
 while True:
     if keyboard.read_key() == "t":
         dict_test2()
-        print (pkmn1)
+        print (pkmn1, mvnm1)
         break
