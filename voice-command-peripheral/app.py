@@ -1,6 +1,7 @@
 import speech_recognition as sr
 import pyaudio
 import keyboard, time
+from pynput.keyboard import Key, Controller
 
 # sentence = "the quick brown fox jumps over the lazy dog"
 
@@ -40,19 +41,33 @@ def rec_z():
 #         keyboard.press_and_release(letter)
 #         time.sleep(0.1)
 
+inputter = Controller()
+
 def basic_commands(word):
     if word in ['a', 'yes']:
-        keyboard.press_and_release('j')
+        inputter.press('j')
+        time.sleep(0.1)
+        inputter.release('j')
     elif word in ['b', 'no', 'back']:
-        keyboard.press_and_release('k')
+        inputter.press('k')
+        time.sleep(0.1)
+        inputter.release('k')
     elif word in ['up']:
-        keyboard.press_and_release('w')
+        inputter.press('w')
+        time.sleep(0.1)
+        inputter.release('w')
     elif word in ['left']:
-        keyboard.press_and_release('a')
+        inputter.press('a')
+        time.sleep(0.1)
+        inputter.release('a')
     elif word in ['down']:
-        keyboard.press_and_release('s')
+        inputter.press('s')
+        time.sleep(0.1)
+        inputter.release('s')
     elif word in ['right']:
-        keyboard.press_and_release('d')
+        inputter.press('d')
+        time.sleep(0.1)
+        inputter.release('d')
 
 while True:
     print('Sequence [X] or Special [C]? Press "esc" to escape')
