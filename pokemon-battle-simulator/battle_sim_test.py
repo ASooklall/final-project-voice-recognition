@@ -2,6 +2,9 @@ import speech_recognition as sr
 import pyaudio, pygame, thorpy
 import keyboard
 import time, os
+from pynput.keyboard import Key, Controller
+
+controller = Controller()
 
 pokemon_list = [
 {'name':'pikachu','stats': {'health':3,'attack':1,'defense':1,'speed':1,'current_health':3}, 
@@ -34,8 +37,8 @@ def rec():
         mic = sr.Microphone(device_index=0)
         with mic as source:
     #         rt.adjust_for_ambient_noise(source)
-            # rt.energy_threshold = 20000
-            rt.energy_threshole = 3000
+            rt.energy_threshold = 20000
+            # rt.energy_threshole = 3000
             # rt.dynamic_energy_threshold = True
             rt.adjust_for_ambient_noise(source, duration = 0.6)
             audio = rt.listen(source, timeout = 0.5)
@@ -610,7 +613,10 @@ p2_m4.update()
 
 
 playing_game = True
-# first_attempt = True
+newgame = True
+first_attempt = True
+choice_locked = False
+
 while playing_game:
 
         clock.tick(45)
@@ -621,25 +627,109 @@ while playing_game:
                 break
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_s:
-                    # if first_attempt == False:
-                    screen.blit(BackGround2.image, BackGround2.rect)
-                    battle_init()
-                    time.sleep(1)
-                    
-                    if p1speed > p2speed:
-                        tb = thorpy.Element(text=(f'{p1_choice} is faster. Player 1 Goes First'))
-                    elif p2speed > p1speed:
-                        tb = thorpy.Element(text=(f'{p2_choice} is faster. Player 2 Goes First'))
-                    else:
-                        # add random choice
-                        tb = thorpy.Element(text=(f'Both pokemon have equal speeds, Player 1 goes first.'))
+                    if first_attempt == True:
+                        screen.blit(BackGround2.image, BackGround2.rect)
+                        battle_init()
+
+                        time.sleep(2)
+                        tb = thorpy.Element(text=(f'Press A to accept choices, Press R to reroll.'))
+                        tb.set_font_size(20)
+                        tb.set_size((750,150))
+                        tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                        tb.blit()
+                        tb.update()
                         
-                    tb.set_font_size(20)
-                    tb.set_size((750,150))
-                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
-                    tb.blit()
-                    tb.update()
-                    first_attempt = False
+                        first_attempt = False
+
+                elif event.key == pygame.K_a:
+                    if first_attempt == False and choice_locked == False:
+                        tb = thorpy.Element(text=(f'Choices Confirmed.'))
+                        tb.set_font_size(20)
+                        tb.set_size((750,150))
+                        tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                        tb.blit()
+                        tb.update()
+
+                        choice_locked = True
+                        time.sleep(0.2)
+
+                        controller.press('z')
+                        time.sleep(0.3)
+                        controller.release('z')
+                    else:
+                        tb = thorpy.Element(text=(f'Press S to start game before confirming choices.'))
+                        tb.set_font_size(20)
+                        tb.set_size((750,150))
+                        tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                        tb.blit()
+                        tb.update()
+                elif event.key == pygame.K_r:
+                        if choice_locked == True:
+                            tb = thorpy.Element(text=(f"You've already confirmed all choices, can't reroll pokemon choices."))
+                            tb.set_font_size(20)
+                            tb.set_size((750,150))
+                            tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                            tb.blit()
+                            tb.update()
+                        elif first_attempt == True:
+                            tb = thorpy.Element(text=(f"Start the game using S. You cannot reroll without starting the game."))
+                            tb.set_font_size(20)
+                            tb.set_size((750,150))
+                            tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                            tb.blit()
+                            tb.update()
+                        else:
+                            screen.blit(BackGround2.image, BackGround2.rect)
+                            battle_init()
+                            time.sleep(2)
+                            
+                            tb = thorpy.Element(text=(f'Press A to accept choices, Press R to reroll.'))
+                            tb.set_font_size(20)
+                            tb.set_size((750,150))
+                            tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                            tb.blit()
+                            tb.update()
+
+                elif event.key == pygame.K_z:
+                    if choice_locked == True and newgame == True:
+                        newgame = False
+                        tb = thorpy.Element(text=(f'Begin Game!'))
+                        tb.set_font_size(20)
+                        tb.set_size((750,150))
+                        tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                        tb.blit()
+                        tb.update()
+
+                        time.sleep(1)
+                        # battlecommand here
+                        if p1speed > p2speed:
+                            tb = thorpy.Element(text=(f'{p1_choice} is faster. Player 1 Goes First'))
+                        elif p2speed > p1speed:
+                            tb = thorpy.Element(text=(f'{p2_choice} is faster. Player 2 Goes First'))
+                        else:
+                            # add random choice
+                            tb = thorpy.Element(text=(f'Both pokemon have equal speeds, Player 1 goes first.'))
+
+                        tb.set_font_size(20)
+                        tb.set_size((750,150))
+                        tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                        tb.blit()
+                        tb.update()
+
+                    elif choice_locked == True and newgame == False:
+                        tb = thorpy.Element(text=(f"Cannot confirm choices after already beginning the game."))
+                        tb.set_font_size(20)
+                        tb.set_size((750,150))
+                        tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                        tb.blit()
+                        tb.update()
+                    else:
+                        tb = thorpy.Element(text=(f'Please start the game with S then confirm choices with A first.'))
+                        tb.set_font_size(20)
+                        tb.set_size((750,150))
+                        tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                        tb.blit()
+                        tb.update()
                 elif event.key == pygame.K_t:
                     dict_test2()
                     try:
