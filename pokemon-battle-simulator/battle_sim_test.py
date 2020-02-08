@@ -34,10 +34,12 @@ def rec():
         mic = sr.Microphone(device_index=0)
         with mic as source:
     #         rt.adjust_for_ambient_noise(source)
-            rt.energy_threshold = 3000
-            rt.dynamic_energy_threshold = True
+            rt.energy_threshold = 20000
+            # rt.energy_threshole = 3000
+            # rt.dynamic_energy_threshold = True
             rt.adjust_for_ambient_noise(source, duration = 0.6)
-            audio = rt.listen(source, timeout = 2)
+            audio = rt.listen(source, timeout = 0.5)
+            # audio = rt.listen(source, timeout = 0.5)
             try: 
                 audio_play = rt.recognize_google(audio) 
                 print("You said: " + audio_play)
@@ -177,6 +179,22 @@ def battle_init():
                     p1move4 = pokemon['moves'][3]['name']
                     p1speed = pokemon['stats']['speed']
                     
+                    p1_p_h = thorpy.Element(text=('Player 1 Pokemon'))
+                    p1_p_h.set_font_size(30)
+                    p1_p_h.set_font_color((0,0,255))
+                    p1_p_h.set_size((500,50))
+                    p1_p_h.set_topleft((25,25))
+                    p1_p_h.blit()
+                    p1_p_h.update()
+
+                    p1_p = thorpy.Element(text=(p1_choice))
+                    p1_p.set_font_size(40)
+                    p1_p.set_font_color((0,0,0))
+                    p1_p.set_size((500,100))
+                    p1_p.stick_to(p1_p_h, target_side="bottom", self_side="top")
+                    p1_p.blit()
+                    p1_p.update()
+
                     p1_m1 = thorpy.Element(text=(p1move1))
                     p1_m1.set_font_size(20)
                     p1_m1.set_size((250,100))
@@ -204,6 +222,14 @@ def battle_init():
                     p1_m4.stick_to(p1_m3, target_side="bottom", self_side="top")
                     p1_m4.blit()
                     p1_m4.update()
+
+                    time.sleep(0.1)
+                    p1_i = pygame.image.load(os.path.join("images",str(p1_choice)+"_back.png")).convert()
+                    p1_i = pygame.transform.scale(p1_i, (300,300))
+                    # Bound image to rectangle and move rectangle to place image
+                    p1_i_r = p1_i.get_rect()
+                    p1_i_r = p1_i_r.move((300,575))
+                    screen.blit(p1_i, p1_i_r)
                 
             prompt_1 = f'P1 Chooses: {p1_choice}'
             print(prompt_1)
@@ -213,21 +239,6 @@ def battle_init():
             tb.stick_to(tb_h, target_side="bottom", self_side="top")
             tb.blit()
             tb.update()
-            
-            p1_p = thorpy.Element(text=(p1_choice))
-            p1_p.set_font_size(20)
-            p1_p.set_font_color((0,0,255))
-            p1_p.set_size((500,150))
-            p1_p.set_topleft((25,25))
-            p1_p.blit()
-            p1_p.update()
-
-            p1_i = pygame.image.load(os.path.join("images",str(p1_choice)+"_back.png")).convert()
-            p1_i = pygame.transform.scale(p1_i, (300,300))
-            # Bound image to rectangle and move rectangle to place image
-            p1_i_r = p1_i.get_rect()
-            p1_i_r = p1_i_r.move((300,575))
-            screen.blit(p1_i, p1_i_r)
 
             print(p1move1,p1move2,p1move3,p1move4)
             p1_name_check = True
@@ -295,6 +306,22 @@ def battle_init():
                     p2move4 = pokemon['moves'][3]['name']
                     p2speed = pokemon['stats']['speed']
                     
+                    p2_p_h = thorpy.Element(text=('Player 2 Pokemon'))
+                    p2_p_h.set_font_size(30)
+                    p2_p_h.set_font_color((255,0,0))
+                    p2_p_h.set_size((500,50))
+                    p2_p_h.set_topleft((915,725))
+                    p2_p_h.blit()
+                    p2_p_h.update()
+
+                    p2_p = thorpy.Element(text=(p2_choice))
+                    p2_p.set_font_size(35)
+                    p2_p.set_font_color((0,0,0))
+                    p2_p.set_size((500,100))
+                    p2_p.stick_to(p2_p_h, target_side="bottom", self_side="top")
+                    p2_p.blit()
+                    p2_p.update()
+
                     p2_m1 = thorpy.Element(text=(p2move1))
                     p2_m1.set_font_size(20)
                     p2_m1.set_size((250,100))
@@ -322,7 +349,15 @@ def battle_init():
                     p2_m4.stick_to(p2_m3, target_side="bottom", self_side="top")
                     p2_m4.blit()
                     p2_m4.update()
-                    
+
+                    time.sleep(0.1)
+
+                    p2_i = pygame.image.load(os.path.join("images",str(p2_choice)+"_front.png")).convert()
+                    p2_i = pygame.transform.scale(p2_i, (300,300))
+                    # Place image in bounding rectangle and select rectangle location
+                    p2_i_r = p2_i.get_rect()
+                    p2_i_r = p2_i_r.move((840,25))
+                    screen.blit(p2_i, p2_i_r)
                     
                     
             prompt_2 = f'P2 Chooses: {p2_choice}'
@@ -333,21 +368,7 @@ def battle_init():
             tb.stick_to(tb_h, target_side="bottom", self_side="top")
             tb.blit()
             tb.update()
-            
-            p2_p = thorpy.Element(text=(p2_choice))
-            p2_p.set_font_size(20)
-            p2_p.set_font_color((255,0,0))
-            p2_p.set_size((500,150))
-            p2_p.set_topleft((915,725))
-            p2_p.blit()
-            p2_p.update()
 
-            p2_i = pygame.image.load(os.path.join("images",str(p2_choice)+"_front.png")).convert()
-            p2_i = pygame.transform.scale(p2_i, (300,300))
-            # Place image in bounding rectangle and select rectangle location
-            p2_i_r = p2_i.get_rect()
-            p2_i_r = p2_i_r.move((840,25))
-            screen.blit(p2_i, p2_i_r)
             
             print(p2move1,p2move2,p2move3,p2move4)
             p2_name_check = True
@@ -359,12 +380,14 @@ def battle_init():
     print('\n-----\n')
     choice_prompt = f'Player 1 is using {p1_choice} and Player 2 is using {p2_choice}'
     print(choice_prompt)
+
     tb_h = thorpy.Element(text=('Annoucements:'))
     tb_h.set_font_size(24)
     tb_h.set_size((750, 50))
     tb_h.set_center((720, 375))
     tb_h.blit()
     tb_h.update()
+
     tb = thorpy.Element(text=(choice_prompt))
     tb.set_font_size(20)
     tb.set_size((750,150))
@@ -412,7 +435,7 @@ tb.update()
 
 # Player 1 Pokemon Info
 p1_p = thorpy.Element(text=('Player 1 Pokemon'))
-p1_p.set_font_size(20)
+p1_p.set_font_size(35)
 p1_p.set_font_color((0,0,255))
 p1_p.set_size((500,150))
 p1_p.set_topleft((25,25))
@@ -481,7 +504,7 @@ p1_m4.update()
 
 # Player 2 Pokemon Info
 p2_p = thorpy.Element(text=('Player 2 Pokemon'))
-p2_p.set_font_size(20)
+p2_p.set_font_size(35)
 p2_p.set_font_color((255,0,0))
 p2_p.set_size((500,150))
 p2_p.set_topleft((915,725))
