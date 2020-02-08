@@ -222,6 +222,13 @@ def battle_init():
             p1_p.blit()
             p1_p.update()
 
+            p1_i = pygame.image.load(os.path.join("images",str(p1_choice)+"_back.png")).convert()
+            p1_i = pygame.transform.scale(p1_i, (300,300))
+            # Bound image to rectangle and move rectangle to place image
+            p1_i_r = p1_i.get_rect()
+            p1_i_r = p1_i_r.move((300,575))
+            screen.blit(p1_i, p1_i_r)
+
             print(p1move1,p1move2,p1move3,p1move4)
             p1_name_check = True
             time.sleep(0.5)
@@ -334,6 +341,13 @@ def battle_init():
             p2_p.set_topleft((915,725))
             p2_p.blit()
             p2_p.update()
+
+            p2_i = pygame.image.load(os.path.join("images",str(p2_choice)+"_front.png")).convert()
+            p2_i = pygame.transform.scale(p2_i, (300,300))
+            # Place image in bounding rectangle and select rectangle location
+            p2_i_r = p2_i.get_rect()
+            p2_i_r = p2_i_r.move((840,25))
+            screen.blit(p2_i, p2_i_r)
             
             print(p2move1,p2move2,p2move3,p2move4)
             p2_name_check = True
@@ -341,6 +355,7 @@ def battle_init():
 
         else:
             checker = False
+
     print('\n-----\n')
     choice_prompt = f'Player 1 is using {p1_choice} and Player 2 is using {p2_choice}'
     print(choice_prompt)
@@ -451,13 +466,13 @@ p1_m4.update()
 # p1_i.update()
 
 
-picture = pygame.image.load(os.path.join("images","blastoise_front.png")).convert()
-picture = pygame.transform.scale(picture, (300,300))
-# You can then get the bounding rectangle of picture with
-rect = picture.get_rect()
-# and move the picture with
-rect = rect.move((300,575))
-screen.blit(picture, rect)
+# p1_i = pygame.image.load(os.path.join("images","blastoise_back.png")).convert()
+# p1_i = pygame.transform.scale(p1_i, (300,300))
+# # You can then get the bounding rectangle of picture with
+# p1_i_r = p1_i.get_rect()
+# # and move the picture with
+# p1_i_r = p1_i_r.move((300,575))
+# screen.blit(p1_i, p1_i_r)
 
 
 ##############################
@@ -511,13 +526,21 @@ p2_m4.blit()
 p2_m4.update()
 
 # Player 2 Pokemon Image
-p2_i = thorpy.Element(text=('P2 Image'))
-p2_i.set_font_size(20)
-p2_i.set_font_color((255,0,0))
-p2_i.set_size((300,300))
-p2_i.set_topleft((840,25))
-p2_i.blit()
-p2_i.update()
+# p2_i = thorpy.Element(text=('P2 Image'))
+# p2_i.set_font_size(20)
+# p2_i.set_font_color((255,0,0))
+# p2_i.set_size((300,300))
+# p2_i.set_topleft((840,25))
+# p2_i.blit()
+# p2_i.update()
+
+# p2_i = pygame.image.load(os.path.join("images","blastoise_front.png")).convert()
+# p2_i = pygame.transform.scale(p2_i, (300,300))
+# # You can then get the bounding rectangle of picture with
+# p2_i_r = p2_i.get_rect()
+# # and move the picture with
+# p2_i_r = p2_i_r.move((840,25))
+# screen.blit(p2_i, p2_i_r)
 
 
 
