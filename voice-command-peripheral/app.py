@@ -51,7 +51,7 @@ def append_vcp_log(log_entry):
 inputter = Controller()
 
 def basic_commands(word, mode):
-    if word in ['a', 'yes']:
+    if word in ['a', 'yes', 'okay', 'confirm', 'accept']:
         inputter.press('j')
         time.sleep(0.2)
         inputter.release('j')
@@ -76,7 +76,7 @@ def basic_commands(word, mode):
         time.sleep(0.2)
         inputter.release('s')
         append_vcp_log([datetime.now(),word,mode])
-    elif word in ['right']:
+    elif word in ['right', 'write']:
         inputter.press('d')
         time.sleep(0.2)
         inputter.release('d')
@@ -99,37 +99,43 @@ while True:
     if pressed_key == "x":
         print('You have chosen Sequence (multiple basic commands)')
         seq = rec_z()
-        seq_list = seq.split()
-        for c in seq_list:
-            basic_commands(c, 'sequence')
-            time.sleep(0.2)
+        try:
+            seq_list = seq.split()
+            for c in seq_list:
+                basic_commands(c, 'sequence')
+                time.sleep(0.2)
+        except AttributeError:
+            pass
     elif pressed_key == 'c':
         print('You have chosen Special (single command; press [Z] to stop)')
         spe = rec_z()
-        print(spe)
-        if spe.lower() == 'go up':
-            inputter.press('w')
-            keyboard.wait('z')
-            inputter.release('w')
-            append_vcp_log([datetime.now(),spe.lower(),'special'])
-        elif spe.lower() == 'go left':
-            inputter.press('a')
-            keyboard.wait('z')
-            inputter.release('a')
-            append_vcp_log([datetime.now(),spe.lower(),'special'])
-        elif spe.lower() == 'go down':
-            inputter.press('s')
-            keyboard.wait('z')
-            inputter.release('s')
-            append_vcp_log([datetime.now(),spe.lower(),'special'])
-        elif spe.lower() == 'go right':
-            inputter.press('d')
-            keyboard.wait('z')
-            inputter.release('d')
-            append_vcp_log([datetime.now(),spe.lower(),'special'])
-        else:
-            basic_commands(spe, 'special')
-            time.sleep(0.2)
+        # print(spe)
+        try:
+            if spe.lower() == 'go up':
+                inputter.press('w')
+                keyboard.wait('z')
+                inputter.release('w')
+                append_vcp_log([datetime.now(),spe.lower(),'special'])
+            elif spe.lower() == 'go left':
+                inputter.press('a')
+                keyboard.wait('z')
+                inputter.release('a')
+                append_vcp_log([datetime.now(),spe.lower(),'special'])
+            elif spe.lower() == 'go down':
+                inputter.press('s')
+                keyboard.wait('z')
+                inputter.release('s')
+                append_vcp_log([datetime.now(),spe.lower(),'special'])
+            elif spe.lower() == 'go right':
+                inputter.press('d')
+                keyboard.wait('z')
+                inputter.release('d')
+                append_vcp_log([datetime.now(),spe.lower(),'special'])
+            else:
+                basic_commands(spe, 'special')
+                time.sleep(0.2)
+        except AttributeError:
+            pass
     elif pressed_key == 'esc':
         break
     time.sleep(0.2)
