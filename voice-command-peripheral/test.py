@@ -39,5 +39,7 @@ while True:
     if keyboard.read_key() == "t":
         print('t was pressed')
         rec_z()
-    if keyboard.read_key() == 'y':
+    elif keyboard.read_key() == 'y':
         print('y was pressed')
+    else:
+        break
