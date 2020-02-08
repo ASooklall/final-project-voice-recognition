@@ -34,12 +34,12 @@ def rec():
         mic = sr.Microphone(device_index=0)
         with mic as source:
     #         rt.adjust_for_ambient_noise(source)
-            rt.energy_threshold = 20000
-            # rt.energy_threshole = 3000
+            # rt.energy_threshold = 20000
+            rt.energy_threshole = 3000
             # rt.dynamic_energy_threshold = True
             rt.adjust_for_ambient_noise(source, duration = 0.6)
             audio = rt.listen(source, timeout = 0.5)
-            # audio = rt.listen(source, timeout = 0.5)
+            # audio = rt.listen(source, timeout = 2.0)
             try: 
                 audio_play = rt.recognize_google(audio) 
                 print("You said: " + audio_play)
@@ -188,12 +188,20 @@ def battle_init():
                     p1_p_h.update()
 
                     p1_p = thorpy.Element(text=(p1_choice))
-                    p1_p.set_font_size(40)
+                    p1_p.set_font_size(35)
                     p1_p.set_font_color((0,0,0))
                     p1_p.set_size((500,100))
                     p1_p.stick_to(p1_p_h, target_side="bottom", self_side="top")
                     p1_p.blit()
                     p1_p.update()
+
+                    p1_m = thorpy.Element(text=('P1 Movelist'))
+                    p1_m.set_font_size(20)
+                    p1_m.set_font_color((0,0,255))
+                    p1_m.set_size((250,100))
+                    p1_m.set_center((150, 250))
+                    p1_m.blit()
+                    p1_m.update()
 
                     p1_m1 = thorpy.Element(text=(p1move1))
                     p1_m1.set_font_size(20)
@@ -314,9 +322,17 @@ def battle_init():
                     p2_p_h.blit()
                     p2_p_h.update()
 
+                    p2_m = thorpy.Element(text=('P2 Movelist'))
+                    p2_m.set_font_size(20)
+                    p2_m.set_font_color((255,0,0))
+                    p2_m.set_size((250,100))
+                    p2_m.set_center((1290, 250))
+                    p2_m.blit()
+                    p2_m.update()
+
                     p2_p = thorpy.Element(text=(p2_choice))
                     p2_p.set_font_size(35)
-                    p2_p.set_font_color((0,0,0))
+                    p2_p.set_font_color((255,0,0))
                     p2_p.set_size((500,100))
                     p2_p.stick_to(p2_p_h, target_side="bottom", self_side="top")
                     p2_p.blit()
@@ -399,17 +415,32 @@ def battle_init():
 ####################################
 ##### Initialize Pygame Engine #####
 ####################################
+class Background(pygame.sprite.Sprite):
+    def __init__(self, image_file, location):
+        pygame.sprite.Sprite.__init__(self)  #call Sprite initializer
+        self.image = pygame.image.load(image_file)
+        self.rect = self.image.get_rect()
+        self.rect.left, self.rect.top = location
+
 
 pygame.init()
 pygame.key.set_repeat(300, 30) #set behavior for key repeats (delay,inteval)
 screen = pygame.display.set_mode((1440,900))
-pygame.display.set_caption('Pygame Test')
+BackGround1 = Background('images/bg5_rescaled.png', [0,0])
+BackGround2 = Background('images/bg6_rescaled.png', [0,0])
+
+
+pygame.display.set_caption('Pokemon Voice Battle Simulator')
+
 screen.fill((255,255,255))
-BACKGROUND_COLOR = (255,255,255)
+screen.blit(BackGround1.image, BackGround1.rect)
+
 clock = pygame.time.Clock()
 pygame.display.flip()
 
 pkmn1 = ''
+
+
 ################################
 ##### Battle Announcements #####
 ################################
@@ -579,15 +610,19 @@ p2_m4.update()
 
 
 playing_game = True
+# first_attempt = True
 while playing_game:
 
         clock.tick(45)
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 playing_game = False
                 break
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_s:
+                    # if first_attempt == False:
+                    screen.blit(BackGround2.image, BackGround2.rect)
                     battle_init()
                     time.sleep(1)
                     
@@ -604,6 +639,7 @@ while playing_game:
                     tb.stick_to(tb_h, target_side="bottom", self_side="top")
                     tb.blit()
                     tb.update()
+                    first_attempt = False
                 elif event.key == pygame.K_t:
                     dict_test2()
                     try:
