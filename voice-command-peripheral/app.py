@@ -24,7 +24,7 @@ def rec_z():
             audio = rt.listen(source, timeout = 2)
             try: 
                 audio_play = rt.recognize_google(audio) 
-                print("you said: " + audio_play)
+                print("You said: " + audio_play)
                 return audio_play
             except sr.UnknownValueError: 
                 print("Google Speech Recognition could not understand audio") 
@@ -114,6 +114,43 @@ def basic_commands(word, mode):
     else:
         append_vcp_log([datetime.now(),word,'incorrect'])
 
+def special_commands(cmnd):
+    if cmnd.lower() == ('go up'):
+        print('How many steps? (up to 9)')
+        distance = keyboard.read_key()
+        for i in range(0, int(distance)):
+            inputter.press('w')
+            time.sleep(input_sleep)
+            inputter.release('w')
+            append_vcp_log([datetime.now(),'go up','special'])
+    elif cmnd.lower() == 'go left':
+        print('How many steps? (up to 9)')
+        distance = keyboard.read_key()
+        for i in range(0, int(distance)):
+            inputter.press('a')
+            time.sleep(input_sleep)
+            inputter.release('a')
+            append_vcp_log([datetime.now(),'go up','special'])
+    elif cmnd.lower() == 'go down':
+        print('How many steps? (up to 9)')
+        distance = keyboard.read_key()
+        for i in range(0, int(distance)):
+            inputter.press('s')
+            time.sleep(input_sleep)
+            inputter.release('s')
+            append_vcp_log([datetime.now(),'go up','special'])
+    elif cmnd.lower() == 'go right':
+        print('How many steps? (up to 9)')
+        distance = keyboard.read_key()
+        for i in range(0, int(distance)):
+            inputter.press('d')
+            time.sleep(input_sleep)
+            inputter.release('d')
+            append_vcp_log([datetime.now(),'go up','special'])
+    else:
+        basic_commands(cmnd, 'special')
+        # time.sleep(input_sleep)
+
 while True:
     print('Sequence [X] or Special [C]? (Press [esc] to escape)')
     pressed_key = keyboard.read_key()
@@ -125,7 +162,7 @@ while True:
             seq_list = seq.split()
             for c in seq_list:
                 basic_commands(c, 'sequence')
-                time.sleep(input_sleep)
+                time.sleep(0.1)
         except AttributeError:
             pass
     elif pressed_key == 'c':
@@ -133,43 +170,9 @@ while True:
         spe = rec_z()
         # print(spe)
         try:
-            if spe.lower() == ('go up'):
-                print('How many steps? (up to 9)')
-                distance = keyboard.read_key()
-                for i in range(0, int(distance)):
-                    inputter.press('w')
-                    time.sleep(input_sleep)
-                    inputter.release('w')
-                    append_vcp_log([datetime.now(),'go up','special'])
-            elif spe.lower() == 'go left':
-                print('How many steps? (up to 9)')
-                distance = keyboard.read_key()
-                for i in range(0, int(distance)):
-                    inputter.press('a')
-                    time.sleep(input_sleep)
-                    inputter.release('a')
-                    append_vcp_log([datetime.now(),'go up','special'])
-            elif spe.lower() == 'go down':
-                print('How many steps? (up to 9)')
-                distance = keyboard.read_key()
-                for i in range(0, int(distance)):
-                    inputter.press('s')
-                    time.sleep(input_sleep)
-                    inputter.release('s')
-                    append_vcp_log([datetime.now(),'go up','special'])
-            elif spe.lower() == 'go right':
-                print('How many steps? (up to 9)')
-                distance = keyboard.read_key()
-                for i in range(0, int(distance)):
-                    inputter.press('d')
-                    time.sleep(input_sleep)
-                    inputter.release('d')
-                    append_vcp_log([datetime.now(),'go up','special'])
-            else:
-                basic_commands(spe, 'special')
-                time.sleep(input_sleep)
+            special_commands(spe)
         except AttributeError:
             pass
     elif pressed_key == 'esc':
         break
-    time.sleep(input_sleep)
+    # time.sleep(input_sleep)
