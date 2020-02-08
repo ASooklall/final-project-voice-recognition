@@ -1,7 +1,7 @@
 import speech_recognition as sr
-import pyaudio
-import pygame, thorpy
+import pyaudio, pygame, thorpy
 import keyboard
+import time, os
 
 pokemon_list = [
 {'name':'pikachu','stats': {'health':3,'attack':1,'defense':1,'speed':1,'current_health':3}, 
@@ -10,7 +10,7 @@ pokemon_list = [
  'moves':[{'name':'psychic','power':1,'type':'psychic'},{'name':'swift','power':1,'type':'normal'},{'name':'recover','power':1,'type':'psychic'},{'name':'psybeam','power':1,'type':'psychic'}],},
 {'name':'charizard','stats':{'health':3,'attack':1,'defense':1,'speed':1,'current_health':3},
  'moves':[{'name':'fire blast','power':1,'type':'fire'},{'name':'slash','power':1,'type':'normal'},{'name':'flamethrower','power':1,'type':'fire'},{'name':'steel wing','power':1,'type':'steel'}],},
-{'name':'vensausaur','stats':{'health':3,'attack':1,'defense':1,'speed':1,'current_health':3},
+{'name':'venusaur','stats':{'health':3,'attack':1,'defense':1,'speed':1,'current_health':3},
  'moves':[{'name':'solar beam','power':1,'type':'grass'},{'name':'razor leaf','power':1,'type':'grass'},{'name':'take down','power':1,'type':'normal'},{'name':'earthquake','power':1,'type':'ground'}],},
 {'name':'blastoise','stats':{'health':3,'attack':1,'defense':1,'speed':1,'current_health':3},
  'moves':[{'name':'surf','power':1,'type':'water'},{'name':'hydro pump','power':1,'type':'water'},{'name':'strength','power':1,'type':'normal'},{'name':'water gun','power':1,'type':'water'}],},
@@ -28,11 +28,7 @@ pokemon_list = [
  'moves':[{'name':'cross chop','power':1,'type':'fighting'},{'name':'dynamic punch','power':1,'type':'fighting'},{'name':'seismic toss','power':1,'type':'fighting'},{'name':'dual chop','power':1,'type':'dragon'}],},
 ]
 
-# assign global test variables
-# global pkmn1
-# global pkmn2, mvnm1, mvnm2
-
-def rec_z():
+def rec():
     try:
         rt = sr.Recognizer()
         mic = sr.Microphone(device_index=0)
@@ -44,7 +40,7 @@ def rec_z():
             audio = rt.listen(source, timeout = 2)
             try: 
                 audio_play = rt.recognize_google(audio) 
-                print("you said: " + audio_play)
+                print("You said: " + audio_play)
                 return audio_play
             except sr.UnknownValueError: 
                 print("Google Speech Recognition could not understand audio") 
@@ -55,11 +51,12 @@ def rec_z():
     except sr.WaitTimeoutError:
         print('Please issue a voice command.')
 
+        
 def dict_test2():
 
     try:
         # Record in '(Pokemon Name) use (move)' format
-        audio_play = rec_z().lower()
+        audio_play = rec().lower()
         audio_list = audio_play.split(' use')
         
 #         print(audio_play)
@@ -99,13 +96,489 @@ def dict_test2():
     
     except IndexError:
         print('Please try again, pokemon does not understand you. Say "use [move name here]"')
+    except AttributeError:
+        print('Please try again, pokemon does not understand you. Say "use [move name here]"')
+        
+        
+def battle_init():
+    global p1_choice, p1_name_check, p1speed, p1move1, p1move2, p1move3, p1move4
+    global p2_choice, p2_name_check, p2speed, p2move1, p2move2, p2move3, p2move4
 
+    p1_name_check = False
+    p2_name_check = False
+
+    p_name_list = []
+    for pokemon in pokemon_list:
+        p_name_list.append(pokemon['name'])
+        
+    checker = True
     
+    while checker == True:
+        if p1_name_check == False:
+            prompt_1 = 'Player 1 Choose Your Pokemon'
+            print(prompt_1)
+            tb_h = thorpy.Element(text=('Player 1'))
+            tb_h.set_font_size(24)
+            tb_h.set_size((750, 50))
+            tb_h.set_center((720, 375))
+            tb_h.blit()
+            tb_h.update()
+            
+            tb = thorpy.Element(text=(prompt_1))
+            tb.set_font_size(20)
+            tb.set_size((750,150))
+            tb.stick_to(tb_h, target_side="bottom", self_side="top")
+            tb.blit()
+            tb.update()
+            
+            try: 
+                audio_play = rec().lower()
+            except:
+                try: 
+                    prompt_1 = 'Please say your pokemon choice clearly after 1 second.'
+                    print(prompt_1)
+                    tb = thorpy.Element(text=(prompt_1))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+                    time.sleep(1)
+                    audio_play = rec().lower()
+                except:
+                    prompt_1 = 'Cannot hear a voice command, choosing default pokemon of pikachu.'
+                    print(prompt_1)
+                    tb = thorpy.Element(text=(prompt_1))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+                    audio_play = 'pikachu'
+            audio_list = audio_play.split(' ')
+            for word in audio_list:
+                if word in p_name_list:
+                     p1_choice = word
+                else:
+                    prompt_1 = 'You did not choose an appropriate pokemon, default is pikachu.'
+                    print(prompt_1)
+                    tb = thorpy.Element(text=(prompt_1))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+                    p1_choice = 'pikachu'
+            for pokemon in pokemon_list:
+                if p1_choice == pokemon['name']:
+                    p1move1 = pokemon['moves'][0]['name']
+                    p1move2 = pokemon['moves'][1]['name']
+                    p1move3 = pokemon['moves'][2]['name']
+                    p1move4 = pokemon['moves'][3]['name']
+                    p1speed = pokemon['stats']['speed']
+                    
+                    p1_m1 = thorpy.Element(text=(p1move1))
+                    p1_m1.set_font_size(20)
+                    p1_m1.set_size((250,100))
+                    p1_m1.stick_to(p1_m, target_side="bottom", self_side="top")
+                    p1_m1.blit()
+                    p1_m1.update()
 
-print('press t to talk')
+                    p1_m2 = thorpy.Element(text=(p1move2))
+                    p1_m2.set_font_size(20)
+                    p1_m2.set_size((250,100))
+                    p1_m2.stick_to(p1_m1, target_side="bottom", self_side="top")
+                    p1_m2.blit()
+                    p1_m2.update()
 
-while True:
-    if keyboard.read_key() == "t":
-        dict_test2()
-        print (pkmn1, mvnm1)
-        break
+                    p1_m3 = thorpy.Element(text=(p1move3))
+                    p1_m3.set_font_size(20)
+                    p1_m3.set_size((250,100))
+                    p1_m3.stick_to(p1_m2, target_side="bottom", self_side="top")
+                    p1_m3.blit()
+                    p1_m3.update()
+
+                    p1_m4 = thorpy.Element(text=(p1move4))
+                    p1_m4.set_font_size(20)
+                    p1_m4.set_size((250,100))
+                    p1_m4.stick_to(p1_m3, target_side="bottom", self_side="top")
+                    p1_m4.blit()
+                    p1_m4.update()
+                
+            prompt_1 = f'P1 Chooses: {p1_choice}'
+            print(prompt_1)
+            tb = thorpy.Element(text=(prompt_1))
+            tb.set_font_size(20)
+            tb.set_size((750,150))
+            tb.stick_to(tb_h, target_side="bottom", self_side="top")
+            tb.blit()
+            tb.update()
+            
+            p1_p = thorpy.Element(text=(p1_choice))
+            p1_p.set_font_size(20)
+            p1_p.set_font_color((0,0,255))
+            p1_p.set_size((500,150))
+            p1_p.set_topleft((25,25))
+            p1_p.blit()
+            p1_p.update()
+
+            print(p1move1,p1move2,p1move3,p1move4)
+            p1_name_check = True
+            time.sleep(0.5)
+
+        elif (p1_name_check == True) and (p2_name_check == False):
+            prompt_2 = 'Player 2 Choose Your Pokemon'
+            print(prompt_2)
+            tb_h = thorpy.Element(text=('Player 2'))
+            tb_h.set_font_size(24)
+            tb_h.set_size((750, 50))
+            tb_h.set_center((720, 375))
+            tb_h.blit()
+            tb_h.update()
+            
+            tb = thorpy.Element(text=(prompt_2))
+            tb.set_font_size(20)
+            tb.set_size((750,150))
+            tb.stick_to(tb_h, target_side="bottom", self_side="top")
+            tb.blit()
+            tb.update()
+            try: 
+                audio_play = rec().lower()
+            except:
+                try: 
+                    prompt_2 = 'Please say your pokemon choice clearly after 1 second.'
+                    print(prompt_2)
+                    tb = thorpy.Element(text=(prompt_2))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+                    time.sleep(1)
+                    audio_play = rec().lower()
+                except:
+                    prompt_2 = 'Cannot hear a voice command, choosing default pokemon of pikachu.'
+                    print(prompt_2)
+                    tb = thorpy.Element(text=(prompt_2))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+                    audio_play = 'pikachu'
+            audio_list = audio_play.split(' ')
+            for word in audio_list:
+                if word in p_name_list:
+                     p2_choice = word
+                else:
+                    prompt_2 = 'You did not choose an appropriate pokemon, default is pikachu.'
+                    print(prompt_2)
+                    tb = thorpy.Element(text=(prompt_2))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+                    p2_choice = 'pikachu'
+            for pokemon in pokemon_list:
+                if p2_choice == pokemon['name']:
+                    p2move1 = pokemon['moves'][0]['name']
+                    p2move2 = pokemon['moves'][1]['name']
+                    p2move3 = pokemon['moves'][2]['name']
+                    p2move4 = pokemon['moves'][3]['name']
+                    p2speed = pokemon['stats']['speed']
+                    
+                    p2_m1 = thorpy.Element(text=(p2move1))
+                    p2_m1.set_font_size(20)
+                    p2_m1.set_size((250,100))
+                    p2_m1.stick_to(p2_m, target_side="bottom", self_side="top")
+                    p2_m1.blit()
+                    p2_m1.update()
+                    
+                    p2_m2 = thorpy.Element(text=(p2move2))
+                    p2_m2.set_font_size(20)
+                    p2_m2.set_size((250,100))
+                    p2_m2.stick_to(p2_m1, target_side="bottom", self_side="top")
+                    p2_m2.blit()
+                    p2_m2.update()
+                    
+                    p2_m3 = thorpy.Element(text=(p2move3))
+                    p2_m3.set_font_size(20)
+                    p2_m3.set_size((250,100))
+                    p2_m3.stick_to(p2_m2, target_side="bottom", self_side="top")
+                    p2_m3.blit()
+                    p2_m3.update()
+                    
+                    p2_m4 = thorpy.Element(text=(p2move4))
+                    p2_m4.set_font_size(20)
+                    p2_m4.set_size((250,100))
+                    p2_m4.stick_to(p2_m3, target_side="bottom", self_side="top")
+                    p2_m4.blit()
+                    p2_m4.update()
+                    
+                    
+                    
+            prompt_2 = f'P2 Chooses: {p2_choice}'
+            print(prompt_2)
+            tb = thorpy.Element(text=(prompt_2))
+            tb.set_font_size(20)
+            tb.set_size((750,150))
+            tb.stick_to(tb_h, target_side="bottom", self_side="top")
+            tb.blit()
+            tb.update()
+            
+            p2_p = thorpy.Element(text=(p2_choice))
+            p2_p.set_font_size(20)
+            p2_p.set_font_color((255,0,0))
+            p2_p.set_size((500,150))
+            p2_p.set_topleft((915,725))
+            p2_p.blit()
+            p2_p.update()
+            
+            print(p2move1,p2move2,p2move3,p2move4)
+            p2_name_check = True
+            time.sleep(0.5)
+
+        else:
+            checker = False
+    print('\n-----\n')
+    choice_prompt = f'Player 1 is using {p1_choice} and Player 2 is using {p2_choice}'
+    print(choice_prompt)
+    tb_h = thorpy.Element(text=('Annoucements:'))
+    tb_h.set_font_size(24)
+    tb_h.set_size((750, 50))
+    tb_h.set_center((720, 375))
+    tb_h.blit()
+    tb_h.update()
+    tb = thorpy.Element(text=(choice_prompt))
+    tb.set_font_size(20)
+    tb.set_size((750,150))
+    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+    tb.blit()
+    tb.update()
+
+
+####################################
+##### Initialize Pygame Engine #####
+####################################
+
+pygame.init()
+pygame.key.set_repeat(300, 30) #set behavior for key repeats (delay,inteval)
+screen = pygame.display.set_mode((1440,900))
+pygame.display.set_caption('Pygame Test')
+screen.fill((255,255,255))
+BACKGROUND_COLOR = (255,255,255)
+clock = pygame.time.Clock()
+pygame.display.flip()
+
+pkmn1 = ''
+################################
+##### Battle Announcements #####
+################################
+
+tb_h = thorpy.Element(text=('Annoucements:'))
+tb_h.set_font_size(24)
+tb_h.set_size((750, 50))
+tb_h.set_center((720, 375))
+tb_h.blit()
+tb_h.update()
+
+tb = thorpy.Element(text=(pkmn1))
+tb.set_font_size(20)
+tb.set_size((750,150))
+tb.stick_to(tb_h, target_side="bottom", self_side="top")
+tb.blit()
+tb.update()
+
+
+##############################
+########## Player 1 ##########
+##############################
+
+# Player 1 Pokemon Info
+p1_p = thorpy.Element(text=('Player 1 Pokemon'))
+p1_p.set_font_size(20)
+p1_p.set_font_color((0,0,255))
+p1_p.set_size((500,150))
+p1_p.set_topleft((25,25))
+p1_p.blit()
+p1_p.update()
+
+# Player 1 Movelist
+p1_m = thorpy.Element(text=('P1 Movelist'))
+p1_m.set_font_size(20)
+p1_m.set_font_color((0,0,255))
+p1_m.set_size((250,100))
+p1_m.set_center((150, 250))
+p1_m.blit()
+p1_m.update()
+
+p1_m1 = thorpy.Element(text=('Move 1'))
+p1_m1.set_font_size(20)
+p1_m1.set_size((250,100))
+p1_m1.stick_to(p1_m, target_side="bottom", self_side="top")
+p1_m1.blit()
+p1_m1.update()
+
+p1_m2 = thorpy.Element(text=('Move 2'))
+p1_m2.set_font_size(20)
+p1_m2.set_size((250,100))
+p1_m2.stick_to(p1_m1, target_side="bottom", self_side="top")
+p1_m2.blit()
+p1_m2.update()
+
+p1_m3 = thorpy.Element(text=('Move 3'))
+p1_m3.set_font_size(20)
+p1_m3.set_size((250,100))
+p1_m3.stick_to(p1_m2, target_side="bottom", self_side="top")
+p1_m3.blit()
+p1_m3.update()
+
+p1_m4 = thorpy.Element(text=('Move 4'))
+p1_m4.set_font_size(20)
+p1_m4.set_size((250,100))
+p1_m4.stick_to(p1_m3, target_side="bottom", self_side="top")
+p1_m4.blit()
+p1_m4.update()
+
+# Player 1 Pokemon Image
+# p1_i = thorpy.Element(text=('P1 Image'))
+# p1_i.set_font_size(20)
+# p1_i.set_font_color((0,0,255))
+# p1_i.set_size((300,300))
+# p1_i.set_topleft((300,575))
+# p1_i.blit()
+# p1_i.update()
+
+
+picture = pygame.image.load(os.path.join("images","blastoise_front.png")).convert()
+picture = pygame.transform.scale(picture, (300,300))
+# You can then get the bounding rectangle of picture with
+rect = picture.get_rect()
+# and move the picture with
+rect = rect.move((300,575))
+screen.blit(picture, rect)
+
+
+##############################
+########## Player 2 ##########
+##############################
+
+# Player 2 Pokemon Info
+p2_p = thorpy.Element(text=('Player 2 Pokemon'))
+p2_p.set_font_size(20)
+p2_p.set_font_color((255,0,0))
+p2_p.set_size((500,150))
+p2_p.set_topleft((915,725))
+p2_p.blit()
+p2_p.update()
+
+# Player 2 Movelist
+p2_m = thorpy.Element(text=('P2 Movelist'))
+p2_m.set_font_size(20)
+p2_m.set_font_color((255,0,0))
+p2_m.set_size((250,100))
+p2_m.set_center((1290, 250))
+p2_m.blit()
+p2_m.update()
+
+p2_m1 = thorpy.Element(text=('Move 1'))
+p2_m1.set_font_size(20)
+p2_m1.set_size((250,100))
+p2_m1.stick_to(p2_m, target_side="bottom", self_side="top")
+p2_m1.blit()
+p2_m1.update()
+
+p2_m2 = thorpy.Element(text=('Move 2'))
+p2_m2.set_font_size(20)
+p2_m2.set_size((250,100))
+p2_m2.stick_to(p2_m1, target_side="bottom", self_side="top")
+p2_m2.blit()
+p2_m2.update()
+
+p2_m3 = thorpy.Element(text=('Move 3'))
+p2_m3.set_font_size(20)
+p2_m3.set_size((250,100))
+p2_m3.stick_to(p2_m2, target_side="bottom", self_side="top")
+p2_m3.blit()
+p2_m3.update()
+
+p2_m4 = thorpy.Element(text=('Move 4'))
+p2_m4.set_font_size(20)
+p2_m4.set_size((250,100))
+p2_m4.stick_to(p2_m3, target_side="bottom", self_side="top")
+p2_m4.blit()
+p2_m4.update()
+
+# Player 2 Pokemon Image
+p2_i = thorpy.Element(text=('P2 Image'))
+p2_i.set_font_size(20)
+p2_i.set_font_color((255,0,0))
+p2_i.set_size((300,300))
+p2_i.set_topleft((840,25))
+p2_i.blit()
+p2_i.update()
+
+
+
+################################
+##### Launch Pygame Engine #####
+################################
+
+# screen = pygame.display.get_surface()
+# font = pygame.font.Font(None, 40)
+
+# font_surface = font.render("original", True, (255,255,255), (255,255,255))
+# screen.blit(font_surface, (0, 0))
+
+
+playing_game = True
+while playing_game:
+
+        clock.tick(45)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                playing_game = False
+                break
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_s:
+                    battle_init()
+                    time.sleep(1)
+                    
+                    if p1speed > p2speed:
+                        tb = thorpy.Element(text=(f'{p1_choice} is faster. Player 1 Goes First'))
+                    elif p2speed > p1speed:
+                        tb = thorpy.Element(text=(f'{p2_choice} is faster. Player 2 Goes First'))
+                    else:
+                        # add random choice
+                        tb = thorpy.Element(text=(f'Both pokemon have equal speeds, Player 1 goes first.'))
+                        
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+                elif event.key == pygame.K_t:
+                    dict_test2()
+                    try:
+                        tb = thorpy.Element(text=(f'{pkmn1} used {mvnm1}! It did 1 damage, just because.'))
+                    except NameError:
+                        tb = thorpy.Element(text=(f'Please try again, pokemon does not understand you. Say "use [move name here]" test char limit'))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+                elif event.key == pygame.K_ESCAPE:
+
+                    playing_game = False
+
+
+                elif event.key == pygame.K_b:
+                    break
+
+            pygame.display.update()
+            tb.react(event)
+
+
+pygame.quit()
