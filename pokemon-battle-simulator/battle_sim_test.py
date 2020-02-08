@@ -238,29 +238,22 @@ def battle_init():
                     p1_m4.update()
 
                     p1_mhp_bar = thorpy.Element(text=('P1 Health Bar'))
-                    p1_mhp_bar.set_font_size(10)
+                    p1_mhp_bar.set_font_size(12)
                     p1_mhp_bar.set_font_color((0,0,255))
-                    p1_mhp_bar.set_size((230,20))
-                    p1_mhp_bar.set_topleft((35, 820))
+                    p1_mhp_bar.set_size((210,30))
+                    p1_mhp_bar.set_topleft((45, 815))
                     p1_mhp_bar.blit()
                     p1_mhp_bar.update()
-
-                    # p1_chp_bar = thorpy.Element(text=('P1 Health Bar'))
-                    # p1_chp_bar.set_font_size(10)
-                    # p1_chp_bar.set_font_color((0,0,255))
-                    # p1_chp_bar.set_size((p1_hpbarsize,20))
-                    # p1_chp_bar.set_topleft((50, 820))
-                    # # p1_chp_bar.set_color((0,0,0))
-                    # p1_chp_bar.blit()
-                    # p1_chp_bar.update()
+                    
+                    p1_hp_box = thorpy.Element(text=(f'HP: {p1curhp}/{p1maxhp}'))
+                    p1_hp_box.set_font_size(16)
+                    p1_hp_box.set_font_color((0,0,0))
+                    p1_hp_box.set_size((100,35))
+                    p1_hp_box.stick_to(p1_mhp_bar, target_side="top", self_side="bottom")
+                    p1_hp_box.blit()
+                    p1_hp_box.update()
 
                     p1_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (50, 820, p1_hpbarsize, 20), 0)
-                    # p1_chp_bar = pygame.draw.rect()
-                    # p1_chp_bar.set_size((p1_hpbarsize,20))
-                    # p1_chp_bar.set_topleft((50,820))
-                    # p1_chp_bar.set_color((0,255,0))
-                    # p1_chp_bar.blit()
-                    # p1_chp_bar.update()
 
                     time.sleep(0.1)
                     p1_i = pygame.image.load(os.path.join("images",str(p1_choice)+"_back.png")).convert()
@@ -344,6 +337,9 @@ def battle_init():
                     p2move3 = pokemon['moves'][2]['name']
                     p2move4 = pokemon['moves'][3]['name']
                     p2speed = pokemon['stats']['speed']
+                    p2maxhp = pokemon['stats']['health']
+                    p2curhp = p2maxhp
+                    p2_hpbarsize = 200 * (p2curhp/p2maxhp)
                     
                     p2_p_h = thorpy.Element(text=('Player 2 Pokemon'))
                     p2_p_h.set_font_size(30)
@@ -396,6 +392,25 @@ def battle_init():
                     p2_m4.stick_to(p2_m3, target_side="bottom", self_side="top")
                     p2_m4.blit()
                     p2_m4.update()
+
+
+                    p2_mhp_bar = thorpy.Element(text=('P2 Health Bar'))
+                    p2_mhp_bar.set_font_size(12)
+                    p2_mhp_bar.set_font_color((0,0,255))
+                    p2_mhp_bar.set_size((210,30))
+                    p2_mhp_bar.set_topleft((1185, 85))
+                    p2_mhp_bar.blit()
+                    p2_mhp_bar.update()
+
+                    p2_hp_box = thorpy.Element(text=(f'HP: {p2curhp}/{p2maxhp}'))
+                    p2_hp_box.set_font_size(16)
+                    p2_hp_box.set_font_color((0,0,0))
+                    p2_hp_box.set_size((100,35))
+                    p2_hp_box.stick_to(p2_mhp_bar, target_side="top", self_side="bottom")
+                    p2_hp_box.blit()
+                    p2_hp_box.update()
+
+                    p2_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (1190, 90, p2_hpbarsize, 20), 0)
 
                     time.sleep(0.1)
 
