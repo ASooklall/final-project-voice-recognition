@@ -2,6 +2,7 @@ import speech_recognition as sr
 import pyaudio
 import keyboard, time
 from pynput.keyboard import Key, Controller
+from csv import writer
 
 # sentence = "the quick brown fox jumps over the lazy dog"
 
