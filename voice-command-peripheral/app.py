@@ -111,26 +111,34 @@ while True:
         spe = rec_z()
         # print(spe)
         try:
-            if spe.lower() == 'go up':
-                inputter.press('w')
-                keyboard.wait('z')
-                inputter.release('w')
-                append_vcp_log([datetime.now(),spe.lower(),'special'])
+            if spe.lower().startswith('go up'):
+                new_spe = spe.split()
+                for i in range(0, int(new_spe[3])):
+                    inputter.press('w')
+                    time.sleep(0.2)
+                    inputter.release('w')
+                    append_vcp_log([datetime.now(),'go up','special'])
             elif spe.lower() == 'go left':
-                inputter.press('a')
-                keyboard.wait('z')
-                inputter.release('a')
-                append_vcp_log([datetime.now(),spe.lower(),'special'])
+                new_spe = spe.split()
+                for i in range(0, int(new_spe[3])):
+                    inputter.press('a')
+                    time.sleep(0.2)
+                    inputter.release('a')
+                    append_vcp_log([datetime.now(),'go up','special'])
             elif spe.lower() == 'go down':
-                inputter.press('s')
-                keyboard.wait('z')
-                inputter.release('s')
-                append_vcp_log([datetime.now(),spe.lower(),'special'])
+                new_spe = spe.split()
+                for i in range(0, int(new_spe[3])):
+                    inputter.press('s')
+                    time.sleep(0.2)
+                    inputter.release('s')
+                    append_vcp_log([datetime.now(),'go up','special'])
             elif spe.lower() == 'go right':
-                inputter.press('d')
-                keyboard.wait('z')
-                inputter.release('d')
-                append_vcp_log([datetime.now(),spe.lower(),'special'])
+                new_spe = spe.split()
+                for i in range(0, int(new_spe[3])):
+                    inputter.press('d')
+                    time.sleep(0.2)
+                    inputter.release('d')
+                    append_vcp_log([datetime.now(),'go up','special'])
             else:
                 basic_commands(spe, 'special')
                 time.sleep(0.2)
