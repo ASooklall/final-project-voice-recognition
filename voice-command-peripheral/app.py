@@ -39,34 +39,34 @@ def rec_z():
 #     sentence = rec_z()
 #     for letter in sentence:
 #         keyboard.press_and_release(letter)
-#         time.sleep(0.1)
+#         time.sleep(0.2)
 
 inputter = Controller()
 
 def basic_commands(word):
     if word in ['a', 'yes']:
         inputter.press('j')
-        time.sleep(0.1)
+        time.sleep(0.2)
         inputter.release('j')
     elif word in ['b', 'no', 'back']:
         inputter.press('k')
-        time.sleep(0.1)
+        time.sleep(0.2)
         inputter.release('k')
     elif word in ['up']:
         inputter.press('w')
-        time.sleep(0.1)
+        time.sleep(0.2)
         inputter.release('w')
     elif word in ['left']:
         inputter.press('a')
-        time.sleep(0.1)
+        time.sleep(0.2)
         inputter.release('a')
     elif word in ['down']:
         inputter.press('s')
-        time.sleep(0.1)
+        time.sleep(0.2)
         inputter.release('s')
     elif word in ['right']:
         inputter.press('d')
-        time.sleep(0.1)
+        time.sleep(0.2)
         inputter.release('d')
 
 while True:
@@ -74,16 +74,18 @@ while True:
     pressed_key = keyboard.read_key()
     print(pressed_key)
     if pressed_key == "x":
-        print('You have chosen Sequence. Pls talk')
+        print('You have chosen Sequence')
         seq = rec_z()
         seq_list = seq.split()
         for c in seq_list:
             basic_commands(c)
-            time.sleep(0.1)
+            time.sleep(0.2)
     elif pressed_key == 'c':
-        print('You have chosen Special. Pls talk')
+        print('You have chosen Special')
         spe = rec_z()
+        print(spe)
         basic_commands(spe)
+        time.sleep(0.2)
     elif pressed_key == 'esc':
         break
-    time.sleep(0.1)
+    time.sleep(0.2)
