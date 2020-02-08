@@ -50,47 +50,69 @@ def append_vcp_log(log_entry):
 
 inputter = Controller()
 
+input_sleep = 0.25
+
 def basic_commands(word, mode):
-    if word in ['a', 'yes', 'okay', 'confirm', 'accept']:
+    if word in ['a', 'yes', 'okay', 'confirm', 'accept', 'except']:
         inputter.press('j')
-        time.sleep(0.2)
+        time.sleep(input_sleep)
         inputter.release('j')
         append_vcp_log([datetime.now(),word,mode])
     elif word in ['b', 'no', 'back']:
         inputter.press('k')
-        time.sleep(0.2)
+        time.sleep(input_sleep)
         inputter.release('k')
         append_vcp_log([datetime.now(),word,mode])
     elif word in ['up']:
         inputter.press('w')
-        time.sleep(0.2)
+        time.sleep(input_sleep)
         inputter.release('w')
         append_vcp_log([datetime.now(),word,mode])
     elif word in ['left']:
         inputter.press('a')
-        time.sleep(0.2)
+        time.sleep(input_sleep)
         inputter.release('a')
         append_vcp_log([datetime.now(),word,mode])
     elif word in ['down']:
         inputter.press('s')
-        time.sleep(0.2)
+        time.sleep(input_sleep)
         inputter.release('s')
         append_vcp_log([datetime.now(),word,mode])
     elif word in ['right', 'write']:
         inputter.press('d')
-        time.sleep(0.2)
+        time.sleep(input_sleep)
         inputter.release('d')
         append_vcp_log([datetime.now(),word,mode])
     elif word in ['start']:
         inputter.press('u')
-        time.sleep(0.2)
+        time.sleep(input_sleep)
         inputter.release('u')
         append_vcp_log([datetime.now(),word,mode])
     elif word in ['select']:
         inputter.press('i')
-        time.sleep(0.2)
+        time.sleep(input_sleep)
         inputter.release('i')
         append_vcp_log([datetime.now(),word,mode])
+    elif word in ['upright']:
+        inputter.press('w')
+        time.sleep(input_sleep)
+        inputter.release('w')
+        inputter.press('d')
+        append_vcp_log([datetime.now(),'up',mode])
+        time.sleep(input_sleep)
+        inputter.release('d')
+        append_vcp_log([datetime.now(),'right',mode])
+    elif word in ['downright']:
+        inputter.press('s')
+        time.sleep(input_sleep)
+        inputter.release('s')
+        append_vcp_log([datetime.now(),'down',mode])
+        inputter.press('d')
+        time.sleep(input_sleep)
+        inputter.release('d')
+        append_vcp_log([datetime.now(),'right',mode])
+    else:
+        append_vcp_log([datetime.now(),word,'incorrect'])
 
 while True:
     print('Sequence [X] or Special [C]? (Press [esc] to escape)')
@@ -103,47 +125,51 @@ while True:
             seq_list = seq.split()
             for c in seq_list:
                 basic_commands(c, 'sequence')
-                time.sleep(0.2)
+                time.sleep(input_sleep)
         except AttributeError:
             pass
     elif pressed_key == 'c':
-        print('You have chosen Special (single command; press [Z] to stop)')
+        print('You have chosen Special (single command; "go [direction]")')
         spe = rec_z()
         # print(spe)
         try:
-            if spe.lower().startswith('go up'):
-                new_spe = spe.split()
-                for i in range(0, int(new_spe[3])):
+            if spe.lower() == ('go up'):
+                print('How many steps? (up to 9)')
+                distance = keyboard.read_key()
+                for i in range(0, int(distance)):
                     inputter.press('w')
-                    time.sleep(0.2)
+                    time.sleep(input_sleep)
                     inputter.release('w')
                     append_vcp_log([datetime.now(),'go up','special'])
             elif spe.lower() == 'go left':
-                new_spe = spe.split()
-                for i in range(0, int(new_spe[3])):
+                print('How many steps? (up to 9)')
+                distance = keyboard.read_key()
+                for i in range(0, int(distance)):
                     inputter.press('a')
-                    time.sleep(0.2)
+                    time.sleep(input_sleep)
                     inputter.release('a')
                     append_vcp_log([datetime.now(),'go up','special'])
             elif spe.lower() == 'go down':
-                new_spe = spe.split()
-                for i in range(0, int(new_spe[3])):
+                print('How many steps? (up to 9)')
+                distance = keyboard.read_key()
+                for i in range(0, int(distance)):
                     inputter.press('s')
-                    time.sleep(0.2)
+                    time.sleep(input_sleep)
                     inputter.release('s')
                     append_vcp_log([datetime.now(),'go up','special'])
             elif spe.lower() == 'go right':
-                new_spe = spe.split()
-                for i in range(0, int(new_spe[3])):
+                print('How many steps? (up to 9)')
+                distance = keyboard.read_key()
+                for i in range(0, int(distance)):
                     inputter.press('d')
-                    time.sleep(0.2)
+                    time.sleep(input_sleep)
                     inputter.release('d')
                     append_vcp_log([datetime.now(),'go up','special'])
             else:
                 basic_commands(spe, 'special')
-                time.sleep(0.2)
+                time.sleep(input_sleep)
         except AttributeError:
             pass
     elif pressed_key == 'esc':
         break
-    time.sleep(0.2)
+    time.sleep(input_sleep)
