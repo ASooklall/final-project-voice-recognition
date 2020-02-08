@@ -37,12 +37,12 @@ def rec():
         mic = sr.Microphone(device_index=0)
         with mic as source:
     #         rt.adjust_for_ambient_noise(source)
-            rt.energy_threshold = 20000
-            # rt.energy_threshole = 3000
+            # rt.energy_threshold = 20000
+            rt.energy_threshole = 3000
             # rt.dynamic_energy_threshold = True
             rt.adjust_for_ambient_noise(source, duration = 0.6)
-            audio = rt.listen(source, timeout = 0.5)
-            # audio = rt.listen(source, timeout = 2.0)
+            # audio = rt.listen(source, timeout = 0.5)
+            audio = rt.listen(source, timeout = 2.0)
             try: 
                 audio_play = rt.recognize_google(audio) 
                 print("You said: " + audio_play)
@@ -106,8 +106,8 @@ def dict_test2():
         
         
 def battle_init():
-    global p1_choice, p1_name_check, p1speed, p1move1, p1move2, p1move3, p1move4
-    global p2_choice, p2_name_check, p2speed, p2move1, p2move2, p2move3, p2move4
+    global p1_choice, p1_name_check, p1speed, p1move1, p1move2, p1move3, p1move4, p1maxhp, p1curhp, p1_hpbarsize
+    global p2_choice, p2_name_check, p2speed, p2move1, p2move2, p2move3, p2move4, p2maxhp, p2curhp, p2_hpbarsize
 
     p1_name_check = False
     p2_name_check = False
@@ -181,6 +181,9 @@ def battle_init():
                     p1move3 = pokemon['moves'][2]['name']
                     p1move4 = pokemon['moves'][3]['name']
                     p1speed = pokemon['stats']['speed']
+                    p1maxhp = pokemon['stats']['health']
+                    p1curhp = p1maxhp
+                    p1_hpbarsize = 200 * (p1curhp/p1maxhp)
                     
                     p1_p_h = thorpy.Element(text=('Player 1 Pokemon'))
                     p1_p_h.set_font_size(30)
@@ -233,6 +236,31 @@ def battle_init():
                     p1_m4.stick_to(p1_m3, target_side="bottom", self_side="top")
                     p1_m4.blit()
                     p1_m4.update()
+
+                    p1_mhp_bar = thorpy.Element(text=('P1 Health Bar'))
+                    p1_mhp_bar.set_font_size(10)
+                    p1_mhp_bar.set_font_color((0,0,255))
+                    p1_mhp_bar.set_size((230,20))
+                    p1_mhp_bar.set_topleft((35, 820))
+                    p1_mhp_bar.blit()
+                    p1_mhp_bar.update()
+
+                    # p1_chp_bar = thorpy.Element(text=('P1 Health Bar'))
+                    # p1_chp_bar.set_font_size(10)
+                    # p1_chp_bar.set_font_color((0,0,255))
+                    # p1_chp_bar.set_size((p1_hpbarsize,20))
+                    # p1_chp_bar.set_topleft((50, 820))
+                    # # p1_chp_bar.set_color((0,0,0))
+                    # p1_chp_bar.blit()
+                    # p1_chp_bar.update()
+
+                    p1_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (50, 820, p1_hpbarsize, 20), 0)
+                    # p1_chp_bar = pygame.draw.rect()
+                    # p1_chp_bar.set_size((p1_hpbarsize,20))
+                    # p1_chp_bar.set_topleft((50,820))
+                    # p1_chp_bar.set_color((0,255,0))
+                    # p1_chp_bar.blit()
+                    # p1_chp_bar.update()
 
                     time.sleep(0.1)
                     p1_i = pygame.image.load(os.path.join("images",str(p1_choice)+"_back.png")).convert()
@@ -335,7 +363,7 @@ def battle_init():
 
                     p2_p = thorpy.Element(text=(p2_choice))
                     p2_p.set_font_size(35)
-                    p2_p.set_font_color((255,0,0))
+                    p2_p.set_font_color((0,0,0))
                     p2_p.set_size((500,100))
                     p2_p.stick_to(p2_p_h, target_side="bottom", self_side="top")
                     p2_p.blit()
