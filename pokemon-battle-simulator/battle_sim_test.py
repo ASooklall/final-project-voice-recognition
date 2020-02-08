@@ -23,7 +23,7 @@ pokemon_list = [
  'moves':[{'name':'dig','power':1,'type':'ground'},{'name':'iron tail','power':1,'type':'steel'},{'name':'stone edge','power':1,'type':'rock'},{'name':'slam','power':1,'type':'normal'}],},
 {'name':'alakazam','stats':{'health':3,'attack':1,'defense':1,'speed':1,'current_health':3},
  'moves':[{'name':'psybeam','power':1,'type':'psychic'},{'name':'recover','power':1,'type':'normal'},{'name':'psychic','power':1,'type':'psychic'},{'name':'night shade','power':1,'type':'ghost'}],},
-{'name':'gengar','stats':{'health':3,'attack':1,'defense':1,'speed':1,'current_health':3},
+{'name':'gengar','stats':{'health':3,'attack':1,'defense':1,'speed':2,'current_health':3},
  'moves':[{'name':'shadow ball','power':1,'type':'ghost'},{'name':'dark pulse','power':1,'type':'dark'},{'name':'hypnosis','power':1,'type':'normal'},{'name':'dream eater','power':1,'type':'ghost'}],},
 {'name':'nidoqueen','stats':{'health':3,'attack':1,'defense':1,'speed':1,'current_health':3},
  'moves':[{'name':'body slam','power':1,'type':'normal'},{'name':'super power','power':1,'type':'fighting'},{'name':'counter','power':1,'type':'fighting'},{'name':'dragon tail','power':1,'type':'dragon'}],},
@@ -103,11 +103,16 @@ def dict_test2():
         print('Please try again, pokemon does not understand you. Say "use [move name here]"')
     except AttributeError:
         print('Please try again, pokemon does not understand you. Say "use [move name here]"')
+
+
+
+
+
         
         
 def battle_init():
-    global p1_choice, p1_name_check, p1speed, p1move1, p1move2, p1move3, p1move4, p1maxhp, p1curhp, p1_hpbarsize
-    global p2_choice, p2_name_check, p2speed, p2move1, p2move2, p2move3, p2move4, p2maxhp, p2curhp, p2_hpbarsize
+    global p1_choice, p1_name_check, p1speed, p1atk, p1def, p1move1, p1move2, p1move3, p1move4, p1maxhp, p1curhp, p1_hpbarsize
+    global p2_choice, p2_name_check, p2speed, p2atk, p2def, p2move1, p2move2, p2move3, p2move4, p2maxhp, p2curhp, p2_hpbarsize
 
     p1_name_check = False
     p2_name_check = False
@@ -181,6 +186,8 @@ def battle_init():
                     p1move3 = pokemon['moves'][2]['name']
                     p1move4 = pokemon['moves'][3]['name']
                     p1speed = pokemon['stats']['speed']
+                    p1atk = pokemon['stats']['attack']
+                    p1def = pokemon['stats']['defense']
                     p1maxhp = pokemon['stats']['health']
                     p1curhp = p1maxhp
                     p1_hpbarsize = 200 * (p1curhp/p1maxhp)
@@ -337,6 +344,8 @@ def battle_init():
                     p2move3 = pokemon['moves'][2]['name']
                     p2move4 = pokemon['moves'][3]['name']
                     p2speed = pokemon['stats']['speed']
+                    p2atk = pokemon['stats']['attack']
+                    p2def = pokemon['stats']['defense']
                     p2maxhp = pokemon['stats']['health']
                     p2curhp = p2maxhp
                     p2_hpbarsize = 200 * (p2curhp/p2maxhp)
@@ -457,6 +466,110 @@ def battle_init():
     tb.blit()
     tb.update()
 
+
+# def choose_move():
+#     #record audio
+#     #split audio
+#     #search split array for match in player's movepement m1/m2/m3/m4 list
+#     #if move matches -> return move info as vars for name, priority (0 for now) type, power
+#     # save values to player vars
+#     audio_play = rec().lower()
+#     audio_list = audio_play.split(' ')
+#     for word in audio_list:
+#         if word == p1_m4:
+#             print('t')
+#         elif word == p1_m3:
+#         elif word == p1_m2:
+#         else:
+#             #default to move1
+
+
+
+
+
+
+def battle_execute():
+    global p1_movepriority, p1_movetype, p1_movepower, p1curhp, p1atk, p1speed, p1def, p1_m1, p1_m2, p1_m3, p1_m4
+    global p2_movepriority, p2_movetype, p2_movepower, p2curhp, p2atk, p2speed, p2def, p2_m1, p2_m2, p2_m3, p2_m4
+    
+    while (p1curhp > 0) and (p2curhp > 0):
+        tb = thorpy.Element(text=(f'Player 1 Please Choose Your Move. Press T when ready to choose move.'))
+        tb.set_font_size(20)
+        tb.set_size((750,150))
+        tb.stick_to(tb_h, target_side="bottom", self_side="top")
+        tb.blit()
+        tb.update()
+
+        print('press m')
+        key = keyboard.read_key()
+        print(key)
+        if key == "m":
+            print('test')
+        #insert choosemove function here
+        print('did you press m?')
+
+        p1_movepriority = 0
+        p1_movetype = 'move_type'
+        p1_movepower = 1
+
+
+
+
+        time.sleep(2)
+
+        tb = thorpy.Element(text=(f'Player 2 Please Choose Your Move. Press T when ready to choose move.'))
+        tb.set_font_size(20)
+        tb.set_size((750,150))
+        tb.stick_to(tb_h, target_side="bottom", self_side="top")
+        tb.blit()
+        tb.update()
+
+        print('press m')
+        key = keyboard.read_key()
+        print(key)
+        if key == "m":
+            print('test')
+        print('did you press m?')
+        #slkdflsdjfds = p2move
+        p2_movepriority = 0
+        p2_movetype = 'move_type'
+        p2_movepower = 1
+
+        time.sleep(2)
+
+
+
+        p1_turnspeed = int(p1speed) + (int(p1_movepriority)*1000)
+        p2_turnspeed = int(p2speed) + (int(p2_movepriority)*1000)
+
+        if p1_turnspeed > p2_turnspeed:
+            print('p1fast gofirst')
+            p2curhp = p2curhp - (p1_movepower * (p1atk / p2def))
+            print('p1atks')
+            if p2curhp > 0:
+                p1curhp = p1curhp - (p2_movepower * (p2atk / p1def))
+                print('p2atks')
+
+        elif p2_turnspeed > p1_turnspeed:
+            print('p2fast gofirst')
+            p1curhp = p1curhp - (p2_movepower * (p2atk/p1def))
+            if p1curhp > 0:
+                p2curhp = p2curhp - (p1_movepower * (p1atk / p2def))
+        else:
+            print('nobodyfast p1first')
+            p2curhp = p2curhp - (p1_movepower * (p1atk / p2def))
+            print('p1atks')
+            if p2curhp > 0:
+                p1curhp = p1curhp - (p2_movepower * (p2atk / p1def))
+                print('p2atks')
+
+
+
+
+    if p1curhp <= 0:
+        print('p1died')
+    elif p2curhp <= 0:
+        print('p2died')
 
 ####################################
 ##### Initialize Pygame Engine #####
@@ -699,7 +812,14 @@ while playing_game:
                         controller.press('z')
                         time.sleep(0.3)
                         controller.release('z')
-                    else:
+                    elif choice_locked == True and newgame == False:
+                        tb = thorpy.Element(text=(f"Cannot confirm choices after already beginning the game."))
+                        tb.set_font_size(20)
+                        tb.set_size((750,150))
+                        tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                        tb.blit()
+                        tb.update()
+                    elif first_attempt == True:
                         tb = thorpy.Element(text=(f'Press S to start game before confirming choices.'))
                         tb.set_font_size(20)
                         tb.set_size((750,150))
@@ -745,22 +865,23 @@ while playing_game:
 
                         time.sleep(1)
                         # battlecommand here
-                        if p1speed > p2speed:
-                            tb = thorpy.Element(text=(f'{p1_choice} is faster. Player 1 Goes First'))
-                        elif p2speed > p1speed:
-                            tb = thorpy.Element(text=(f'{p2_choice} is faster. Player 2 Goes First'))
-                        else:
-                            # add random choice
-                            tb = thorpy.Element(text=(f'Both pokemon have equal speeds, Player 1 goes first.'))
+                        battle_execute()
+                        # if p1speed > p2speed:
+                        #     tb = thorpy.Element(text=(f'{p1_choice} is faster. Player 1 Goes First'))
+                        # elif p2speed > p1speed:
+                        #     tb = thorpy.Element(text=(f'{p2_choice} is faster. Player 2 Goes First'))
+                        # else:
+                        #     # add random choice
+                        #     tb = thorpy.Element(text=(f'Both pokemon have equal speeds, Player 1 goes first.'))
 
-                        tb.set_font_size(20)
-                        tb.set_size((750,150))
-                        tb.stick_to(tb_h, target_side="bottom", self_side="top")
-                        tb.blit()
-                        tb.update()
+                        # tb.set_font_size(20)
+                        # tb.set_size((750,150))
+                        # tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                        # tb.blit()
+                        # tb.update()
 
                     elif choice_locked == True and newgame == False:
-                        tb = thorpy.Element(text=(f"Cannot confirm choices after already beginning the game."))
+                        tb = thorpy.Element(text=(f"Match has already started."))
                         tb.set_font_size(20)
                         tb.set_size((750,150))
                         tb.stick_to(tb_h, target_side="bottom", self_side="top")
