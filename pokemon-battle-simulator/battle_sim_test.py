@@ -489,8 +489,9 @@ def battle_init():
 
 
 def battle_execute():
-    global p1_movepriority, p1_movetype, p1_movepower, p1curhp, p1atk, p1speed, p1def, p1_m1, p1_m2, p1_m3, p1_m4
-    global p2_movepriority, p2_movetype, p2_movepower, p2curhp, p2atk, p2speed, p2def, p2_m1, p2_m2, p2_m3, p2_m4
+    global p1_movepriority, p1_movetype, p1_movepower, p1curhp, p1atk, p1speed, p1def, p1_m1, p1_m2, p1_m3, p1_m4, p1maxhp, p1_hpbarsize
+    global p2_movepriority, p2_movetype, p2_movepower, p2curhp, p2atk, p2speed, p2def, p2_m1, p2_m2, p2_m3, p2_m4, p2maxhp, p2_hpbarsize
+    global winner, loser
     
     while (p1curhp > 0) and (p2curhp > 0):
         tb = thorpy.Element(text=(f'Player 1 Please Choose Your Move. Press T when ready to choose move.'))
@@ -544,32 +545,163 @@ def battle_execute():
 
         if p1_turnspeed > p2_turnspeed:
             print('p1fast gofirst')
-            p2curhp = p2curhp - (p1_movepower * (p1atk / p2def))
-            print('p1atks')
+            p2curhp = p2curhp - int((p1_movepower * (p1atk / p2def)))
+            p2_hpbarsize = 200 * (p2curhp/p2maxhp)
+            p2_hpbarsize = round(p2_hpbarsize, 0)
+
+            p2_mhp_bar = thorpy.Element(text=(' '))
+            p2_mhp_bar.set_font_size(12)
+            p2_mhp_bar.set_font_color((0,0,255))
+            p2_mhp_bar.set_size((210,30))
+            p2_mhp_bar.set_topleft((1185, 85))
+            p2_mhp_bar.blit()
+            p2_mhp_bar.update()
+
+            p2_hp_box = thorpy.Element(text=(f'HP: {p2curhp}/{p2maxhp}'))
+            p2_hp_box.set_font_size(16)
+            p2_hp_box.set_font_color((0,0,0))
+            p2_hp_box.set_size((100,35))
+            p2_hp_box.stick_to(p2_mhp_bar, target_side="top", self_side="bottom")
+            p2_hp_box.blit()
+            p2_hp_box.update()
+
+            p2_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (1190, 90, p2_hpbarsize, 20), 0)
+
+            print('p1atks', p2curhp)
             if p2curhp > 0:
-                p1curhp = p1curhp - (p2_movepower * (p2atk / p1def))
-                print('p2atks')
+                p1curhp = p1curhp - int((p2_movepower * (p2atk / p1def)))
+                p1_hpbarsize = 200 * (p1curhp/p1maxhp)
+                p1_hpbarsize = round(p1_hpbarsize, 0)
+
+                p1_mhp_bar = thorpy.Element(text=(' '))
+                p1_mhp_bar.set_font_size(12)
+                p1_mhp_bar.set_font_color((0,0,255))
+                p1_mhp_bar.set_size((210,30))
+                p1_mhp_bar.set_topleft((45, 815))
+                p1_mhp_bar.blit()
+                p1_mhp_bar.update()
+                
+                p1_hp_box = thorpy.Element(text=(f'HP: {p1curhp}/{p1maxhp}'))
+                p1_hp_box.set_font_size(16)
+                p1_hp_box.set_font_color((0,0,0))
+                p1_hp_box.set_size((100,35))
+                p1_hp_box.stick_to(p1_mhp_bar, target_side="top", self_side="bottom")
+                p1_hp_box.blit()
+                p1_hp_box.update()
+
+                p1_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (50, 820, p1_hpbarsize, 20), 0)
+
+
+                print('p2atks', p1curhp)
 
         elif p2_turnspeed > p1_turnspeed:
             print('p2fast gofirst')
-            p1curhp = p1curhp - (p2_movepower * (p2atk/p1def))
+            p1curhp = p1curhp - int((p2_movepower * (p2atk/p1def)))
+            p1_hpbarsize = 200 * (p1curhp/p1maxhp)
+            p1_hpbarsize = round(p1_hpbarsize, 0)
+
+            p1_mhp_bar = thorpy.Element(text=(' '))
+            p1_mhp_bar.set_font_size(12)
+            p1_mhp_bar.set_font_color((0,0,255))
+            p1_mhp_bar.set_size((210,30))
+            p1_mhp_bar.set_topleft((45, 815))
+            p1_mhp_bar.blit()
+            p1_mhp_bar.update()
+            
+            p1_hp_box = thorpy.Element(text=(f'HP: {p1curhp}/{p1maxhp}'))
+            p1_hp_box.set_font_size(16)
+            p1_hp_box.set_font_color((0,0,0))
+            p1_hp_box.set_size((100,35))
+            p1_hp_box.stick_to(p1_mhp_bar, target_side="top", self_side="bottom")
+            p1_hp_box.blit()
+            p1_hp_box.update()
+
+            p1_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (50, 820, p1_hpbarsize, 20), 0)
+            print('p2atks', p1curhp)
+
             if p1curhp > 0:
-                p2curhp = p2curhp - (p1_movepower * (p1atk / p2def))
+                p2curhp = p2curhp - int((p1_movepower * (p1atk / p2def)))
+                p2_hpbarsize = 200 * (p2curhp/p2maxhp)
+                p2_hpbarsize = round(p2_hpbarsize, 0)
+
+                p2_mhp_bar = thorpy.Element(text=(' '))
+                p2_mhp_bar.set_font_size(12)
+                p2_mhp_bar.set_font_color((0,0,255))
+                p2_mhp_bar.set_size((210,30))
+                p2_mhp_bar.set_topleft((1185, 85))
+                p2_mhp_bar.blit()
+                p2_mhp_bar.update()
+
+                p2_hp_box = thorpy.Element(text=(f'HP: {p2curhp}/{p2maxhp}'))
+                p2_hp_box.set_font_size(16)
+                p2_hp_box.set_font_color((0,0,0))
+                p2_hp_box.set_size((100,35))
+                p2_hp_box.stick_to(p2_mhp_bar, target_side="top", self_side="bottom")
+                p2_hp_box.blit()
+                p2_hp_box.update()
+
+                p2_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (1190, 90, p2_hpbarsize, 20), 0)
+                print('p1atks', p2curhp)
         else:
             print('nobodyfast p1first')
-            p2curhp = p2curhp - (p1_movepower * (p1atk / p2def))
-            print('p1atks')
+            p2curhp = p2curhp - int((p1_movepower * (p1atk / p2def)))
+            p2_hpbarsize = 200 * (p2curhp/p2maxhp)
+            p2_hpbarsize = round(p2_hpbarsize, 0)
+
+            p2_mhp_bar = thorpy.Element(text=(' '))
+            p2_mhp_bar.set_font_size(12)
+            p2_mhp_bar.set_font_color((0,0,255))
+            p2_mhp_bar.set_size((210,30))
+            p2_mhp_bar.set_topleft((1185, 85))
+            p2_mhp_bar.blit()
+            p2_mhp_bar.update()
+
+            p2_hp_box = thorpy.Element(text=(f'HP: {p2curhp}/{p2maxhp}'))
+            p2_hp_box.set_font_size(16)
+            p2_hp_box.set_font_color((0,0,0))
+            p2_hp_box.set_size((100,35))
+            p2_hp_box.stick_to(p2_mhp_bar, target_side="top", self_side="bottom")
+            p2_hp_box.blit()
+            p2_hp_box.update()
+
+            p2_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (1190, 90, p2_hpbarsize, 20), 0)
+            print('p1atks', p2curhp)
+
             if p2curhp > 0:
-                p1curhp = p1curhp - (p2_movepower * (p2atk / p1def))
-                print('p2atks')
+                p1curhp = p1curhp - (int(p2_movepower * (p2atk / p1def)))
+                p1_hpbarsize = 200 * (p1curhp/p1maxhp)
+                p1_hpbarsize = round(p1_hpbarsize, 0)
 
+                p1_mhp_bar = thorpy.Element(text=(' '))
+                p1_mhp_bar.set_font_size(12)
+                p1_mhp_bar.set_font_color((0,0,255))
+                p1_mhp_bar.set_size((210,30))
+                p1_mhp_bar.set_topleft((45, 815))
+                p1_mhp_bar.blit()
+                p1_mhp_bar.update()
+                
+                p1_hp_box = thorpy.Element(text=(f'HP: {p1curhp}/{p1maxhp}'))
+                p1_hp_box.set_font_size(16)
+                p1_hp_box.set_font_color((0,0,0))
+                p1_hp_box.set_size((100,35))
+                p1_hp_box.stick_to(p1_mhp_bar, target_side="top", self_side="bottom")
+                p1_hp_box.blit()
+                p1_hp_box.update()
 
+                p1_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (50, 820, p1_hpbarsize, 20), 0)
+                print('p2atks', p1curhp)
 
+        # p1_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (50, 820, p1_hpbarsize, 20), 0)
+        # p2_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (1190, 90, p2_hpbarsize, 20), 0)
 
     if p1curhp <= 0:
         print('p1died')
+        loser = "Player 1"
+        winner = "Player 2"
     elif p2curhp <= 0:
         print('p2died')
+        loser = "Player 2"
+        winner = "Player 1"
 
 ####################################
 ##### Initialize Pygame Engine #####
@@ -866,19 +998,13 @@ while playing_game:
                         time.sleep(1)
                         # battlecommand here
                         battle_execute()
-                        # if p1speed > p2speed:
-                        #     tb = thorpy.Element(text=(f'{p1_choice} is faster. Player 1 Goes First'))
-                        # elif p2speed > p1speed:
-                        #     tb = thorpy.Element(text=(f'{p2_choice} is faster. Player 2 Goes First'))
-                        # else:
-                        #     # add random choice
-                        #     tb = thorpy.Element(text=(f'Both pokemon have equal speeds, Player 1 goes first.'))
-
-                        # tb.set_font_size(20)
-                        # tb.set_size((750,150))
-                        # tb.stick_to(tb_h, target_side="bottom", self_side="top")
-                        # tb.blit()
-                        # tb.update()
+                        
+                        tb = thorpy.Element(text=(f"All of {loser}'s Pokemon have fainted. {winner} is the winner!"))
+                        tb.set_font_size(20)
+                        tb.set_size((750,150))
+                        tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                        tb.blit()
+                        tb.update()
 
                     elif choice_locked == True and newgame == False:
                         tb = thorpy.Element(text=(f"Match has already started."))
