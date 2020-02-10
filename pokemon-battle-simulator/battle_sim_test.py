@@ -570,13 +570,14 @@ def battle_execute():
                 # audio_list = audio_play.split(' ')
 
                 temp_moves = p1_pokemon['moves']
+                print('temp_moves: ', temp_moves)
                 for mvs in temp_moves:
                     if mvs['name'] in audio_play:
                         p1_movename = mvs['name']
                         p1_movetype = mvs['type']
                         p1_movepower = int(mvs['power'])
                         p1_movepriority = 0
-                    elif mvs['name'].title() in audio_play:
+                    elif mvs['name'].lower() in audio_play:
                         p1_movename = mvs['name']
                         p1_movetype = mvs['type']
                         p1_movepower = int(mvs['power'])
@@ -607,7 +608,7 @@ def battle_execute():
                             p1_movetype = mvs['type']
                             p1_movepower = int(mvs['power'])
                             p1_movepriority = 0
-                        elif mvs['name'].title() in audio_play:
+                        elif mvs['name'].lower() in audio_play:
                             p1_movename = mvs['name']
                             p1_movetype = mvs['type']
                             p1_movepower = int(mvs['power'])
@@ -681,13 +682,14 @@ def battle_execute():
                 # audio_list = audio_play.split(' ')
 
                 temp_moves = p2_pokemon['moves']
+                print('temp_moves: ', temp_moves)
                 for mvs in temp_moves:
                     if mvs['name'] in audio_play:
                         p2_movename = mvs['name']
                         p2_movetype = mvs['type']
                         p2_movepower = int(mvs['power'])
                         p2_movepriority = 0
-                    elif mvs['name'].title() in audio_play:
+                    elif mvs['name'].lower() in audio_play:
                         p2_movename = mvs['name']
                         p2_movetype = mvs['type']
                         p2_movepower = int(mvs['power'])
@@ -718,7 +720,7 @@ def battle_execute():
                             p2_movetype = mvs['type']
                             p2_movepower = int(mvs['power'])
                             p2_movepriority = 0
-                        elif mvs['name'].title() in audio_play:
+                        elif mvs['name'].lower() in audio_play:
                             p2_movename = mvs['name']
                             p2_movetype = mvs['type']
                             p2_movepower = int(mvs['power'])
