@@ -565,28 +565,67 @@ def battle_execute():
             tb.update()
 
             time.sleep(0.2)
+            try:
+                audio_play = rec().lower()
+                # audio_list = audio_play.split(' ')
 
-            audio_play = rec().lower()
-            # audio_list = audio_play.split(' ')
+                temp_moves = p1_pokemon['moves']
+                for mvs in temp_moves:
+                    if mvs['name'] in audio_play:
+                        p1_movename = mvs['name']
+                        p1_movetype = mvs['type']
+                        p1_movepower = int(mvs['power'])
+                        p1_movepriority = 0
+                    elif mvs['name'].title() in audio_play:
+                        p1_movename = mvs['name']
+                        p1_movetype = mvs['type']
+                        p1_movepower = int(mvs['power'])
+                        p1_movepriority = 0
+                    else:
+                        p1_movename = temp_moves[0]['name']
+                        p1_movetype = temp_moves[0]['type']
+                        p1_movepower = int(temp_moves[0]['power'])
+                        p1_movepriority = 0
+            except AttributeError: 
+                try:
+                    tb = thorpy.Element(text=(f'{p1_choice} could not understand you. Please try again. '))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
 
-            temp_moves = p1_pokemon['moves']
-            for mvs in temp_moves:
-                if mvs['name'] in audio_play:
-                    p1_movename = mvs['name']
-                    p1_movetype = mvs['type']
-                    p1_movepower = int(mvs['power'])
-                    p1_movepriority = 0
-                elif mvs['name'].title() in audio_play:
-                    p1_movename = mvs['name']
-                    p1_movetype = mvs['type']
-                    p1_movepower = int(mvs['power'])
-                    p1_movepriority = 0
-                else:
+                    time.sleep(0.5)
+
+                    audio_play = rec().lower()
+                    # audio_list = audio_play.split(' ')
+
+                    temp_moves = p1_pokemon['moves']
+                    for mvs in temp_moves:
+                        if mvs['name'] in audio_play:
+                            p1_movename = mvs['name']
+                            p1_movetype = mvs['type']
+                            p1_movepower = int(mvs['power'])
+                            p1_movepriority = 0
+                        elif mvs['name'].title() in audio_play:
+                            p1_movename = mvs['name']
+                            p1_movetype = mvs['type']
+                            p1_movepower = int(mvs['power'])
+                            p1_movepriority = 0
+                        else:
+                            p1_movename = temp_moves[0]['name']
+                            p1_movetype = temp_moves[0]['type']
+                            p1_movepower = int(temp_moves[0]['power'])
+                            p1_movepriority = 0
+                except AttributeError:
+                    temp_moves = p1_pokemon['moves']
                     p1_movename = temp_moves[0]['name']
                     p1_movetype = temp_moves[0]['type']
                     p1_movepower = int(temp_moves[0]['power'])
                     p1_movepriority = 0
-            
+
+
+            print(f'test // recognized: {audio_play} compared to {temp_moves} chosen: {p1_movename}')
         print('you used ', p1_movename)
         tb = thorpy.Element(text=(f'Player 1 chose {p1_movename}.'))
         tb.set_font_size(20)
@@ -914,14 +953,18 @@ pkmn1 = ''
 ##### Battle Announcements #####
 ################################
 
-tb_h = thorpy.Element(text=('Annoucements:'))
+tb_h = thorpy.Element(text=('Announcements:'))
 tb_h.set_font_size(24)
 tb_h.set_size((750, 50))
 tb_h.set_center((720, 375))
 tb_h.blit()
 tb_h.update()
 
-tb = thorpy.Element(text=(pkmn1))
+tb = thorpy.Element(text=('\
+                Welcome to Pokemon Battle Simulator! \n \
+    Use voice commands to choose your pokemon and battle. \n \
+                Please read prompts to play the game. \n \
+                    To begin a match, press the S.'))
 tb.set_font_size(20)
 tb.set_size((750,150))
 tb.stick_to(tb_h, target_side="bottom", self_side="top")
@@ -1177,7 +1220,7 @@ while playing_game:
                         # battlecommand here
                         battle_execute()
                         
-                        tb = thorpy.Element(text=(f"All of {loser}'s Pokemon have fainted. {winner} is the winner!"))
+                        tb = thorpy.Element(text=(f"All of {loser}'s Pokemon have fainted. {winner} is the winner! (ESC to close.)"))
                         tb.set_font_size(20)
                         tb.set_size((750,150))
                         tb.stick_to(tb_h, target_side="bottom", self_side="top")
