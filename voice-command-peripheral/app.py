@@ -53,7 +53,7 @@ inputter = Controller()
 input_sleep = 0.25
 
 def basic_commands(word, mode):
-    if word in ['a', 'yes', 'okay', 'confirm', 'accept', 'except']:
+    if word in ['a', 'yes', 'okay', 'confirm', 'accept', 'except', 'talk']:
         inputter.press('j')
         time.sleep(input_sleep)
         inputter.release('j')
@@ -78,7 +78,7 @@ def basic_commands(word, mode):
         time.sleep(input_sleep)
         inputter.release('s')
         append_vcp_log([datetime.now(),word,mode])
-    elif word in ['right', 'write']:
+    elif word in ['right', 'write', 'rights']:
         inputter.press('d')
         time.sleep(input_sleep)
         inputter.release('d')
@@ -115,7 +115,7 @@ def basic_commands(word, mode):
         append_vcp_log([datetime.now(),word,'incorrect'])
 
 def special_commands(cmnd):
-    if cmnd.lower() == ('go up'):
+    if cmnd.lower().startswith('go up'):
         print('How many steps? (up to 9)')
         distance = keyboard.read_key()
         for i in range(0, int(distance)):
@@ -123,7 +123,7 @@ def special_commands(cmnd):
             time.sleep(input_sleep)
             inputter.release('w')
             append_vcp_log([datetime.now(),'go up','special'])
-    elif cmnd.lower() == 'go left':
+    elif cmnd.lower().startswith('go left'):
         print('How many steps? (up to 9)')
         distance = keyboard.read_key()
         for i in range(0, int(distance)):
@@ -131,7 +131,7 @@ def special_commands(cmnd):
             time.sleep(input_sleep)
             inputter.release('a')
             append_vcp_log([datetime.now(),'go up','special'])
-    elif cmnd.lower() == 'go down':
+    elif cmnd.lower().startswith('go down'):
         print('How many steps? (up to 9)')
         distance = keyboard.read_key()
         for i in range(0, int(distance)):
@@ -139,7 +139,7 @@ def special_commands(cmnd):
             time.sleep(input_sleep)
             inputter.release('s')
             append_vcp_log([datetime.now(),'go up','special'])
-    elif cmnd.lower() == 'go right':
+    elif cmnd.lower().startswith('go right'):
         print('How many steps? (up to 9)')
         distance = keyboard.read_key()
         for i in range(0, int(distance)):
@@ -154,7 +154,7 @@ def special_commands(cmnd):
 while True:
     print('Sequence [X] or Special [C]? (Press [esc] to escape)')
     pressed_key = keyboard.read_key()
-    print(pressed_key)
+    # print(pressed_key)
     if pressed_key == "x":
         print('You have chosen Sequence (multiple basic commands)')
         seq = rec_z()
@@ -176,3 +176,4 @@ while True:
     elif pressed_key == 'esc':
         break
     # time.sleep(input_sleep)
+    print('----------------------------------------------------------------------')
