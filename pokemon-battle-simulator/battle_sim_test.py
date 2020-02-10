@@ -625,7 +625,7 @@ def battle_execute():
                     p1_movepriority = 0
 
 
-            print(f'test // recognized: {audio_play} compared to {temp_moves} chosen: {p1_movename}')
+            print(f'test // recognized: {audio_play} \ncompared to {temp_moves} \nchosen: {p1_movename}')
         print('you used ', p1_movename)
         tb = thorpy.Element(text=(f'Player 1 chose {p1_movename}.'))
         tb.set_font_size(20)
@@ -656,26 +656,88 @@ def battle_execute():
 
             time.sleep(0.2)
 
-            audio_play = rec().lower()
+            # audio_play = rec().lower()
 
-            temp_moves = p2_pokemon['moves']
-            for mvs in temp_moves:
-                if mvs['name'] in audio_play:
+            # temp_moves = p2_pokemon['moves']
+            # for mvs in temp_moves:
+            #     if mvs['name'] in audio_play:
+                    # p2_movename = mvs['name']
+                    # p2_movetype = mvs['type']
+                    # p2_movepower = int(mvs['power'])
+                    # p2_movepriority = 0
+            #     elif mvs['name'].title() in audio_play:
+            #         p2_movename = mvs['name']
+            #         p2_movetype = mvs['type']
+            #         p2_movepower = int(mvs['power'])
+            #         p2_movepriority = 0
+            #     else:
+            #         p2_movename = temp_moves[0]['name']
+            #         p2_movetype = temp_moves[0]['type']
+            #         p2_movepower = int(temp_moves[0]['power'])
+            #         p2_movepriority = 0
+
+            try:
+                audio_play = rec().lower()
+                # audio_list = audio_play.split(' ')
+
+                temp_moves = p2_pokemon['moves']
+                for mvs in temp_moves:
+                    if mvs['name'] in audio_play:
+                        p2_movename = mvs['name']
+                        p2_movetype = mvs['type']
+                        p2_movepower = int(mvs['power'])
+                        p2_movepriority = 0
+                    elif mvs['name'].title() in audio_play:
+                        p2_movename = mvs['name']
+                        p2_movetype = mvs['type']
+                        p2_movepower = int(mvs['power'])
+                        p2_movepriority = 0
+                    else:
+                        p2_movename = mvs['name']
+                        p2_movetype = mvs['type']
+                        p2_movepower = int(mvs['power'])
+                        p2_movepriority = 0
+            except AttributeError: 
+                try:
+                    tb = thorpy.Element(text=(f'{p2_choice} could not understand you. Please try again. '))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+
+                    time.sleep(0.5)
+
+                    audio_play = rec().lower()
+                    # audio_list = audio_play.split(' ')
+
+                    temp_moves = p2_pokemon['moves']
+                    for mvs in temp_moves:
+                        if mvs['name'] in audio_play:
+                            p2_movename = mvs['name']
+                            p2_movetype = mvs['type']
+                            p2_movepower = int(mvs['power'])
+                            p2_movepriority = 0
+                        elif mvs['name'].title() in audio_play:
+                            p2_movename = mvs['name']
+                            p2_movetype = mvs['type']
+                            p2_movepower = int(mvs['power'])
+                            p2_movepriority = 0
+                        else:
+                            p2_movename = mvs['name']
+                            p2_movetype = mvs['type']
+                            p2_movepower = int(mvs['power'])
+                            p2_movepriority = 0
+                except AttributeError:
+                    temp_moves = p2_pokemon['moves']
                     p2_movename = mvs['name']
                     p2_movetype = mvs['type']
                     p2_movepower = int(mvs['power'])
-                    p2_movepriority = 0
-                elif mvs['name'].title() in audio_play:
-                    p2_movename = mvs['name']
-                    p2_movetype = mvs['type']
-                    p2_movepower = int(mvs['power'])
-                    p2_movepriority = 0
-                else:
-                    p2_movename = temp_moves[0]['name']
-                    p2_movetype = temp_moves[0]['type']
-                    p2_movepower = int(temp_moves[0]['power'])
                     p2_movepriority = 0
             
+
+
+            print(f'test // recognized: {audio_play} \ncompared to {temp_moves} \nchosen: {p2_movename}')
         print('you used ', p2_movename)
         tb = thorpy.Element(text=(f'Player 2 chose {p2_movename}.'))
         tb.set_font_size(20)
@@ -898,7 +960,7 @@ def battle_execute():
         loser_pokemon = p1_pokemon['name']
         winner = "Player 2"
 
-        tb = thorpy.Element(text=(f'{loser_pokemon}has fainted!'))
+        tb = thorpy.Element(text=(f'{loser_pokemon} has fainted!'))
         tb.set_font_size(20)
         tb.set_size((750,150))
         tb.stick_to(tb_h, target_side="bottom", self_side="top")
@@ -912,7 +974,7 @@ def battle_execute():
         loser_pokemon = p2_pokemon['name']
         winner = "Player 1"
 
-        tb = thorpy.Element(text=(f'{loser_pokemon}has fainted!'))
+        tb = thorpy.Element(text=(f'{loser_pokemon} has fainted!'))
         tb.set_font_size(20)
         tb.set_size((750,150))
         tb.stick_to(tb_h, target_side="bottom", self_side="top")
@@ -1220,7 +1282,7 @@ while playing_game:
                         # battlecommand here
                         battle_execute()
                         
-                        tb = thorpy.Element(text=(f"All of {loser}'s Pokemon have fainted. {winner} is the winner! (ESC to close.)"))
+                        tb = thorpy.Element(text=(f"All of {loser}'s Pokemon have fainted. {winner} is the winner! \n(ESC to close)"))
                         tb.set_font_size(20)
                         tb.set_size((750,150))
                         tb.stick_to(tb_h, target_side="bottom", self_side="top")
