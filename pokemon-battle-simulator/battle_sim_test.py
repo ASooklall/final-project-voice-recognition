@@ -469,24 +469,24 @@ def battle_init():
     tb.update()
 
 
-def choose_move():
+# def choose_move():
 #     #record audio
 #     #split audio
 #     #search split array for match in player's movepement m1/m2/m3/m4 list
 #     #if move matches -> return move info as vars for name, priority (0 for now) type, power
 #     # save values to player vars
                 
-    audio_play = rec().lower()
-    audio_list = audio_play.split(' ')
+    # audio_play = rec().lower()
+    # audio_list = audio_play.split(' ')
 
 
 
-    temp_moves = p1_pokemon['moves']
-    for mvs in temp_moves:
-        if mvs['name'] in audio_list:
-            p1_movename = mvs['name']
-            p1_movetype = mvs['type']
-            p1_movepower = int(mvs['power'])
+    # temp_moves = p1_pokemon['moves']
+    # for mvs in temp_moves:
+    #     if mvs['name'] in audio_list:
+    #         p1_movename = mvs['name']
+    #         p1_movetype = mvs['type']
+    #         p1_movepower = int(mvs['power'])
 
 #             if pokemon['name'] == pokemon_name:
 #                 global pkmn1
@@ -539,14 +539,14 @@ def choose_move():
 
 
 def battle_execute():
-    global p1_pokemon, p1_movepriority, p1_movetype, p1_movepower, p1_movename, p1curhp, p1atk, p1speed, p1def, p1_m1, p1_m2, p1_m3, p1_m4, p1maxhp, p1_hpbarsize
-    global p2_pokemon, p2_movepriority, p2_movetype, p2_movepower, p2_movename, p2curhp, p2atk, p2speed, p2def, p2_m1, p2_m2, p2_m3, p2_m4, p2maxhp, p2_hpbarsize
-    global winner, loser
+    global p1_pokemon, p1_choice, p1_movepriority, p1_movetype, p1_movepower, p1_movename, p1curhp, p1atk, p1speed, p1def, p1_m1, p1_m2, p1_m3, p1_m4, p1maxhp, p1_hpbarsize
+    global p2_pokemon, p2_choice, p2_movepriority, p2_movetype, p2_movepower, p2_movename, p2curhp, p2atk, p2speed, p2def, p2_m1, p2_m2, p2_m3, p2_m4, p2maxhp, p2_hpbarsize
+    global winner, loser, loser_pokemon
     
-    print(p1_pokemon, p2_pokemon)
+    print(p1_pokemon, '\n',p2_pokemon)
 
     while (p1curhp > 0) and (p2curhp > 0):
-        tb = thorpy.Element(text=(f'Player 1 Please Choose Your Move. Press M when ready to choose move.'))
+        tb = thorpy.Element(text=(f'Player 1 Move Choice. Press M when ready to choose move.'))
         tb.set_font_size(20)
         tb.set_size((750,150))
         tb.stick_to(tb_h, target_side="bottom", self_side="top")
@@ -557,30 +557,47 @@ def battle_execute():
         key = keyboard.read_key()
         print(key)
         if key == "m":
+            tb = thorpy.Element(text=(f'Player 1, please say your move now.'))
+            tb.set_font_size(20)
+            tb.set_size((750,150))
+            tb.stick_to(tb_h, target_side="bottom", self_side="top")
+            tb.blit()
+            tb.update()
+
+            time.sleep(0.2)
+
             audio_play = rec().lower()
-            audio_list = audio_play.split(' ')
+            # audio_list = audio_play.split(' ')
 
             temp_moves = p1_pokemon['moves']
             for mvs in temp_moves:
-                if mvs['name'] in audio_list:
-                    # print(mvs['name'])
+                if mvs['name'] in audio_play:
                     p1_movename = mvs['name']
                     p1_movetype = mvs['type']
                     p1_movepower = int(mvs['power'])
                     p1_movepriority = 0
-                    # print(p1_movename)
+                elif mvs['name'].title() in audio_play:
+                    p1_movename = mvs['name']
+                    p1_movetype = mvs['type']
+                    p1_movepower = int(mvs['power'])
+                    p1_movepriority = 0
                 else:
                     p1_movename = temp_moves[0]['name']
                     p1_movetype = temp_moves[0]['type']
                     p1_movepower = int(temp_moves[0]['power'])
                     p1_movepriority = 0
-                    # print(p1_movename)
             
         print('you used ', p1_movename)
+        tb = thorpy.Element(text=(f'Player 1 chose {p1_movename}.'))
+        tb.set_font_size(20)
+        tb.set_size((750,150))
+        tb.stick_to(tb_h, target_side="bottom", self_side="top")
+        tb.blit()
+        tb.update()
 
-        time.sleep(2)
+        time.sleep(3)
 
-        tb = thorpy.Element(text=(f'Player 2 Please Choose Your Move. Press T when ready to choose move.'))
+        tb = thorpy.Element(text=(f'Player 2 Move Choice. Press M when ready to choose move.'))
         tb.set_font_size(20)
         tb.set_size((750,150))
         tb.stick_to(tb_h, target_side="bottom", self_side="top")
@@ -591,26 +608,42 @@ def battle_execute():
         key = keyboard.read_key()
         print(key)
         if key == "m":
+            tb = thorpy.Element(text=(f'Player 2, please say your move now.'))
+            tb.set_font_size(20)
+            tb.set_size((750,150))
+            tb.stick_to(tb_h, target_side="bottom", self_side="top")
+            tb.blit()
+            tb.update()
+
+            time.sleep(0.2)
+
             audio_play = rec().lower()
-            audio_list = audio_play.split(' ')
 
             temp_moves = p2_pokemon['moves']
             for mvs in temp_moves:
-                if mvs['name'] in audio_list:
-                    # print(mvs['name'])
+                if mvs['name'] in audio_play:
                     p2_movename = mvs['name']
                     p2_movetype = mvs['type']
                     p2_movepower = int(mvs['power'])
                     p2_movepriority = 0
-                    # print(p2_movename)
+                elif mvs['name'].title() in audio_play:
+                    p2_movename = mvs['name']
+                    p2_movetype = mvs['type']
+                    p2_movepower = int(mvs['power'])
+                    p2_movepriority = 0
                 else:
                     p2_movename = temp_moves[0]['name']
                     p2_movetype = temp_moves[0]['type']
                     p2_movepower = int(temp_moves[0]['power'])
                     p2_movepriority = 0
-                    # print(p2_movename)
             
         print('you used ', p2_movename)
+        tb = thorpy.Element(text=(f'Player 2 chose {p2_movename}.'))
+        tb.set_font_size(20)
+        tb.set_size((750,150))
+        tb.stick_to(tb_h, target_side="bottom", self_side="top")
+        tb.blit()
+        tb.update()
 
         time.sleep(2)
 
@@ -621,6 +654,13 @@ def battle_execute():
 
         if p1_turnspeed > p2_turnspeed:
             print('p1fast gofirst')
+            tb = thorpy.Element(text=(f'{p1_choice} used {p1_movename}! It did {int(p1_movepower * (p1atk/p2def))} damage to {p2_choice}'))
+            tb.set_font_size(20)
+            tb.set_size((750,150))
+            tb.stick_to(tb_h, target_side="bottom", self_side="top")
+            tb.blit()
+            tb.update()
+
             p2curhp = p2curhp - int((p1_movepower * (p1atk / p2def)))
             p2_hpbarsize = 200 * (p2curhp/p2maxhp)
             p2_hpbarsize = round(p2_hpbarsize, 0)
@@ -643,8 +683,17 @@ def battle_execute():
 
             p2_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (1190, 90, p2_hpbarsize, 20), 0)
 
+            time.sleep(3)
+
             print('p1atks', p2curhp)
             if p2curhp > 0:
+                tb = thorpy.Element(text=(f'{p2_choice} used {p2_movename}! It did {int(p2_movepower * (p2atk/p1def))} damage to {p1_choice}'))
+                tb.set_font_size(20)
+                tb.set_size((750,150))
+                tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                tb.blit()
+                tb.update()
+
                 p1curhp = p1curhp - int((p2_movepower * (p2atk / p1def)))
                 p1_hpbarsize = 200 * (p1curhp/p1maxhp)
                 p1_hpbarsize = round(p1_hpbarsize, 0)
@@ -672,6 +721,13 @@ def battle_execute():
 
         elif p2_turnspeed > p1_turnspeed:
             print('p2fast gofirst')
+            tb = thorpy.Element(text=(f'{p2_choice} used {p2_movename}! It did {int(p2_movepower * (p2atk/p1def))} damage to {p1_choice}'))
+            tb.set_font_size(20)
+            tb.set_size((750,150))
+            tb.stick_to(tb_h, target_side="bottom", self_side="top")
+            tb.blit()
+            tb.update()
+
             p1curhp = p1curhp - int((p2_movepower * (p2atk/p1def)))
             p1_hpbarsize = 200 * (p1curhp/p1maxhp)
             p1_hpbarsize = round(p1_hpbarsize, 0)
@@ -695,7 +751,16 @@ def battle_execute():
             p1_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (50, 820, p1_hpbarsize, 20), 0)
             print('p2atks', p1curhp)
 
+            time.sleep(3)
+
             if p1curhp > 0:
+                tb = thorpy.Element(text=(f'{p1_choice} used {p1_movename}! It did {int(p1_movepower * (p1atk/p2def))} damage to {p2_choice}'))
+                tb.set_font_size(20)
+                tb.set_size((750,150))
+                tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                tb.blit()
+                tb.update()
+
                 p2curhp = p2curhp - int((p1_movepower * (p1atk / p2def)))
                 p2_hpbarsize = 200 * (p2curhp/p2maxhp)
                 p2_hpbarsize = round(p2_hpbarsize, 0)
@@ -720,6 +785,13 @@ def battle_execute():
                 print('p1atks', p2curhp)
         else:
             print('nobodyfast p1first')
+            tb = thorpy.Element(text=(f'{p1_choice} used {p1_movename}! It did {int(p1_movepower * (p1atk/p2def))} damage to {p2_choice}'))
+            tb.set_font_size(20)
+            tb.set_size((750,150))
+            tb.stick_to(tb_h, target_side="bottom", self_side="top")
+            tb.blit()
+            tb.update()
+
             p2curhp = p2curhp - int((p1_movepower * (p1atk / p2def)))
             p2_hpbarsize = 200 * (p2curhp/p2maxhp)
             p2_hpbarsize = round(p2_hpbarsize, 0)
@@ -743,7 +815,16 @@ def battle_execute():
             p2_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (1190, 90, p2_hpbarsize, 20), 0)
             print('p1atks', p2curhp)
 
+            time.sleep(3)
+
             if p2curhp > 0:
+                tb = thorpy.Element(text=(f'{p2_choice} used {p2_movename}! It did {int(p2_movepower * (p2atk/p1def))} damage to {p1_choice}'))
+                tb.set_font_size(20)
+                tb.set_size((750,150))
+                tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                tb.blit()
+                tb.update()
+
                 p1curhp = p1curhp - (int(p2_movepower * (p2atk / p1def)))
                 p1_hpbarsize = 200 * (p1curhp/p1maxhp)
                 p1_hpbarsize = round(p1_hpbarsize, 0)
@@ -767,17 +848,38 @@ def battle_execute():
                 p1_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (50, 820, p1_hpbarsize, 20), 0)
                 print('p2atks', p1curhp)
 
+        time.sleep(3)
+
         # p1_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (50, 820, p1_hpbarsize, 20), 0)
         # p2_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (1190, 90, p2_hpbarsize, 20), 0)
 
     if p1curhp <= 0:
         print('p1died')
         loser = "Player 1"
+        loser_pokemon = p1_pokemon['name']
         winner = "Player 2"
+
+        tb = thorpy.Element(text=(f'{loser_pokemon}has fainted!'))
+        tb.set_font_size(20)
+        tb.set_size((750,150))
+        tb.stick_to(tb_h, target_side="bottom", self_side="top")
+        tb.blit()
+        tb.update()
+        time.sleep(2)
+
     elif p2curhp <= 0:
         print('p2died')
         loser = "Player 2"
+        loser_pokemon = p2_pokemon['name']
         winner = "Player 1"
+
+        tb = thorpy.Element(text=(f'{loser_pokemon}has fainted!'))
+        tb.set_font_size(20)
+        tb.set_size((750,150))
+        tb.stick_to(tb_h, target_side="bottom", self_side="top")
+        tb.blit()
+        tb.update()
+        time.sleep(2)
 
 ####################################
 ##### Initialize Pygame Engine #####
