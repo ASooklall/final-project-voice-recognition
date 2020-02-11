@@ -559,7 +559,7 @@ def battle_execute():
         tb.blit()
         tb.update()
 
-        print('press m to talk')
+        print('press t to talk')
         key = keyboard.read_key()
         print(key)
         if key == "t":
@@ -660,7 +660,7 @@ def battle_execute():
         tb.blit()
         tb.update()
 
-        print('press m to talk')
+        print('press t to talk')
         key = keyboard.read_key()
         print(key)
         if key == "t":
@@ -1064,7 +1064,7 @@ tb = thorpy.Element(text=('\
                 Welcome to Pokemon Battle Simulator! \n \
     Use voice commands to choose your pokemon and battle. \n \
                 Please read prompts to play the game. \n \
-                    To begin a match, press the S.'))
+                    To begin a match, press S.'))
 tb.set_font_size(20)
 tb.set_size((750,150))
 tb.stick_to(tb_h, target_side="bottom", self_side="top")
