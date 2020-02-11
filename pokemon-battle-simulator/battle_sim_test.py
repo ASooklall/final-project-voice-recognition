@@ -587,12 +587,14 @@ def battle_execute():
                         p1_movepower = int(mvs['power'])
                         p1_movepriority = 0
                         print('testx:',p1_movename)
+                        break
                     elif mvs['name'].lower() in audio_play:
                         print('test2:',mvs)
                         p1_movename = mvs['name']
                         p1_movetype = mvs['type']
                         p1_movepower = int(mvs['power'])
                         p1_movepriority = 0
+                        break
                     else:
                         p1_movename = temp_moves[0]['name']
                         p1_movetype = temp_moves[0]['type']
