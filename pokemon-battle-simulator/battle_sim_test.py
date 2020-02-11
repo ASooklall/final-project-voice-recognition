@@ -535,7 +535,13 @@ def battle_init():
 
 
 
-
+def hpbarcolor(ratio):
+  if ratio < 0.2:
+    return((255,0,0))
+  elif ratio < 0.5:
+    return((255,255,0))
+  else:
+    return((0,255,0))
 
 
 def battle_execute():
@@ -566,6 +572,7 @@ def battle_execute():
 
             time.sleep(0.2)
             try:
+                global p1_movename
                 audio_play = rec().lower()
                 # audio_list = audio_play.split(' ')
 
@@ -573,11 +580,15 @@ def battle_execute():
                 print('temp_moves: ', temp_moves)
                 for mvs in temp_moves:
                     if mvs['name'] in audio_play:
+                        global p1_movename
+                        print('test:',mvs)
                         p1_movename = mvs['name']
                         p1_movetype = mvs['type']
                         p1_movepower = int(mvs['power'])
                         p1_movepriority = 0
+                        print('testx:',p1_movename)
                     elif mvs['name'].lower() in audio_play:
+                        print('test2:',mvs)
                         p1_movename = mvs['name']
                         p1_movetype = mvs['type']
                         p1_movepower = int(mvs['power'])
@@ -587,6 +598,7 @@ def battle_execute():
                         p1_movetype = temp_moves[0]['type']
                         p1_movepower = int(temp_moves[0]['power'])
                         p1_movepriority = 0
+                print('testx2:',p1_movename)
             except AttributeError: 
                 try:
                     tb = thorpy.Element(text=(f'{p1_choice} could not understand you. Please try again. '))
@@ -662,10 +674,10 @@ def battle_execute():
             # temp_moves = p2_pokemon['moves']
             # for mvs in temp_moves:
             #     if mvs['name'] in audio_play:
-                    # p2_movename = mvs['name']
-                    # p2_movetype = mvs['type']
-                    # p2_movepower = int(mvs['power'])
-                    # p2_movepriority = 0
+            #         p2_movename = mvs['name']
+            #         p2_movetype = mvs['type']
+            #         p2_movepower = int(mvs['power'])
+            #         p2_movepriority = 0
             #     elif mvs['name'].title() in audio_play:
             #         p2_movename = mvs['name']
             #         p2_movetype = mvs['type']
@@ -766,6 +778,7 @@ def battle_execute():
             tb.update()
 
             p2curhp = p2curhp - int((p1_movepower * (p1atk / p2def)))
+            p2_hpratio = p2curhp/p2maxhp
             p2_hpbarsize = 200 * (p2curhp/p2maxhp)
             p2_hpbarsize = round(p2_hpbarsize, 0)
             p2_hpbarsize = int(p2_hpbarsize)
@@ -786,7 +799,7 @@ def battle_execute():
             p2_hp_box.blit()
             p2_hp_box.update()
 
-            p2_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (1190, 90, p2_hpbarsize, 20), 0)
+            p2_chp_bar = pygame.draw.rect(screen, (hpbarcolor(p2_hpratio)), (1190, 90, p2_hpbarsize, 20), 0)
             pygame.display.update(p2_chp_bar)
 
             time.sleep(3)
@@ -801,6 +814,7 @@ def battle_execute():
                 tb.update()
 
                 p1curhp = p1curhp - int((p2_movepower * (p2atk / p1def)))
+                p1_hpratio = p1curhp/p1maxhp
                 p1_hpbarsize = 200 * (p1curhp/p1maxhp)
                 p1_hpbarsize = round(p1_hpbarsize, 0)
                 p1_hpbarsize = int(p1_hpbarsize)
@@ -821,7 +835,7 @@ def battle_execute():
                 p1_hp_box.blit()
                 p1_hp_box.update()
 
-                p1_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (50, 820, p1_hpbarsize, 20), 0)
+                p1_chp_bar = pygame.draw.rect(screen, (hpbarcolor(p1_hpratio)), (50, 820, p1_hpbarsize, 20), 0)
                 pygame.display.update(p1_chp_bar)
 
 
@@ -837,6 +851,7 @@ def battle_execute():
             tb.update()
 
             p1curhp = p1curhp - int((p2_movepower * (p2atk/p1def)))
+            p1_hpratio = p1curhp/p1maxhp
             p1_hpbarsize = 200 * (p1curhp/p1maxhp)
             p1_hpbarsize = round(p1_hpbarsize, 0)
             p1_hpbarsize = int(p1_hpbarsize)
@@ -857,7 +872,7 @@ def battle_execute():
             p1_hp_box.blit()
             p1_hp_box.update()
 
-            p1_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (50, 820, p1_hpbarsize, 20), 0)
+            p1_chp_bar = pygame.draw.rect(screen, (hpbarcolor(p1_hpratio)), (50, 820, p1_hpbarsize, 20), 0)
             pygame.display.update(p1_chp_bar)
             print('p2atks', p1curhp)
 
@@ -872,6 +887,7 @@ def battle_execute():
                 tb.update()
 
                 p2curhp = p2curhp - int((p1_movepower * (p1atk / p2def)))
+                p2_hpratio = p2curhp/p2maxhp
                 p2_hpbarsize = 200 * (p2curhp/p2maxhp)
                 p2_hpbarsize = round(p2_hpbarsize, 0)
                 p2_hpbarsize = int(p2_hpbarsize)
@@ -892,7 +908,7 @@ def battle_execute():
                 p2_hp_box.blit()
                 p2_hp_box.update()
 
-                p2_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (1190, 90, p2_hpbarsize, 20), 0)
+                p2_chp_bar = pygame.draw.rect(screen, (hpbarcolor(p2_hpratio)), (1190, 90, p2_hpbarsize, 20), 0)
                 pygame.display.update(p2_chp_bar)
                 print('p1atks', p2curhp)
         else:
@@ -905,6 +921,7 @@ def battle_execute():
             tb.update()
 
             p2curhp = p2curhp - int((p1_movepower * (p1atk / p2def)))
+            p2_hpratio = p2curhp/p2maxhp
             p2_hpbarsize = 200 * (p2curhp/p2maxhp)
             p2_hpbarsize = round(p2_hpbarsize, 0)
             p2_hpbarsize = int(p2_hpbarsize)
@@ -925,7 +942,7 @@ def battle_execute():
             p2_hp_box.blit()
             p2_hp_box.update()
 
-            p2_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (1190, 90, p2_hpbarsize, 20), 0)
+            p2_chp_bar = pygame.draw.rect(screen, (hpbarcolor(p2_hpratio)), (1190, 90, p2_hpbarsize, 20), 0)
             pygame.display.update(p2_chp_bar)
             print('p1atks', p2curhp)
 
@@ -940,6 +957,7 @@ def battle_execute():
                 tb.update()
 
                 p1curhp = p1curhp - (int(p2_movepower * (p2atk / p1def)))
+                p1_hpratio = p1curhp/p1maxhp
                 p1_hpbarsize = 200 * (p1curhp/p1maxhp)
                 p1_hpbarsize = round(p1_hpbarsize, 0)
                 p1_hpbarsize = int(p1_hpbarsize)
@@ -960,7 +978,7 @@ def battle_execute():
                 p1_hp_box.blit()
                 p1_hp_box.update()
 
-                p1_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (50, 820, p1_hpbarsize, 20), 0)
+                p1_chp_bar = pygame.draw.rect(screen, (hpbarcolor(p1_hpratio)), (50, 820, p1_hpbarsize, 20), 0)
                 pygame.display.update(p1_chp_bar)
                 print('p2atks', p1curhp)
 
