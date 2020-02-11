@@ -39,7 +39,7 @@ def rec():
     #         rt.adjust_for_ambient_noise(source)
             # rt.energy_threshold = 20000
             rt.energy_threshole = 3000
-            # rt.dynamic_energy_threshold = True
+            rt.dynamic_energy_threshold = True
             rt.adjust_for_ambient_noise(source, duration = 0.6)
             # audio = rt.listen(source, timeout = 0.5)
             audio = rt.listen(source, timeout = 2.0)
@@ -684,6 +684,7 @@ def battle_execute():
                 temp_moves = p2_pokemon['moves']
                 print('temp_moves: ', temp_moves)
                 for mvs in temp_moves:
+                    print(mvs)
                     if mvs['name'] in audio_play:
                         p2_movename = mvs['name']
                         p2_movetype = mvs['type']
@@ -767,6 +768,7 @@ def battle_execute():
             p2curhp = p2curhp - int((p1_movepower * (p1atk / p2def)))
             p2_hpbarsize = 200 * (p2curhp/p2maxhp)
             p2_hpbarsize = round(p2_hpbarsize, 0)
+            p2_hpbarsize = int(p2_hpbarsize)
 
             p2_mhp_bar = thorpy.Element(text=(' '))
             p2_mhp_bar.set_font_size(12)
@@ -785,6 +787,7 @@ def battle_execute():
             p2_hp_box.update()
 
             p2_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (1190, 90, p2_hpbarsize, 20), 0)
+            pygame.display.update(p2_chp_bar)
 
             time.sleep(3)
 
@@ -800,6 +803,7 @@ def battle_execute():
                 p1curhp = p1curhp - int((p2_movepower * (p2atk / p1def)))
                 p1_hpbarsize = 200 * (p1curhp/p1maxhp)
                 p1_hpbarsize = round(p1_hpbarsize, 0)
+                p1_hpbarsize = int(p1_hpbarsize)
 
                 p1_mhp_bar = thorpy.Element(text=(' '))
                 p1_mhp_bar.set_font_size(12)
@@ -818,6 +822,7 @@ def battle_execute():
                 p1_hp_box.update()
 
                 p1_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (50, 820, p1_hpbarsize, 20), 0)
+                pygame.display.update(p1_chp_bar)
 
 
                 print('p2atks', p1curhp)
@@ -834,6 +839,7 @@ def battle_execute():
             p1curhp = p1curhp - int((p2_movepower * (p2atk/p1def)))
             p1_hpbarsize = 200 * (p1curhp/p1maxhp)
             p1_hpbarsize = round(p1_hpbarsize, 0)
+            p1_hpbarsize = int(p1_hpbarsize)
 
             p1_mhp_bar = thorpy.Element(text=(' '))
             p1_mhp_bar.set_font_size(12)
@@ -852,6 +858,7 @@ def battle_execute():
             p1_hp_box.update()
 
             p1_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (50, 820, p1_hpbarsize, 20), 0)
+            pygame.display.update(p1_chp_bar)
             print('p2atks', p1curhp)
 
             time.sleep(3)
@@ -867,6 +874,7 @@ def battle_execute():
                 p2curhp = p2curhp - int((p1_movepower * (p1atk / p2def)))
                 p2_hpbarsize = 200 * (p2curhp/p2maxhp)
                 p2_hpbarsize = round(p2_hpbarsize, 0)
+                p2_hpbarsize = int(p2_hpbarsize)
 
                 p2_mhp_bar = thorpy.Element(text=(' '))
                 p2_mhp_bar.set_font_size(12)
@@ -885,6 +893,7 @@ def battle_execute():
                 p2_hp_box.update()
 
                 p2_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (1190, 90, p2_hpbarsize, 20), 0)
+                pygame.display.update(p2_chp_bar)
                 print('p1atks', p2curhp)
         else:
             print('nobodyfast p1first')
@@ -898,6 +907,7 @@ def battle_execute():
             p2curhp = p2curhp - int((p1_movepower * (p1atk / p2def)))
             p2_hpbarsize = 200 * (p2curhp/p2maxhp)
             p2_hpbarsize = round(p2_hpbarsize, 0)
+            p2_hpbarsize = int(p2_hpbarsize)
 
             p2_mhp_bar = thorpy.Element(text=(' '))
             p2_mhp_bar.set_font_size(12)
@@ -916,6 +926,7 @@ def battle_execute():
             p2_hp_box.update()
 
             p2_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (1190, 90, p2_hpbarsize, 20), 0)
+            pygame.display.update(p2_chp_bar)
             print('p1atks', p2curhp)
 
             time.sleep(3)
@@ -931,6 +942,7 @@ def battle_execute():
                 p1curhp = p1curhp - (int(p2_movepower * (p2atk / p1def)))
                 p1_hpbarsize = 200 * (p1curhp/p1maxhp)
                 p1_hpbarsize = round(p1_hpbarsize, 0)
+                p1_hpbarsize = int(p1_hpbarsize)
 
                 p1_mhp_bar = thorpy.Element(text=(' '))
                 p1_mhp_bar.set_font_size(12)
@@ -949,12 +961,10 @@ def battle_execute():
                 p1_hp_box.update()
 
                 p1_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (50, 820, p1_hpbarsize, 20), 0)
+                pygame.display.update(p1_chp_bar)
                 print('p2atks', p1curhp)
 
         time.sleep(3)
-
-        # p1_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (50, 820, p1_hpbarsize, 20), 0)
-        # p2_chp_bar = pygame.draw.rect(screen, (0, 255, 0), (1190, 90, p2_hpbarsize, 20), 0)
 
     if p1curhp <= 0:
         print('p1died')
@@ -1284,7 +1294,8 @@ while playing_game:
                         # battlecommand here
                         battle_execute()
                         
-                        tb = thorpy.Element(text=(f"All of {loser}'s Pokemon have fainted. {winner} is the winner! \n(ESC to close)"))
+                        tb = thorpy.Element(text=(f"All of {loser}'s Pokemon have fainted. {winner} is the winner! \n\
+                                        (ESC to close)"))
                         tb.set_font_size(20)
                         tb.set_size((750,150))
                         tb.stick_to(tb_h, target_side="bottom", self_side="top")
