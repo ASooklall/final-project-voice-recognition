@@ -552,7 +552,7 @@ def battle_execute():
     print(p1_pokemon, '\n',p2_pokemon)
 
     while (p1curhp > 0) and (p2curhp > 0):
-        tb = thorpy.Element(text=(f'Player 1 Move Choice. Press M when ready to choose move.'))
+        tb = thorpy.Element(text=(f'Player 1 Move Choice. Press T when ready to choose move.'))
         tb.set_font_size(20)
         tb.set_size((750,150))
         tb.stick_to(tb_h, target_side="bottom", self_side="top")
@@ -562,7 +562,7 @@ def battle_execute():
         print('press m to talk')
         key = keyboard.read_key()
         print(key)
-        if key == "m":
+        if key == "t":
             tb = thorpy.Element(text=(f'Player 1, please say your move now.'))
             tb.set_font_size(20)
             tb.set_size((750,150))
@@ -622,11 +622,13 @@ def battle_execute():
                             p1_movetype = mvs['type']
                             p1_movepower = int(mvs['power'])
                             p1_movepriority = 0
+                            break
                         elif mvs['name'].lower() in audio_play:
                             p1_movename = mvs['name']
                             p1_movetype = mvs['type']
                             p1_movepower = int(mvs['power'])
                             p1_movepriority = 0
+                            break
                         else:
                             p1_movename = temp_moves[0]['name']
                             p1_movetype = temp_moves[0]['type']
@@ -651,7 +653,7 @@ def battle_execute():
 
         time.sleep(3)
 
-        tb = thorpy.Element(text=(f'Player 2 Move Choice. Press M when ready to choose move.'))
+        tb = thorpy.Element(text=(f'Player 2 Move Choice. Press T when ready to choose move.'))
         tb.set_font_size(20)
         tb.set_size((750,150))
         tb.stick_to(tb_h, target_side="bottom", self_side="top")
@@ -661,7 +663,7 @@ def battle_execute():
         print('press m to talk')
         key = keyboard.read_key()
         print(key)
-        if key == "m":
+        if key == "t":
             tb = thorpy.Element(text=(f'Player 2, please say your move now.'))
             tb.set_font_size(20)
             tb.set_size((750,150))
@@ -704,15 +706,17 @@ def battle_execute():
                         p2_movetype = mvs['type']
                         p2_movepower = int(mvs['power'])
                         p2_movepriority = 0
+                        break
                     elif mvs['name'].lower() in audio_play:
                         p2_movename = mvs['name']
                         p2_movetype = mvs['type']
                         p2_movepower = int(mvs['power'])
                         p2_movepriority = 0
+                        break
                     else:
-                        p2_movename = mvs['name']
-                        p2_movetype = mvs['type']
-                        p2_movepower = int(mvs['power'])
+                        p2_movename = temp_moves[0]['name']
+                        p2_movetype = temp_moves[0]['type']
+                        p2_movepower = int(temp_moves[0]['power'])
                         p2_movepriority = 0
             except AttributeError: 
                 try:
@@ -735,21 +739,23 @@ def battle_execute():
                             p2_movetype = mvs['type']
                             p2_movepower = int(mvs['power'])
                             p2_movepriority = 0
+                            break
                         elif mvs['name'].lower() in audio_play:
                             p2_movename = mvs['name']
                             p2_movetype = mvs['type']
                             p2_movepower = int(mvs['power'])
                             p2_movepriority = 0
+                            break
                         else:
-                            p2_movename = mvs['name']
-                            p2_movetype = mvs['type']
-                            p2_movepower = int(mvs['power'])
+                            p2_movename = temp_moves[0]['name']
+                            p2_movetype = temp_moves[0]['type']
+                            p2_movepower = int(temp_moves[0]['power'])
                             p2_movepriority = 0
                 except AttributeError:
                     temp_moves = p2_pokemon['moves']
-                    p2_movename = mvs['name']
-                    p2_movetype = mvs['type']
-                    p2_movepower = int(mvs['power'])
+                    p2_movename = temp_moves[0]['name']
+                    p2_movetype = temp_moves[0]['type']
+                    p2_movepower = int(temp_moves[0]['power'])
                     p2_movepriority = 0
             
 
@@ -1315,7 +1321,7 @@ while playing_game:
                         battle_execute()
                         
                         tb = thorpy.Element(text=(f"All of {loser}'s Pokemon have fainted. {winner} is the winner! \n\
-                                        (ESC to close)"))
+                                    (ESC to close)"))
                         tb.set_font_size(20)
                         tb.set_size((750,150))
                         tb.stick_to(tb_h, target_side="bottom", self_side="top")
@@ -1336,7 +1342,7 @@ while playing_game:
                         tb.stick_to(tb_h, target_side="bottom", self_side="top")
                         tb.blit()
                         tb.update()
-                elif event.key == pygame.K_t:
+                elif event.key == pygame.K_m:
                     dict_test2()
                     try:
                         tb = thorpy.Element(text=(f'{pkmn1} used {mvnm1}! It did 1 damage, just because.'))
