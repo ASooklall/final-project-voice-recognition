@@ -622,11 +622,13 @@ def battle_execute():
                             p1_movetype = mvs['type']
                             p1_movepower = int(mvs['power'])
                             p1_movepriority = 0
+                            break
                         elif mvs['name'].lower() in audio_play:
                             p1_movename = mvs['name']
                             p1_movetype = mvs['type']
                             p1_movepower = int(mvs['power'])
                             p1_movepriority = 0
+                            break
                         else:
                             p1_movename = temp_moves[0]['name']
                             p1_movetype = temp_moves[0]['type']
@@ -704,15 +706,17 @@ def battle_execute():
                         p2_movetype = mvs['type']
                         p2_movepower = int(mvs['power'])
                         p2_movepriority = 0
+                        break
                     elif mvs['name'].lower() in audio_play:
                         p2_movename = mvs['name']
                         p2_movetype = mvs['type']
                         p2_movepower = int(mvs['power'])
                         p2_movepriority = 0
+                        break
                     else:
-                        p2_movename = mvs['name']
-                        p2_movetype = mvs['type']
-                        p2_movepower = int(mvs['power'])
+                        p2_movename = temp_moves[0]['name']
+                        p2_movetype = temp_moves[0]['type']
+                        p2_movepower = int(temp_moves[0]['power'])
                         p2_movepriority = 0
             except AttributeError: 
                 try:
@@ -735,21 +739,23 @@ def battle_execute():
                             p2_movetype = mvs['type']
                             p2_movepower = int(mvs['power'])
                             p2_movepriority = 0
+                            break
                         elif mvs['name'].lower() in audio_play:
                             p2_movename = mvs['name']
                             p2_movetype = mvs['type']
                             p2_movepower = int(mvs['power'])
                             p2_movepriority = 0
+                            break
                         else:
-                            p2_movename = mvs['name']
-                            p2_movetype = mvs['type']
-                            p2_movepower = int(mvs['power'])
+                            p2_movename = temp_moves[0]['name']
+                            p2_movetype = temp_moves[0]['type']
+                            p2_movepower = int(temp_moves[0]['power'])
                             p2_movepriority = 0
                 except AttributeError:
                     temp_moves = p2_pokemon['moves']
-                    p2_movename = mvs['name']
-                    p2_movetype = mvs['type']
-                    p2_movepower = int(mvs['power'])
+                    p2_movename = temp_moves[0]['name']
+                    p2_movetype = temp_moves[0]['type']
+                    p2_movepower = int(temp_moves[0]['power'])
                     p2_movepriority = 0
             
 
