@@ -29,12 +29,12 @@ pokemon_list = [
 {'name':'nidoqueen','stats':{'health':14,'attack':13,'defense':12,'speed':11,'type1':'ground','type2':'poison'},
  'moves':[{'name':'earthquake','power':21,'type':'ground','priority':0},{'name':'super power','power':21,'type':'fighting','priority':0},{'name':'poison jab','power':21,'type':'poison','priority':0},{'name':'dragon tail','power':21,'type':'dragon','priority':0}],},
 {'name':'machamp','stats':{'health':13,'attack':18,'defense':12,'speed':7,'type1':'fighting','type2':'none'},
- 'moves':[{'name':'cross chop','power':1,'type':'fighting','priority':0},{'name':'dynamic punch','power':1,'type':'fighting','priority':0},{'name':'seismic toss','power':1,'type':'fighting','priority':0},{'name':'dual chop','power':1,'type':'dragon','priority':0}],},
+ 'moves':[{'name':'cross chop','power':21,'type':'fighting','priority':0},{'name':'payback','power':21,'type':'dark','priority':0},{'name':'giga impact','power':24,'type':'normal','priority':0},{'name':'dual chop','power':21,'type':'dragon','priority':0}],},
  {'name':'gyarados','stats':{'health':12,'attack':16,'defense':12,'speed':10,'type1':'water','type2':'flying'},
  'moves':[{'name':'hydro pump','power':21,'type':'water','priority':0},{'name':'thunder','power':21,'type':'electric','priority':0},{'name':'crunch','power':21,'type':'dark','priority':0},{'name':'dragon pulse','power':21,'type':'dragon','priority':0}],},
  {'name':'scizor','stats':{'health':11,'attack':17,'defense':14,'speed':8,'type1':'bug','type2':'steel'},
  'moves':[{'name':'fury cutter','power':21,'type':'bug','priority':0},{'name':'bullet punch','power':15,'type':'steel','priority':1},{'name':'vacuum wave','power':15,'type':'fighting','priority':1},{'name':'night slash','power':21,'type':'dark','priority':0}],},
- {'name':'snorlax','stats':{'health':19,'attack':13,'defense':13,'speed':5,'type1':'normal','type2':'none'},
+ {'name':'snorlax','stats':{'health':18,'attack':13,'defense':13,'speed':6,'type1':'normal','type2':'none'},
  'moves':[{'name':'body slam','power':24,'type':'normal','priority':0},{'name':'psychic','power':21,'type':'psychic','priority':0},{'name':'fire blast','power':21,'type':'fire','priority':0},{'name':'surf','power':21,'type':'water','priority':0}],},
  {'name':'dragonite','stats':{'health':13,'attack':16,'defense':12,'speed':9,'type1':'dragon','type2':'flying'},
  'moves':[{'name':'dragon rage','power':21,'type':'dragon','priority':0},{'name':'aqua jet','power':15,'type':'water','priority':1},{'name':'wing attack','power':21,'type':'flying','priority':0},{'name':'fire punch','power':21,'type':'fire','priority':0}],},
@@ -267,7 +267,7 @@ def battle_init():
                     p1_hp_box = thorpy.Element(text=(f'HP: {p1curhp}/{p1maxhp}'))
                     p1_hp_box.set_font_size(16)
                     p1_hp_box.set_font_color((0,0,0))
-                    p1_hp_box.set_size((100,35))
+                    p1_hp_box.set_size((130,35))
                     p1_hp_box.stick_to(p1_mhp_bar, target_side="top", self_side="bottom")
                     p1_hp_box.blit()
                     p1_hp_box.update()
@@ -427,7 +427,7 @@ def battle_init():
                     p2_hp_box = thorpy.Element(text=(f'HP: {p2curhp}/{p2maxhp}'))
                     p2_hp_box.set_font_size(16)
                     p2_hp_box.set_font_color((0,0,0))
-                    p2_hp_box.set_size((100,35))
+                    p2_hp_box.set_size((130,35))
                     p2_hp_box.stick_to(p2_mhp_bar, target_side="top", self_side="bottom")
                     p2_hp_box.blit()
                     p2_hp_box.update()
@@ -813,7 +813,7 @@ def battle_execute():
             p2_hp_box = thorpy.Element(text=(f'HP: {p2curhp}/{p2maxhp}'))
             p2_hp_box.set_font_size(16)
             p2_hp_box.set_font_color((0,0,0))
-            p2_hp_box.set_size((100,35))
+            p2_hp_box.set_size((130,35))
             p2_hp_box.stick_to(p2_mhp_bar, target_side="top", self_side="bottom")
             p2_hp_box.blit()
             p2_hp_box.update()
@@ -849,7 +849,7 @@ def battle_execute():
                 p1_hp_box = thorpy.Element(text=(f'HP: {p1curhp}/{p1maxhp}'))
                 p1_hp_box.set_font_size(16)
                 p1_hp_box.set_font_color((0,0,0))
-                p1_hp_box.set_size((100,35))
+                p1_hp_box.set_size((130,35))
                 p1_hp_box.stick_to(p1_mhp_bar, target_side="top", self_side="bottom")
                 p1_hp_box.blit()
                 p1_hp_box.update()
@@ -886,7 +886,7 @@ def battle_execute():
             p1_hp_box = thorpy.Element(text=(f'HP: {p1curhp}/{p1maxhp}'))
             p1_hp_box.set_font_size(16)
             p1_hp_box.set_font_color((0,0,0))
-            p1_hp_box.set_size((100,35))
+            p1_hp_box.set_size((130,35))
             p1_hp_box.stick_to(p1_mhp_bar, target_side="top", self_side="bottom")
             p1_hp_box.blit()
             p1_hp_box.update()
@@ -922,7 +922,7 @@ def battle_execute():
                 p2_hp_box = thorpy.Element(text=(f'HP: {p2curhp}/{p2maxhp}'))
                 p2_hp_box.set_font_size(16)
                 p2_hp_box.set_font_color((0,0,0))
-                p2_hp_box.set_size((100,35))
+                p2_hp_box.set_size((130,35))
                 p2_hp_box.stick_to(p2_mhp_bar, target_side="top", self_side="bottom")
                 p2_hp_box.blit()
                 p2_hp_box.update()
@@ -956,7 +956,7 @@ def battle_execute():
             p2_hp_box = thorpy.Element(text=(f'HP: {p2curhp}/{p2maxhp}'))
             p2_hp_box.set_font_size(16)
             p2_hp_box.set_font_color((0,0,0))
-            p2_hp_box.set_size((100,35))
+            p2_hp_box.set_size((130,35))
             p2_hp_box.stick_to(p2_mhp_bar, target_side="top", self_side="bottom")
             p2_hp_box.blit()
             p2_hp_box.update()
@@ -992,7 +992,7 @@ def battle_execute():
                 p1_hp_box = thorpy.Element(text=(f'HP: {p1curhp}/{p1maxhp}'))
                 p1_hp_box.set_font_size(16)
                 p1_hp_box.set_font_color((0,0,0))
-                p1_hp_box.set_size((100,35))
+                p1_hp_box.set_size((130,35))
                 p1_hp_box.stick_to(p1_mhp_bar, target_side="top", self_side="bottom")
                 p1_hp_box.blit()
                 p1_hp_box.update()
