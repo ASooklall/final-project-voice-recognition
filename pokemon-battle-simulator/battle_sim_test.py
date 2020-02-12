@@ -569,7 +569,7 @@ def battle_execute():
         tb.blit()
         tb.update()
 
-        print('press m to talk')
+        print('press t to talk')
         key = keyboard.read_key()
         print(key)
         if key == "t":
@@ -670,7 +670,7 @@ def battle_execute():
         tb.blit()
         tb.update()
 
-        print('press m to talk')
+        print('press t to talk')
         key = keyboard.read_key()
         print(key)
         if key == "t":
@@ -795,7 +795,7 @@ def battle_execute():
             tb.blit()
             tb.update()
 
-            p2curhp = p2curhp - int((p1_movepower * (p1atk / p2def)))
+            p2curhp = max(0, (p2curhp - int((p1_movepower * (p1atk / p2def)))))
             p2_hpratio = p2curhp/p2maxhp
             p2_hpbarsize = 200 * (p2curhp/p2maxhp)
             p2_hpbarsize = round(p2_hpbarsize, 0)
@@ -831,7 +831,7 @@ def battle_execute():
                 tb.blit()
                 tb.update()
 
-                p1curhp = p1curhp - int((p2_movepower * (p2atk / p1def)))
+                p1curhp = max(0, (p1curhp - int((p2_movepower * (p2atk / p1def)))))
                 p1_hpratio = p1curhp/p1maxhp
                 p1_hpbarsize = 200 * (p1curhp/p1maxhp)
                 p1_hpbarsize = round(p1_hpbarsize, 0)
@@ -868,7 +868,7 @@ def battle_execute():
             tb.blit()
             tb.update()
 
-            p1curhp = p1curhp - int((p2_movepower * (p2atk/p1def)))
+            p1curhp = max(0, (p1curhp - int((p2_movepower * (p2atk / p1def)))))
             p1_hpratio = p1curhp/p1maxhp
             p1_hpbarsize = 200 * (p1curhp/p1maxhp)
             p1_hpbarsize = round(p1_hpbarsize, 0)
@@ -904,7 +904,7 @@ def battle_execute():
                 tb.blit()
                 tb.update()
 
-                p2curhp = p2curhp - int((p1_movepower * (p1atk / p2def)))
+                p2curhp = max(0, (p2curhp - int((p1_movepower * (p1atk / p2def)))))
                 p2_hpratio = p2curhp/p2maxhp
                 p2_hpbarsize = 200 * (p2curhp/p2maxhp)
                 p2_hpbarsize = round(p2_hpbarsize, 0)
@@ -938,7 +938,7 @@ def battle_execute():
             tb.blit()
             tb.update()
 
-            p2curhp = p2curhp - int((p1_movepower * (p1atk / p2def)))
+            p2curhp = max(0, (p2curhp - int((p1_movepower * (p1atk / p2def)))))
             p2_hpratio = p2curhp/p2maxhp
             p2_hpbarsize = 200 * (p2curhp/p2maxhp)
             p2_hpbarsize = round(p2_hpbarsize, 0)
@@ -974,7 +974,7 @@ def battle_execute():
                 tb.blit()
                 tb.update()
 
-                p1curhp = p1curhp - (int(p2_movepower * (p2atk / p1def)))
+                p1curhp = max(0, (p1curhp - int((p2_movepower * (p2atk / p1def)))))
                 p1_hpratio = p1curhp/p1maxhp
                 p1_hpbarsize = 200 * (p1curhp/p1maxhp)
                 p1_hpbarsize = round(p1_hpbarsize, 0)
@@ -1074,7 +1074,7 @@ tb = thorpy.Element(text=('\
                 Welcome to Pokemon Battle Simulator! \n \
     Use voice commands to choose your pokemon and battle. \n \
                 Please read prompts to play the game. \n \
-                    To begin a match, press the S.'))
+                        To begin a match, press S.'))
 tb.set_font_size(20)
 tb.set_size((750,150))
 tb.stick_to(tb_h, target_side="bottom", self_side="top")
