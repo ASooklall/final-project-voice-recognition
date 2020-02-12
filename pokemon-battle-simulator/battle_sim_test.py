@@ -7,27 +7,37 @@ from pynput.keyboard import Key, Controller
 controller = Controller()
 
 pokemon_list = [
-{'name':'pikachu','stats': {'health':3,'attack':1,'defense':1,'speed':1,'current_health':3}, 
- 'moves':[{'name':'thundershock','power':1,'type':'electric'},{'name':'quick attack','power':1,'type':'normal'},{'name':'thunderbolt','power':1,'type':'electric'},{'name':'iron tail','power':1,'type':'steel'}],},
-{'name':'mewtwo','stats':{'health':3,'attack':1,'defense':1,'speed':1,'current_health':3},
+{'name':'pikachu','stats': {'health':8,'attack':15,'defense':10,'speed':17, 'type1':'electric','type2':'none'}, 
+ 'moves':[{'name':'thundershock','power':20,'type':'electric','priority':0},{'name':'quick attack','power':20,'type':'normal','priority':1},{'name':'thunderbolt','power':1,'type':'electric','priority':0},{'name':'iron tail','power':1,'type':'steel','priority':0}],},
+{'name':'mewtwo','stats':{'health':12,'attack':16,'defense':9,'speed':13,'type1':'electric','type2':'none'},
  'moves':[{'name':'psychic','power':1,'type':'psychic'},{'name':'swift','power':1,'type':'normal'},{'name':'recover','power':1,'type':'psychic'},{'name':'psybeam','power':1,'type':'psychic'}],},
-{'name':'charizard','stats':{'health':3,'attack':1,'defense':1,'speed':1,'current_health':3},
+{'name':'charizard','stats':{'health':11,'attack':15,'defense':11,'speed':13,'type1':'electric','type2':'none'},
  'moves':[{'name':'fire blast','power':1,'type':'fire'},{'name':'slash','power':1,'type':'normal'},{'name':'flamethrower','power':1,'type':'fire'},{'name':'steel wing','power':1,'type':'steel'}],},
-{'name':'venusaur','stats':{'health':3,'attack':1,'defense':1,'speed':1,'current_health':3},
+{'name':'venusaur','stats':{'health':12,'attack':13,'defense':14,'speed':11,'type1':'electric','type2':'none'},
  'moves':[{'name':'solar beam','power':1,'type':'grass'},{'name':'razor leaf','power':1,'type':'grass'},{'name':'take down','power':1,'type':'normal'},{'name':'earthquake','power':1,'type':'ground'}],},
-{'name':'blastoise','stats':{'health':3,'attack':1,'defense':1,'speed':1,'current_health':3},
+{'name':'blastoise','stats':{'health':11,'attack':13,'defense':15,'speed':11,'type1':'electric','type2':'none'},
  'moves':[{'name':'surf','power':1,'type':'water'},{'name':'hydro pump','power':1,'type':'water'},{'name':'strength','power':1,'type':'normal'},{'name':'water gun','power':1,'type':'water'}],},
-{'name':'eevee','stats':{'health':3,'attack':1,'defense':1,'speed':1,'current_health':3},
+{'name':'eevee','stats':{'health':12,'attack':11,'defense':14,'speed':13,'type1':'electric','type2':'none'},
  'moves':[{'name':'quick attack','power':1,'type':'normal'},{'name':'swift','power':1,'type':'normal'},{'name':'take down','power':1,'type':'normal'},{'name':'last resort','power':1,'type':'normal'}],},
-{'name':'onyx','stats':{'health':3,'attack':1,'defense':1,'speed':1,'current_health':3},
+{'name':'onyx','stats':{'health':8,'attack':8,'defense':24,'speed':10,'type1':'electric','type2':'none'},
  'moves':[{'name':'dig','power':1,'type':'ground'},{'name':'iron tail','power':1,'type':'steel'},{'name':'stone edge','power':1,'type':'rock'},{'name':'slam','power':1,'type':'normal'}],},
-{'name':'alakazam','stats':{'health':3,'attack':1,'defense':1,'speed':1,'current_health':3},
+{'name':'alakazam','stats':{'health':7,'attack':17,'defense':11,'speed':15,'type1':'electric','type2':'none'},
  'moves':[{'name':'psybeam','power':1,'type':'psychic'},{'name':'recover','power':1,'type':'normal'},{'name':'psychic','power':1,'type':'psychic'},{'name':'night shade','power':1,'type':'ghost'}],},
-{'name':'gengar','stats':{'health':3,'attack':1,'defense':1,'speed':2,'current_health':3},
- 'moves':[{'name':'shadow ball','power':6,'type':'ghost'},{'name':'dark pulse','power':1,'type':'dark'},{'name':'hypnosis','power':1,'type':'normal'},{'name':'dream eater','power':1,'type':'ghost'}],},
-{'name':'nidoqueen','stats':{'health':3,'attack':1,'defense':1,'speed':1,'current_health':3},
+{'name':'gengar','stats':{'health':8,'attack':18,'defense':10,'speed':14,'type1':'electric','type2':'none'},
+ 'moves':[{'name':'shadow ball','power':1,'type':'ghost'},{'name':'dark pulse','power':1,'type':'dark'},{'name':'hypnosis','power':1,'type':'normal'},{'name':'dream eater','power':1,'type':'ghost'}],},
+{'name':'nidoqueen','stats':{'health':14,'attack':13,'defense':12,'speed':11,'type1':'electric','type2':'none'},
  'moves':[{'name':'body slam','power':1,'type':'normal'},{'name':'super power','power':1,'type':'fighting'},{'name':'counter','power':1,'type':'fighting'},{'name':'dragon tail','power':1,'type':'dragon'}],},
-{'name':'machamp','stats':{'health':3,'attack':1,'defense':1,'speed':1,'current_health':3},
+{'name':'machamp','stats':{'health':13,'attack':18,'defense':12,'speed':7,'type1':'electric','type2':'none'},
+ 'moves':[{'name':'cross chop','power':1,'type':'fighting'},{'name':'dynamic punch','power':1,'type':'fighting'},{'name':'seismic toss','power':1,'type':'fighting'},{'name':'dual chop','power':1,'type':'dragon'}],},
+ {'name':'gyarados','stats':{'health':12,'attack':16,'defense':12,'speed':10,'type1':'electric','type2':'none'},
+ 'moves':[{'name':'cross chop','power':1,'type':'fighting'},{'name':'dynamic punch','power':1,'type':'fighting'},{'name':'seismic toss','power':1,'type':'fighting'},{'name':'dual chop','power':1,'type':'dragon'}],},
+ {'name':'scizor','stats':{'health':11,'attack':17,'defense':14,'speed':8,'type1':'electric','type2':'none'},
+ 'moves':[{'name':'cross chop','power':1,'type':'fighting'},{'name':'dynamic punch','power':1,'type':'fighting'},{'name':'seismic toss','power':1,'type':'fighting'},{'name':'dual chop','power':1,'type':'dragon'}],},
+ {'name':'snorlax','stats':{'health':19,'attack':13,'defense':13,'speed':5,'type1':'electric','type2':'none'},
+ 'moves':[{'name':'cross chop','power':1,'type':'fighting'},{'name':'dynamic punch','power':1,'type':'fighting'},{'name':'seismic toss','power':1,'type':'fighting'},{'name':'dual chop','power':1,'type':'dragon'}],},
+ {'name':'dragonite','stats':{'health':13,'attack':16,'defense':12,'speed':9,'type1':'electric','type2':'none'},
+ 'moves':[{'name':'cross chop','power':1,'type':'fighting'},{'name':'dynamic punch','power':1,'type':'fighting'},{'name':'seismic toss','power':1,'type':'fighting'},{'name':'dual chop','power':1,'type':'dragon'}],},
+ {'name':'dewgong','stats':{'health':13,'attack':11,'defense':14,'speed':12,'type1':'electric','type2':'none'},
  'moves':[{'name':'cross chop','power':1,'type':'fighting'},{'name':'dynamic punch','power':1,'type':'fighting'},{'name':'seismic toss','power':1,'type':'fighting'},{'name':'dual chop','power':1,'type':'dragon'}],},
 ]
 
@@ -186,10 +196,10 @@ def battle_init():
                     p1move2 = pokemon['moves'][1]['name']
                     p1move3 = pokemon['moves'][2]['name']
                     p1move4 = pokemon['moves'][3]['name']
-                    p1speed = pokemon['stats']['speed']
-                    p1atk = pokemon['stats']['attack']
-                    p1def = pokemon['stats']['defense']
-                    p1maxhp = pokemon['stats']['health']
+                    p1speed = int(pokemon['stats']['speed'])
+                    p1atk = int(pokemon['stats']['attack'])
+                    p1def = int(pokemon['stats']['defense'])
+                    p1maxhp = 10 * int(pokemon['stats']['health'])
                     p1curhp = p1maxhp
                     p1_hpbarsize = 200 * (p1curhp/p1maxhp)
                     
@@ -345,10 +355,10 @@ def battle_init():
                     p2move2 = pokemon['moves'][1]['name']
                     p2move3 = pokemon['moves'][2]['name']
                     p2move4 = pokemon['moves'][3]['name']
-                    p2speed = pokemon['stats']['speed']
-                    p2atk = pokemon['stats']['attack']
-                    p2def = pokemon['stats']['defense']
-                    p2maxhp = pokemon['stats']['health']
+                    p2speed = int(pokemon['stats']['speed'])
+                    p2atk = int(pokemon['stats']['attack'])
+                    p2def = int(pokemon['stats']['defense'])
+                    p2maxhp = 10 * int(pokemon['stats']['health'])
                     p2curhp = p2maxhp
                     p2_hpbarsize = 200 * (p2curhp/p2maxhp)
                     
@@ -585,7 +595,7 @@ def battle_execute():
                         p1_movename = mvs['name']
                         p1_movetype = mvs['type']
                         p1_movepower = int(mvs['power'])
-                        p1_movepriority = 0
+                        p1_movepriority = mvs['priority']
                         print('testx:',p1_movename)
                         break
                     elif mvs['name'].lower() in audio_play:
@@ -593,13 +603,13 @@ def battle_execute():
                         p1_movename = mvs['name']
                         p1_movetype = mvs['type']
                         p1_movepower = int(mvs['power'])
-                        p1_movepriority = 0
+                        p1_movepriority = mvs['priority']
                         break
                     else:
                         p1_movename = temp_moves[0]['name']
                         p1_movetype = temp_moves[0]['type']
                         p1_movepower = int(temp_moves[0]['power'])
-                        p1_movepriority = 0
+                        p1_movepriority = mvs['priority']
                 print('testx2:',p1_movename)
             except AttributeError: 
                 try:
@@ -621,25 +631,25 @@ def battle_execute():
                             p1_movename = mvs['name']
                             p1_movetype = mvs['type']
                             p1_movepower = int(mvs['power'])
-                            p1_movepriority = 0
+                            p1_movepriority = mvs['priority']
                             break
                         elif mvs['name'].lower() in audio_play:
                             p1_movename = mvs['name']
                             p1_movetype = mvs['type']
                             p1_movepower = int(mvs['power'])
-                            p1_movepriority = 0
+                            p1_movepriority = mvs['priority']
                             break
                         else:
                             p1_movename = temp_moves[0]['name']
                             p1_movetype = temp_moves[0]['type']
                             p1_movepower = int(temp_moves[0]['power'])
-                            p1_movepriority = 0
+                            p1_movepriority = mvs['priority']
                 except AttributeError:
                     temp_moves = p1_pokemon['moves']
                     p1_movename = temp_moves[0]['name']
                     p1_movetype = temp_moves[0]['type']
                     p1_movepower = int(temp_moves[0]['power'])
-                    p1_movepriority = 0
+                    p1_movepriority = temp_moves[0]['priority']
 
 
             print(f'test // recognized: {audio_play} \ncompared to {temp_moves} \nchosen: {p1_movename}')
@@ -705,19 +715,19 @@ def battle_execute():
                         p2_movename = mvs['name']
                         p2_movetype = mvs['type']
                         p2_movepower = int(mvs['power'])
-                        p2_movepriority = 0
+                        p2_movepriority = mvs['priority']
                         break
                     elif mvs['name'].lower() in audio_play:
                         p2_movename = mvs['name']
                         p2_movetype = mvs['type']
                         p2_movepower = int(mvs['power'])
-                        p2_movepriority = 0
+                        p2_movepriority = mvs['priority']
                         break
                     else:
                         p2_movename = temp_moves[0]['name']
                         p2_movetype = temp_moves[0]['type']
                         p2_movepower = int(temp_moves[0]['power'])
-                        p2_movepriority = 0
+                        p2_movepriority = mvs['priority']
             except AttributeError: 
                 try:
                     tb = thorpy.Element(text=(f'{p2_choice} could not understand you. Please try again. '))
@@ -738,25 +748,25 @@ def battle_execute():
                             p2_movename = mvs['name']
                             p2_movetype = mvs['type']
                             p2_movepower = int(mvs['power'])
-                            p2_movepriority = 0
+                            p2_movepriority = mvs['priority']
                             break
                         elif mvs['name'].lower() in audio_play:
                             p2_movename = mvs['name']
                             p2_movetype = mvs['type']
                             p2_movepower = int(mvs['power'])
-                            p2_movepriority = 0
+                            p2_movepriority = mvs['priority']
                             break
                         else:
                             p2_movename = temp_moves[0]['name']
                             p2_movetype = temp_moves[0]['type']
                             p2_movepower = int(temp_moves[0]['power'])
-                            p2_movepriority = 0
+                            p2_movepriority = mvs['priority']
                 except AttributeError:
                     temp_moves = p2_pokemon['moves']
                     p2_movename = temp_moves[0]['name']
                     p2_movetype = temp_moves[0]['type']
                     p2_movepower = int(temp_moves[0]['power'])
-                    p2_movepriority = 0
+                    p2_movepriority = temp_moves[0]['priority']
             
 
 
