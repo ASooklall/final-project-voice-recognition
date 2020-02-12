@@ -15,20 +15,27 @@ CREATE TABLE pokemon (
 	move3 INT,
 	move4 INT,
 	front_image VARCHAR(30) NOT NULL,
-	back_image VARCHAR(30) NOT NULL	
+	back_image VARCHAR(30) NOT NULL
 )
 
 INSERT INTO pokemon (name, type1, type2, hp, atk, def, spd, move1, move2, move3, move4, front_image, back_image)
-VALUES ('mewtwo', 'psychic', 'ptype2', 3, 1, 1, 1, 5, 6, 7, 8, 'images/mewtwo_front.png', 'images/mewtwo_back.png'),
-('charizard', 'fire', 'flying', 3, 1, 1, 1, 9, 10, 11, 36, 'images/charizard_front.png', 'images/charizard_back.png'),
-('venasaur', 'grass', 'ptype2', 3, 1, 1, 1, 12, 13, 14, 15, 'images/venasaur_front.png', 'images/venasaur_back.png'),
-('blastoise', 'water', 'ptype2', 3, 1, 1, 1, 16, 17, 18, 19, 'images/blastoise_front.png', 'images/blastoise_back.png'),
-('eevee', 'normal', 'ptype2', 3, 1, 1, 1, 2, 6, 14, 20, 'images/eevee_front.png', 'images/eevee_back.png'),
-('onyx', 'rock', 'ground', 3, 1, 1, 1, 4, 21, 22, 23, 'images/onyx_front.png', 'images/onyx_back.png'),
-('alakazam', 'psychic', 'ptype2', 3, 1, 1, 1, 5, 7, 8, 24, 'images/alakazam_front.png', 'images/alakazam_back.png'),
-('gengar', 'ghost', 'poison', 3, 1, 1, 1, 25, 262, 27, 28, 'images/gengar_front.png', 'images/gengar_back.png'),
-('nidoqueen', 'poison', 'ptype2', 3, 1, 1, 1, 29, 30, 31, 32, 'images/nidoqueen_front.png', 'images/nidoqueen_back.png'),
-('machamp', 'fighting', 'ptype2', 3, 1, 1, 1, 18, 33, 34, 35, 'images/machamp_front.png', 'images/machamp_back.png');
+VALUES ('pikachu', 'electric', 'none', 8, 15, 10, 17, 1, 2, 3, 4, 'images/pikachu_front.png', 'images/pikachu_back.png'),
+('mewtwo', 'psychic', 'none', 12, 16, 9, 13, 5, 6, 7, 8, 'images/mewtwo_front.png', 'images/mewtwo_back.png'),
+('charizard', 'fire', 'flying', 11, 15, 11, 13, 9, 10, 11, 12, 'images/charizard_front.png', 'images/charizard_back.png'),
+('venasaur', 'grass', 'poison', 12, 13, 14, 11, 13, 14, 15, 16, 'images/venasaur_front.png', 'images/venasaur_back.png'),
+('blastoise', 'water', 'none', 11, 13, 15, 11, 17, 18, 19, 20, 'images/blastoise_front.png', 'images/blastoise_back.png'),
+('eevee', 'normal', 'none', 12, 11, 14, 13, 21, 2, 22, 4, 'images/eevee_front.png', 'images/eevee_back.png'),
+('onyx', 'rock', 'ground', 8, 8, 24, 10, 23, 16, 24, 3, 'images/onyx_front.png', 'images/onyx_back.png'),
+('alakazam', 'psychic', 'none', 7, 17, 11, 15, 5, 25, 26, 27, 'images/alakazam_front.png', 'images/alakazam_back.png'),
+('gengar', 'ghost', 'poison', 8, 18, 10, 14, 7, 28, 29, 30, 'images/gengar_front.png', 'images/gengar_back.png'),
+('nidoqueen', 'ground', 'poison', 14, 13, 12, 11, 16, 31, 8, 32, 'images/nidoqueen_front.png', 'images/nidoqueen_back.png'),
+('machamp', 'fighting', 'none', 13, 18, 12, 7, 33, 34, 35, 36, 'images/machamp_front.png', 'images/machamp_back.png'),
+('gyarados', 'water', 'flying', 12, 16, 12, 10, 17, 29, 37, 38, 'images/gyarados_front.png', 'images/gyarados_back.png'),
+('scizor', 'bug', 'steel', 11, 17, 14, 8, 39, 40, 41, 42, 'images/scizor_front.png', 'images/scizor_back.png'),
+('snorlax', 'normal', 'none', 18, 13, 13, 6, 43, 5, 9, 44, 'images/snorlax_front.png', 'images/snorlax_back.png'),
+('dragonite', 'dragon', 'flying', 13, 16, 12, 9, 45, 46, 47, 48, 'images/dragonite_front.png', 'images/dragonite_back.png'),
+('dewgone', 'water', 'ice', 13, 11, 14, 12, 49, 50, 46, 51, 'images/dewgong_front.png', 'images/dewgong_back.png'),
+;
 
 
 CREATE TABLE pokemon_moves (
@@ -39,43 +46,75 @@ CREATE TABLE pokemon_moves (
 	checker INT
 );
 
-INSERT INTO pokemon_moves (name, power, type, checker)
-VALUES ('thundershock', 1, 'electric', 0),
-('quick attack', 1, 'normal', 0),
-('thunderbolt', 1, 'electric', 0),
-('iron tail', 1, 'steel', 0),
-('psychic', 1, 'psychic', 0),
-('swift', 1, 'normal', 0),
-('recover', 1, 'normal', 1),
-('psybeam', 1, 'psychic', 0),
-('fire blast', 1, 'fire', 0),
-('slash', 1, 'normal', 0),
-('steel wing', 1, 'steel', 0),
-('solar beam', 1, 'grass', 0),
-('razor leaf', 1, 'grass', 0),
-('take down', 1, 'normal', 0),
-('earthquake', 1, 'ground', 0),
-('surf', 1, 'water', 0),
-('hydro pump', 1, 'water', 0),
-('strength', 1, 'normal', 0),
-('water gun', 1, 'water', 0),
-('last resort', 1, 'normal', 0),
-('dig', 1, 'ground', 0),
-('stone edge', 1, 'rock', 0),
-('slam', 1, 'normal', 0),
-('night shade', 1, 'ghost', 0),
-('shadow ball', 1, 'ghost', 0),
-('dark pulse', 1, 'dark', 0),
-('hypnosis', 1, 'normal', 2),
-('dream eater', 1, 'ghost', 0),
-('body slam', 1, 'normal', 0),
-('super power', 1, 'fighting', 0),
-('counter', 1, 'fighting', 0),
-('dragon tail', 1, 'dragon', 0),
-('cross chop', 1, 'fighting', 0),
-('dynamic punch', 1, 'fighting', 0),
-('seismic toss', 1, 'fighting', 0),
-('flamethrower', 1, 'fire', 0);
+INSERT INTO pokemon_moves (name, power, type, priority)
+VALUES ('thunderbolt', 21, 'electric', 0),
+('quick attack', 18, 'normal', 1),
+('slam', 24, 'normal', 0),
+('iron tail', 21, 'steel', 0),
+('psychic', 21, 'psychic', 0),
+('hyperbeam', 24, 'normal', 0),
+('shadow ball', 21, 'ghost', 0),
+('poison jab', 21, 'poison', 0),
+('fire blast', 21, 'fire', 0),
+('slash', 24, 'normal', 0),
+('dragon claw', 21, 'dragon', 0),
+('hurricane', 21, 'flying', 0),
+('solar beam', 21, 'grass', 0),
+('sludge bomb', 21, 'poison', 0),
+('take down', 24, 'normal', 0),
+('earthquake', 12, 'ground', 0),
+('hydro pump', 21, 'water', 0),
+('skull bash', 24, 'normal', 0),
+('blizzard', 21, 'ice', 0),
+('flash cannon', 21, 'steel', 0),
+('swift', 24, 'noraml', 0),
+('bite', 21, 'dark', 0),
+('stone edge', 21, 'rock', 0),
+('dragon breath', 21, 'dragon', 0),
+('seismic toss', 21, 'fighting', 0),
+('thunder punch', 21, 'electric', 0),
+('ice punch', 21, 'ice', 0),
+('sucker punch', 15, 'dark', 1),
+('thunder', 21, 'electric', 0),
+('dream eater', 21, 'psychic', 0),
+('super power', 21, 'fighting', 0),
+('dragon tail', 21, 'dragon', 0),
+('cross chop', 21, 'fighting', 0),
+('payback', 21, 'dark', 0),
+('giga impact', 24, 'normal', 0),
+('dual chop', 21, 'dragon', 0),
+('crunch', 21, 'dark', 0),
+('dragon pulse', 21, 'dragon', 0),
+('furry cutter', 21, 'bug', 0),
+('bullet punch', 15, 'steel', 1),
+('vacuum wave', 15, 'fighting', 1),
+('night slash', 21, 'dark', 0),
+('body slam', 24, 'normal', 0),
+('surf', 21, 'water', 0),
+('dragon rage', 21, 'dragon', 0),
+('aqua jet', 15, 'water', 1),
+('wing attack', 21, 'flying', 0),
+('fire punch', 21, 'fire', 0),
+('aurora beam', 21, 'ice', 0),
+('megahorn', 21, 'bug', 0),
+('drill run', 21, 'ground', 0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
