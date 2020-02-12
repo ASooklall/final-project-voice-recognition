@@ -1,3 +1,6 @@
+DROP TABLE pokemon;
+DROP TABLE pokemon_moves;
+
 CREATE TABLE pokemon (
 	pokemon_id SERIAL PRIMARY KEY,
 	name VARCHAR(30) NOT NULL,
