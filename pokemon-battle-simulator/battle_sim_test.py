@@ -24,7 +24,7 @@ pokemon_list = [
 {'name':'alakazam','stats':{'health':3,'attack':1,'defense':1,'speed':1,'current_health':3},
  'moves':[{'name':'psybeam','power':1,'type':'psychic'},{'name':'recover','power':1,'type':'normal'},{'name':'psychic','power':1,'type':'psychic'},{'name':'night shade','power':1,'type':'ghost'}],},
 {'name':'gengar','stats':{'health':3,'attack':1,'defense':1,'speed':2,'current_health':3},
- 'moves':[{'name':'shadow ball','power':1,'type':'ghost'},{'name':'dark pulse','power':1,'type':'dark'},{'name':'hypnosis','power':1,'type':'normal'},{'name':'dream eater','power':1,'type':'ghost'}],},
+ 'moves':[{'name':'shadow ball','power':6,'type':'ghost'},{'name':'dark pulse','power':1,'type':'dark'},{'name':'hypnosis','power':1,'type':'normal'},{'name':'dream eater','power':1,'type':'ghost'}],},
 {'name':'nidoqueen','stats':{'health':3,'attack':1,'defense':1,'speed':1,'current_health':3},
  'moves':[{'name':'body slam','power':1,'type':'normal'},{'name':'super power','power':1,'type':'fighting'},{'name':'counter','power':1,'type':'fighting'},{'name':'dragon tail','power':1,'type':'dragon'}],},
 {'name':'machamp','stats':{'health':3,'attack':1,'defense':1,'speed':1,'current_health':3},
@@ -785,7 +785,7 @@ def battle_execute():
             tb.blit()
             tb.update()
 
-            p2curhp = p2curhp - int((p1_movepower * (p1atk / p2def)))
+            p2curhp = max(0, (p2curhp - int((p1_movepower * (p1atk / p2def)))))
             p2_hpratio = p2curhp/p2maxhp
             p2_hpbarsize = 200 * (p2curhp/p2maxhp)
             p2_hpbarsize = round(p2_hpbarsize, 0)
@@ -821,7 +821,7 @@ def battle_execute():
                 tb.blit()
                 tb.update()
 
-                p1curhp = p1curhp - int((p2_movepower * (p2atk / p1def)))
+                p1curhp = max(0, (p1curhp - int((p2_movepower * (p2atk / p1def)))))
                 p1_hpratio = p1curhp/p1maxhp
                 p1_hpbarsize = 200 * (p1curhp/p1maxhp)
                 p1_hpbarsize = round(p1_hpbarsize, 0)
@@ -858,7 +858,7 @@ def battle_execute():
             tb.blit()
             tb.update()
 
-            p1curhp = p1curhp - int((p2_movepower * (p2atk/p1def)))
+            p1curhp = max(0, (p1curhp - int((p2_movepower * (p2atk / p1def)))))
             p1_hpratio = p1curhp/p1maxhp
             p1_hpbarsize = 200 * (p1curhp/p1maxhp)
             p1_hpbarsize = round(p1_hpbarsize, 0)
@@ -894,7 +894,7 @@ def battle_execute():
                 tb.blit()
                 tb.update()
 
-                p2curhp = p2curhp - int((p1_movepower * (p1atk / p2def)))
+                p2curhp = max(0, (p2curhp - int((p1_movepower * (p1atk / p2def)))))
                 p2_hpratio = p2curhp/p2maxhp
                 p2_hpbarsize = 200 * (p2curhp/p2maxhp)
                 p2_hpbarsize = round(p2_hpbarsize, 0)
@@ -928,7 +928,7 @@ def battle_execute():
             tb.blit()
             tb.update()
 
-            p2curhp = p2curhp - int((p1_movepower * (p1atk / p2def)))
+            p2curhp = max(0, (p2curhp - int((p1_movepower * (p1atk / p2def)))))
             p2_hpratio = p2curhp/p2maxhp
             p2_hpbarsize = 200 * (p2curhp/p2maxhp)
             p2_hpbarsize = round(p2_hpbarsize, 0)
@@ -964,7 +964,7 @@ def battle_execute():
                 tb.blit()
                 tb.update()
 
-                p1curhp = p1curhp - (int(p2_movepower * (p2atk / p1def)))
+                p1curhp = max(0, (p1curhp - int((p2_movepower * (p2atk / p1def)))))
                 p1_hpratio = p1curhp/p1maxhp
                 p1_hpbarsize = 200 * (p1curhp/p1maxhp)
                 p1_hpbarsize = round(p1_hpbarsize, 0)
@@ -1064,7 +1064,7 @@ tb = thorpy.Element(text=('\
                 Welcome to Pokemon Battle Simulator! \n \
     Use voice commands to choose your pokemon and battle. \n \
                 Please read prompts to play the game. \n \
-                    To begin a match, press S.'))
+                        To begin a match, press S.'))
 tb.set_font_size(20)
 tb.set_size((750,150))
 tb.stick_to(tb_h, target_side="bottom", self_side="top")
