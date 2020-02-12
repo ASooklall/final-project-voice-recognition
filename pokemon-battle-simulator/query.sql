@@ -34,7 +34,7 @@ VALUES ('pikachu', 'electric', 'none', 8, 15, 10, 17, 1, 2, 3, 4, 'images/pikach
 ('scizor', 'bug', 'steel', 11, 17, 14, 8, 39, 40, 41, 42, 'images/scizor_front.png', 'images/scizor_back.png'),
 ('snorlax', 'normal', 'none', 18, 13, 13, 6, 43, 5, 9, 44, 'images/snorlax_front.png', 'images/snorlax_back.png'),
 ('dragonite', 'dragon', 'flying', 13, 16, 12, 9, 45, 46, 47, 48, 'images/dragonite_front.png', 'images/dragonite_back.png'),
-('dewgone', 'water', 'ice', 13, 11, 14, 12, 49, 50, 46, 51, 'images/dewgong_front.png', 'images/dewgong_back.png'),
+('dewgone', 'water', 'ice', 13, 11, 14, 12, 49, 50, 46, 51, 'images/dewgong_front.png', 'images/dewgong_back.png')
 ;
 
 
