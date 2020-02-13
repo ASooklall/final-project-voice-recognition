@@ -77,7 +77,29 @@
 * follow instructions on screen for key presses or voice prompts
 * use voice to choose pokemon, moves, etc. when prompted
 * game is fully playable within the pygame screen, you do not need to use your terminal after launching the .py file
-<!-- #### Our Process: -->
+* The main menu looks like:
+    * <img src="/data/resources/battle_sim_home1.png" alt="BattleSimHome" width="900" height="400">
+    * In the center Announcement box, relative game text and instructions appear as needed.
+    * You can begin the game by pressing the "S" key and after selecting your pokemon with voice input, use the "A" key to choose.
+    * A full list of pokemon can be found in the game dictionary but are also below:
+        * Pikachu, Mewtwo, Charizard, Venusaur, Blastoise, Eevee, Onyx, Alakazam, Gengar, Nidoqueen, Machamp, Gyarados, Scizor, Snorlax, Dragonite, Dewgong
+        * This list is up-to-date as of the demo.py
+    * Before confirming with "A" you have the option to reroll/reselect your Pokemon with the "R" key as many times as you'd like.
+        * This option will cause both players to reselect.
+    * After confirmation, the battle will automatically begin and prompt player 1 to use the "T" key to initiate voice selection of their move, then repeat the process with player 2. Afterwards, the game engine will automatically determine move order based on speed and calculate damage and the battle.
+    * This process is repeated until one player wins when their opponent is left with 0 HP or health points.
+* A breakdown of stats can be seen as follows:
+    * HP / Health : The amount of damage your pokemon can receive before fainting / losing.
+    * Atk / Attack : The damage modifier your pokemon multiplies when attacking.
+    * Def / Defense : The defensive modifier your pokemon divides by when defending.
+    * Spd / Speed : The raw speed integer that determines who goes first. If both pokemon have equal speeds, player 1 goes first as a handicap for choosing their move and pokemon first.
+#### Significance:
+* A fully designed game engine in python that can utilize speech recognition and allow players to directly interact via voice opens the doors to vast marketing opportunities and design concepts for gaming.
+    * demo.py and battle_sim.py are the proof of concept we designed for this.
+* Previously, games were very limited in what a user could do with their voice and the responses available. This game simulation shows that user input can have expanded output even within the limited pygame engine and these opportunities can only be expanded when developed in C/C++. 
+    * Within the timeframe provided for the project, developing in C/C++ was out of scope as we would have needed to learn syntax and libraries to accurately script and debug our code.
+* Being able to market voice recognition as a novel or unique mode of control for a game as well as method of increasing accessibility can increase consumer base and interest.
+* Even with the standard google cloud API, the model and engine are extremely accurate. With a specifically trained and weighted model, this number can only increase.
 <!-- #### Analysis: -->
 
 ### Conclusion:
