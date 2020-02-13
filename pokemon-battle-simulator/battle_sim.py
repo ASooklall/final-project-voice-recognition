@@ -70,7 +70,7 @@ def rec():
         with mic as source:
     #         rt.adjust_for_ambient_noise(source)
             # rt.energy_threshold = 20000
-            rt.energy_threshole = 3000
+            rt.energy_threshold = 3000
             rt.dynamic_energy_threshold = True
             rt.adjust_for_ambient_noise(source, duration = 0.6)
             # audio = rt.listen(source, timeout = 0.5)
