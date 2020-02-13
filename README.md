@@ -63,9 +63,13 @@
 * The software also logs key prompts in the developmental version which allows for testing which voice options are most used, what key buttons are most frequented, and how often mistakes occur. This can be used for both increasing the accuracy of a speech recognition model geared to emulation as well as providing information for marketing accessory products that could increase comfortability for users who would normally need to press these buttons often.
 * Providing insight into the habits and tendencies of gamer time consumption per play session, sessions per day, preferred weekday, etc. all have marketing value and weight when developing new consumer products. This software can log these times, dates, etc. and store them for future use.
 #### Analysis: 
-* Insert Tableau Link / Screenshots
+<img src = "/data/resources'tableau_ss1.png" alt="tableau_screenshot" width="1024" height="900">
 * As shown in the Tableau comparison:
     * https://public.tableau.com/profile/andrew.sooklall#!/vizhome/final_project_vcp_analysis/VoiceRecognitioninGamingEmulation
+    * Even with a broad-spectrum pre-trained cloud model (Google Cloud API) we were able to have less than 5% of input error. With a specifically trained/weighted model this number could be further reduced resulting in a very accurate mode of control for gaming. 
+    * The software logs the play sessions, amount of inputs, type of inputs, etc. which all can be used for marketing by increasing consumer accessories towards these values or even simply improving the software itself to cater to consumer needs.
+* Gameplay is easy using the voice software and the push-to-talk method could be traded in for a voice prompt to activate method (ex: Apple Siri) or constantly listening software similar to what Alexa reportedly can do when linked.
+* As the interface and software are easy to use even without a GUI accompanying them, and setup takes no more than a few minutes at most, translation to a fully devoted application with GUI can be done to increase appeal towards consumer base.
 * It is important to note that while storing the recorded data in a database and cloud-hosting or locally hosting it on hard memory might be best, we chose to simply append a csv for demonstration purposes and ease of access for the scope of the project.
     * As logs from multiple users could become massive, we recommend using a cloud-based hosting service for your database (such as AWS).
 
