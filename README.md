@@ -2,7 +2,7 @@
 ### Using voice recognition for both accessibility and primary control in gaming.
 
 ### Data Science Final Project
-* Andrew Sooklall
+* <a href='https://github.com/ASooklall'>Andrew Sooklall</a>
     * https://github.com/ASooklall
 * Mikey Esteban
     * https://github.com/Mikey-Esteban
