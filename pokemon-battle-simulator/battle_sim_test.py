@@ -8,39 +8,60 @@ controller = Controller()
 
 #move powers: 15 = priority (non-normal), 18 = priority (normal), 21 = non priority (non-normal), 24 = non priority (normal)
 pokemon_list = [
-{'name':'pikachu','stats': {'health':8,'attack':15,'defense':10,'speed':17, 'type1':'electric','type2':'none'}, 
+{'name':'pikachu','type1':'electric','type2':'none','stats': {'health':8,'attack':15,'defense':10,'speed':17}, 
  'moves':[{'name':'thunderbolt','power':21,'type':'electric','priority':0},{'name':'quick attack','power':18,'type':'normal','priority':1},{'name':'slam','power':24,'type':'normal','priority':0},{'name':'iron tail','power':21,'type':'steel','priority':0}],},
-{'name':'mewtwo','stats':{'health':12,'attack':16,'defense':9,'speed':13,'type1':'psychic','type2':'none'},
+{'name':'mewtwo','type1':'psychic','type2':'none','stats':{'health':12,'attack':16,'defense':9,'speed':13},
  'moves':[{'name':'psychic','power':21,'type':'psychic','priority':0},{'name':'hyper beam','power':24,'type':'normal','priority':0},{'name':'shadow ball','power':21,'type':'ghost','priority':0},{'name':'poison jab','power':21,'type':'poison','priority':0}],},
-{'name':'charizard','stats':{'health':11,'attack':15,'defense':11,'speed':13,'type1':'fire','type2':'flying'},
+{'name':'charizard','type1':'fire','type2':'flying','stats':{'health':11,'attack':15,'defense':11,'speed':13},
  'moves':[{'name':'fire blast','power':21,'type':'fire','priority':0},{'name':'slash','power':24,'type':'normal','priority':0},{'name':'dragon claw','power':21,'type':'dragon','priority':0},{'name':'hurricane','power':21,'type':'flying','priority':0}],},
-{'name':'venusaur','stats':{'health':12,'attack':13,'defense':14,'speed':11,'type1':'grass','type2':'poison'},
+{'name':'venusaur','stats':{'health':12,'attack':13,'defense':14,'speed':11},
  'moves':[{'name':'solar beam','power':21,'type':'grass','priority':0},{'name':'sludge bomb','power':21,'type':'poison','priority':0},{'name':'take down','power':24,'type':'normal','priority':0},{'name':'earthquake','power':21,'type':'ground','priority':0}],},
-{'name':'blastoise','stats':{'health':11,'attack':13,'defense':15,'speed':11,'type1':'water','type2':'none'},
+{'name':'blastoise','type1':'water','type2':'none','stats':{'health':11,'attack':13,'defense':15,'speed':11},
  'moves':[{'name':'hydro pump','power':21,'type':'water','priority':0},{'name':'skull bash','power':24,'type':'normal','priority':0},{'name':'blizzard','power':21,'type':'ice','priority':0},{'name':'flash cannon','power':21,'type':'steel','priority':0}],},
-{'name':'eevee','stats':{'health':12,'attack':11,'defense':14,'speed':13,'type1':'normal','type2':'none'},
+{'name':'eevee','type1':'normal','type2':'none','stats':{'health':12,'attack':11,'defense':14,'speed':13},
  'moves':[{'name':'swift','power':24,'type':'normal','priority':0},{'name':'quick attack','power':18,'type':'normal','priority':1},{'name':'bite','power':21,'type':'dark','priority':0},{'name':'iron tail','power':21,'type':'steel','priority':0}],},
-{'name':'onyx','stats':{'health':8,'attack':8,'defense':24,'speed':10,'type1':'rock','type2':'ground'},
+{'name':'onyx','type1':'rock','type2':'ground','stats':{'health':8,'attack':8,'defense':24,'speed':10},
  'moves':[{'name':'stone edge','power':21,'type':'rock','priority':0},{'name':'earthquake','power':21,'type':'ground','priority':0},{'name':'dragon breath','power':21,'type':'dragon','priority':0},{'name':'slam','power':24,'type':'normal','priority':0}],},
-{'name':'alakazam','stats':{'health':7,'attack':17,'defense':11,'speed':15,'type1':'psychic','type2':'none'},
+{'name':'alakazam','type1':'psychic','type2':'none','stats':{'health':7,'attack':17,'defense':11,'speed':15},
  'moves':[{'name':'psychic','power':21,'type':'psychic','priority':0},{'name':'seismic toss','power':21,'type':'fighting','priority':0},{'name':'thunder punch','power':21,'type':'electric','priority':0},{'name':'ice punch','power':21,'type':'ice','priority':0}],},
-{'name':'gengar','stats':{'health':8,'attack':18,'defense':10,'speed':14,'type1':'ghost','type2':'poison'},
+{'name':'gengar','type1':'ghost','type2':'poison','stats':{'health':8,'attack':18,'defense':10,'speed':14},
  'moves':[{'name':'shadow ball','power':21,'type':'ghost','priority':0},{'name':'sucker punch','power':15,'type':'dark','priority':1},{'name':'thunder','power':21,'type':'electric','priority':0},{'name':'dream eater','power':21,'type':'psychic','priority':0}],},
-{'name':'nidoqueen','stats':{'health':14,'attack':13,'defense':12,'speed':11,'type1':'ground','type2':'poison'},
+{'name':'nidoqueen','type1':'ground','type2':'poison','stats':{'health':14,'attack':13,'defense':12,'speed':11},
  'moves':[{'name':'earthquake','power':21,'type':'ground','priority':0},{'name':'super power','power':21,'type':'fighting','priority':0},{'name':'poison jab','power':21,'type':'poison','priority':0},{'name':'dragon tail','power':21,'type':'dragon','priority':0}],},
-{'name':'machamp','stats':{'health':13,'attack':18,'defense':12,'speed':7,'type1':'fighting','type2':'none'},
+{'name':'machamp','type1':'fighting','type2':'none','stats':{'health':13,'attack':18,'defense':12,'speed':7},
  'moves':[{'name':'cross chop','power':21,'type':'fighting','priority':0},{'name':'payback','power':21,'type':'dark','priority':0},{'name':'giga impact','power':24,'type':'normal','priority':0},{'name':'dual chop','power':21,'type':'dragon','priority':0}],},
- {'name':'gyarados','stats':{'health':12,'attack':16,'defense':12,'speed':10,'type1':'water','type2':'flying'},
+ {'name':'gyarados','type1':'water','type2':'flying','stats':{'health':12,'attack':16,'defense':12,'speed':10},
  'moves':[{'name':'hydro pump','power':21,'type':'water','priority':0},{'name':'thunder','power':21,'type':'electric','priority':0},{'name':'crunch','power':21,'type':'dark','priority':0},{'name':'dragon pulse','power':21,'type':'dragon','priority':0}],},
- {'name':'scizor','stats':{'health':11,'attack':17,'defense':14,'speed':8,'type1':'bug','type2':'steel'},
+ {'name':'scizor','type1':'bug','type2':'steel','stats':{'health':11,'attack':17,'defense':14,'speed':8},
  'moves':[{'name':'fury cutter','power':21,'type':'bug','priority':0},{'name':'bullet punch','power':15,'type':'steel','priority':1},{'name':'vacuum wave','power':15,'type':'fighting','priority':1},{'name':'night slash','power':21,'type':'dark','priority':0}],},
- {'name':'snorlax','stats':{'health':18,'attack':13,'defense':13,'speed':6,'type1':'normal','type2':'none'},
+ {'name':'snorlax','type1':'normal','type2':'none','stats':{'health':18,'attack':13,'defense':13,'speed':6},
  'moves':[{'name':'body slam','power':24,'type':'normal','priority':0},{'name':'psychic','power':21,'type':'psychic','priority':0},{'name':'fire blast','power':21,'type':'fire','priority':0},{'name':'surf','power':21,'type':'water','priority':0}],},
- {'name':'dragonite','stats':{'health':13,'attack':16,'defense':12,'speed':9,'type1':'dragon','type2':'flying'},
+ {'name':'dragonite','type1':'dragon','type2':'flying','stats':{'health':13,'attack':16,'defense':12,'speed':9},
  'moves':[{'name':'dragon rage','power':21,'type':'dragon','priority':0},{'name':'aqua jet','power':15,'type':'water','priority':1},{'name':'wing attack','power':21,'type':'flying','priority':0},{'name':'fire punch','power':21,'type':'fire','priority':0}],},
- {'name':'dewgong','stats':{'health':13,'attack':11,'defense':14,'speed':12,'type1':'water','type2':'ice'},
+ {'name':'dewgong','type1':'water','type2':'ice','stats':{'health':13,'attack':11,'defense':14,'speed':12},
  'moves':[{'name':'aurora beam','power':21,'type':'ice','priority':0},{'name':'megahorn','power':21,'type':'bug','priority':0},{'name':'aqua jet','power':15,'type':'water','priority':1},{'name':'drill run','power':21,'type':'ground','priority':0}],},
 ]
+
+type_effectiveness_dict = {
+    'atk': ['normal', 'fighting', 'flying', 'poison', 'ground', 'rock', 'bug', 'ghost', 'steel', 'fire', 'water', 'grass', 'electric', 'psychic', 'ice', 'dragon', 'dark'],
+    'normal':   [1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
+    'fighting': [1.0, 1.0, 2.0, 1.0, 1.0, 0.5, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 0.5],
+    'flying':   [1.0, 0.5, 1.0, 1.0, 0.0, 2.0, 0.5, 1.0, 1.0, 1.0, 1.0, 0.5, 2.0, 1.0, 2.0, 1.0, 1.0],
+    'poison':   [1.0, 0.5, 1.0, 0.5, 2.0, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 2.0, 1.0, 1.0, 1.0],
+    'ground':   [1.0, 1.0, 1.0, 0.5, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 0.0, 1.0, 2.0, 1.0, 1.0],
+    'rock':     [0.5, 2.0, 0.5, 0.5, 2.0, 1.0, 1.0, 1.0, 2.0, 0.5, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0],
+    'bug':      [1.0, 0.5, 2.0, 1.0, 0.5, 2.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0],
+    'ghost':    [0.0, 0.0, 1.0, 0.5, 1.0, 1.0, 0.5, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0],
+    'steel':    [0.5, 2.0, 0.5, 0.0, 2.0, 0.5, 0.5, 1.0, 0.5, 2.0, 1.0, 0.5, 1.0, 0.5, 0.5, 0.5, 1.0],
+    'fire':     [1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 0.5, 1.0, 0.5, 0.5, 2.0, 0.5, 1.0, 1.0, 0.5, 1.0, 1.0],
+    'water':    [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 0.5, 0.5, 2.0, 2.0, 1.0, 0.5, 1.0, 1.0],
+    'grass':    [1.0, 1.0, 2.0, 2.0, 0.5, 1.0, 2.0, 1.0, 1.0, 2.0, 0.5, 0.5, 0.5, 1.0, 2.0, 1.0, 1.0],
+    'electric': [1.0, 1.0, 0.5, 1.0, 2.0, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0],
+    'psychic':  [1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0, 2.0],
+    'ice':      [1.0, 2.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0],
+    'dragon':   [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 0.5, 0.5, 0.5, 1.0, 2.0, 2.0, 1.0],
+    'dark':     [1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 0.5]
+}
 
 def rec():
     try:
@@ -122,8 +143,8 @@ def dict_test2():
         
         
 def battle_init():
-    global p1_pokemon, p1_choice, p1_name_check, p1speed, p1atk, p1def, p1move1, p1move2, p1move3, p1move4, p1maxhp, p1curhp, p1_hpbarsize
-    global p2_pokemon, p2_choice, p2_name_check, p2speed, p2atk, p2def, p2move1, p2move2, p2move3, p2move4, p2maxhp, p2curhp, p2_hpbarsize
+    global p1_pokemon, p1_choice, p1_name_check, p1speed, p1atk, p1def, p1move1, p1move2, p1move3, p1move4, p1maxhp, p1curhp, p1_hpbarsize, p1type1, p1type2
+    global p2_pokemon, p2_choice, p2_name_check, p2speed, p2atk, p2def, p2move1, p2move2, p2move3, p2move4, p2maxhp, p2curhp, p2_hpbarsize, p2type1, p2type2
 
     p1_name_check = False
     p2_name_check = False
@@ -197,6 +218,8 @@ def battle_init():
                     p1move2 = pokemon['moves'][1]['name']
                     p1move3 = pokemon['moves'][2]['name']
                     p1move4 = pokemon['moves'][3]['name']
+                    p1type1 = pokemon['type1']
+                    p1type2 = pokemon['type2']
                     p1speed = int(pokemon['stats']['speed'])
                     p1atk = int(pokemon['stats']['attack'])
                     p1def = int(pokemon['stats']['defense'])
@@ -356,6 +379,8 @@ def battle_init():
                     p2move2 = pokemon['moves'][1]['name']
                     p2move3 = pokemon['moves'][2]['name']
                     p2move4 = pokemon['moves'][3]['name']
+                    p2type1 = pokemon['type1']
+                    p2type2 = pokemon['type2']
                     p2speed = int(pokemon['stats']['speed'])
                     p2atk = int(pokemon['stats']['attack'])
                     p2def = int(pokemon['stats']['defense'])
@@ -554,10 +579,24 @@ def hpbarcolor(ratio):
   else:
     return((0,255,0))
 
+def stab_calc(move_type, pokemon_type1, pokemon_type2):
+    if move_type == pokemon_type1:
+        stab = 1.2
+    elif move_type == pokemon_type2:
+        stab = 1.2
+    else:
+        stab = 1
+    return stab
+
+def type_effectiveness(atk_type, def_type1, def_type2):
+    atk_index = type_effectiveness_dict['atk'].index(atk_type)
+    def_eff1 = type_effectiveness_dict[def_type1][atk_index]
+    def_eff2 = 1 if def_type2 == 'none' else type_effectiveness_dict[def_type2][atk_index]
+    return def_eff1 * def_eff2
 
 def battle_execute():
-    global p1_pokemon, p1_choice, p1_movepriority, p1_movetype, p1_movepower, p1_movename, p1curhp, p1atk, p1speed, p1def, p1_m1, p1_m2, p1_m3, p1_m4, p1maxhp, p1_hpbarsize
-    global p2_pokemon, p2_choice, p2_movepriority, p2_movetype, p2_movepower, p2_movename, p2curhp, p2atk, p2speed, p2def, p2_m1, p2_m2, p2_m3, p2_m4, p2maxhp, p2_hpbarsize
+    global p1_pokemon, p1_choice, p1_movepriority, p1_movetype, p1_movepower, p1_movename, p1curhp, p1atk, p1speed, p1def, p1_m1, p1_m2, p1_m3, p1_m4, p1maxhp, p1_hpbarsize, p1type1, p2type2
+    global p2_pokemon, p2_choice, p2_movepriority, p2_movetype, p2_movepower, p2_movename, p2curhp, p2atk, p2speed, p2def, p2_m1, p2_m2, p2_m3, p2_m4, p2maxhp, p2_hpbarsize, p2type1, p2type2
     global winner, loser, loser_pokemon
     
     print(p1_pokemon, '\n',p2_pokemon)
@@ -789,14 +828,41 @@ def battle_execute():
 
         if p1_turnspeed > p2_turnspeed:
             print('p1fast gofirst')
-            tb = thorpy.Element(text=(f'{p1_choice} used {p1_movename}! It did {int(p1_movepower * (p1atk/p2def))} damage to {p2_choice}'))
-            tb.set_font_size(20)
-            tb.set_size((750,150))
-            tb.stick_to(tb_h, target_side="bottom", self_side="top")
-            tb.blit()
-            tb.update()
+            p1_type_effect = type_effectiveness(p1_movetype, p2type1, p2type2)
+            p1_stab = stab_calc(p1_movetype, p1type1, p1type2)
+            p2_dmg_taken = int(p1_type_effect * (p1_stab * (p1_movepower * (p1atk / p2def))))
 
-            p2curhp = max(0, (p2curhp - int((p1_movepower * (p1atk / p2def)))))
+            if p1_type_effect > 1:
+                tb = thorpy.Element(text=(f"{p1_choice} used {p1_movename}! It did {int(p2_dmg_taken)} damage to {p2_choice}. It was super effective!"))
+                tb.set_font_size(20)
+                tb.set_size((750,150))
+                tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                tb.blit()
+                tb.update()
+            elif p1_type_effect == 0:
+                tb = thorpy.Element(text=(f"{p1_choice} used {p1_movename}! It did {int(p2_dmg_taken)} damage to {p2_choice}. It doesn't affect {p2_choice}."))
+                tb.set_font_size(20)
+                tb.set_size((750,150))
+                tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                tb.blit()
+                tb.update()
+            elif p1_type_effect < 1:
+                tb = thorpy.Element(text=(f"{p1_choice} used {p1_movename}! It did {int(p2_dmg_taken)} damage to {p2_choice}. It wasn't very effective.."))
+                tb.set_font_size(20)
+                tb.set_size((750,150))
+                tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                tb.blit()
+                tb.update()
+            else:
+                tb = thorpy.Element(text=(f"{p1_choice} used {p1_movename}! It did {int(p2_dmg_taken)} damage to {p2_choice}."))
+                tb.set_font_size(20)
+                tb.set_size((750,150))
+                tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                tb.blit()
+                tb.update()
+
+            # p2curhp = max(0, (p2curhp - int((p1_movepower * (p1atk / p2def)))))
+            p2curhp = max(0, (p2curhp - p2_dmg_taken))
             p2_hpratio = p2curhp/p2maxhp
             p2_hpbarsize = 200 * (p2curhp/p2maxhp)
             p2_hpbarsize = round(p2_hpbarsize, 0)
@@ -825,14 +891,40 @@ def battle_execute():
 
             print('p1atks', p2curhp)
             if p2curhp > 0:
-                tb = thorpy.Element(text=(f'{p2_choice} used {p2_movename}! It did {int(p2_movepower * (p2atk/p1def))} damage to {p1_choice}'))
-                tb.set_font_size(20)
-                tb.set_size((750,150))
-                tb.stick_to(tb_h, target_side="bottom", self_side="top")
-                tb.blit()
-                tb.update()
+                p2_type_effect = type_effectiveness(p2_movetype, p1type1, p1type2)
+                p2_stab = stab_calc(p2_movetype, p2type1, p2type2)
+                p1_dmg_taken = int(p2_type_effect * (p2_stab * (p2_movepower * (p2atk / p1def))))
 
-                p1curhp = max(0, (p1curhp - int((p2_movepower * (p2atk / p1def)))))
+                if p2_type_effect > 1:
+                    tb = thorpy.Element(text=(f"{p2_choice} used {p2_movename}! It did {int(p1_dmg_taken)} damage to {p1_choice}. It was super effective!"))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+                elif p2_type_effect == 0:
+                    tb = thorpy.Element(text=(f"{p2_choice} used {p2_movename}! It did {int(p1_dmg_taken)} damage to {p1_choice}. It doesn't affect {p1_choice}."))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+                elif p2_type_effect < 1:
+                    tb = thorpy.Element(text=(f"{p2_choice} used {p2_movename}! It did {int(p1_dmg_taken)} damage to {p1_choice}. It wasn't very effective.."))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+                else:
+                    tb = thorpy.Element(text=(f"{p2_choice} used {p2_movename}! It did {int(p1_dmg_taken)} damage to {p1_choice}."))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+
+                p1curhp = max(0, (p1curhp - p1_dmg_taken))
                 p1_hpratio = p1curhp/p1maxhp
                 p1_hpbarsize = 200 * (p1curhp/p1maxhp)
                 p1_hpbarsize = round(p1_hpbarsize, 0)
@@ -861,15 +953,41 @@ def battle_execute():
                 print('p2atks', p1curhp)
 
         elif p2_turnspeed > p1_turnspeed:
-            print('p2fast gofirst')
-            tb = thorpy.Element(text=(f'{p2_choice} used {p2_movename}! It did {int(p2_movepower * (p2atk/p1def))} damage to {p1_choice}'))
-            tb.set_font_size(20)
-            tb.set_size((750,150))
-            tb.stick_to(tb_h, target_side="bottom", self_side="top")
-            tb.blit()
-            tb.update()
+            p2_type_effect = type_effectiveness(p2_movetype, p1type1, p1type2)
+            p2_stab = stab_calc(p2_movetype, p2type1, p2type2)
+            p1_dmg_taken = int(p2_type_effect * (p2_stab * (p2_movepower * (p2atk / p1def))))
 
-            p1curhp = max(0, (p1curhp - int((p2_movepower * (p2atk / p1def)))))
+            if p2_type_effect > 1:
+                tb = thorpy.Element(text=(f"{p2_choice} used {p2_movename}! It did {int(p1_dmg_taken)} damage to {p1_choice}. It was super effective!"))
+                tb.set_font_size(20)
+                tb.set_size((750,150))
+                tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                tb.blit()
+                tb.update()
+            elif p2_type_effect == 0:
+                tb = thorpy.Element(text=(f"{p2_choice} used {p2_movename}! It did {int(p1_dmg_taken)} damage to {p1_choice}. It doesn't affect {p1_choice}."))
+                tb.set_font_size(20)
+                tb.set_size((750,150))
+                tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                tb.blit()
+                tb.update()
+            elif p2_type_effect < 1:
+                tb = thorpy.Element(text=(f"{p2_choice} used {p2_movename}! It did {int(p1_dmg_taken)} damage to {p1_choice}. It wasn't very effective.."))
+                tb.set_font_size(20)
+                tb.set_size((750,150))
+                tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                tb.blit()
+                tb.update()
+            else:
+                tb = thorpy.Element(text=(f"{p2_choice} used {p2_movename}! It did {int(p1_dmg_taken)} damage to {p1_choice}."))
+                tb.set_font_size(20)
+                tb.set_size((750,150))
+                tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                tb.blit()
+                tb.update()
+
+            # p1curhp = max(0, (p1curhp - int((p2_movepower * (p2atk / p1def)))))
+            p1curhp = max(0, (p1curhp - p1_dmg_taken))
             p1_hpratio = p1curhp/p1maxhp
             p1_hpbarsize = 200 * (p1curhp/p1maxhp)
             p1_hpbarsize = round(p1_hpbarsize, 0)
@@ -898,14 +1016,42 @@ def battle_execute():
             time.sleep(3)
 
             if p1curhp > 0:
-                tb = thorpy.Element(text=(f'{p1_choice} used {p1_movename}! It did {int(p1_movepower * (p1atk/p2def))} damage to {p2_choice}'))
-                tb.set_font_size(20)
-                tb.set_size((750,150))
-                tb.stick_to(tb_h, target_side="bottom", self_side="top")
-                tb.blit()
-                tb.update()
+                p1_type_effect = type_effectiveness(p1_movetype, p2type1, p2type2)
+                p1_stab = stab_calc(p1_movetype, p1type1, p1type2)
+                p2_dmg_taken = int(p1_type_effect * (p1_stab * (p1_movepower * (p1atk / p2def))))
 
-                p2curhp = max(0, (p2curhp - int((p1_movepower * (p1atk / p2def)))))
+                if p1_type_effect > 1:
+                    tb = thorpy.Element(text=(f"{p1_choice} used {p1_movename}! It did {int(p2_dmg_taken)} damage to {p2_choice}. It was super effective!"))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+                elif p1_type_effect == 0:
+                    tb = thorpy.Element(text=(f"{p1_choice} used {p1_movename}! It did {int(p2_dmg_taken)} damage to {p2_choice}. It doesn't affect {p2_choice}."))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+                elif p1_type_effect < 1:
+                    tb = thorpy.Element(text=(f"{p1_choice} used {p1_movename}! It did {int(p2_dmg_taken)} damage to {p2_choice}. It wasn't very effective.."))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+                else:
+                    tb = thorpy.Element(text=(f"{p1_choice} used {p1_movename}! It did {int(p2_dmg_taken)} damage to {p2_choice}."))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+                    
+
+                # p2curhp = max(0, (p2curhp - int((p1_movepower * (p1atk / p2def)))))
+                p2curhp = max(0, (p2curhp - p2_dmg_taken))
                 p2_hpratio = p2curhp/p2maxhp
                 p2_hpbarsize = 200 * (p2curhp/p2maxhp)
                 p2_hpbarsize = round(p2_hpbarsize, 0)
@@ -932,14 +1078,41 @@ def battle_execute():
                 print('p1atks', p2curhp)
         else:
             print('nobodyfast p1first')
-            tb = thorpy.Element(text=(f'{p1_choice} used {p1_movename}! It did {int(p1_movepower * (p1atk/p2def))} damage to {p2_choice}'))
-            tb.set_font_size(20)
-            tb.set_size((750,150))
-            tb.stick_to(tb_h, target_side="bottom", self_side="top")
-            tb.blit()
-            tb.update()
+            p1_type_effect = type_effectiveness(p1_movetype, p2type1, p2type2)
+            p1_stab = stab_calc(p1_movetype, p1type1, p1type2)
+            p2_dmg_taken = int(p1_type_effect * (p1_stab * (p1_movepower * (p1atk / p2def))))
 
-            p2curhp = max(0, (p2curhp - int((p1_movepower * (p1atk / p2def)))))
+            if p1_type_effect > 1:
+                tb = thorpy.Element(text=(f"{p1_choice} used {p1_movename}! It did {int(p2_dmg_taken)} damage to {p2_choice}. It was super effective!"))
+                tb.set_font_size(20)
+                tb.set_size((750,150))
+                tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                tb.blit()
+                tb.update()
+            elif p1_type_effect == 0:
+                tb = thorpy.Element(text=(f"{p1_choice} used {p1_movename}! It did {int(p2_dmg_taken)} damage to {p2_choice}. It doesn't affect {p2_choice}."))
+                tb.set_font_size(20)
+                tb.set_size((750,150))
+                tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                tb.blit()
+                tb.update()
+            elif p1_type_effect < 1:
+                tb = thorpy.Element(text=(f"{p1_choice} used {p1_movename}! It did {int(p2_dmg_taken)} damage to {p2_choice}. It wasn't very effective.."))
+                tb.set_font_size(20)
+                tb.set_size((750,150))
+                tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                tb.blit()
+                tb.update()
+            else:
+                tb = thorpy.Element(text=(f"{p1_choice} used {p1_movename}! It did {int(p2_dmg_taken)} damage to {p2_choice}."))
+                tb.set_font_size(20)
+                tb.set_size((750,150))
+                tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                tb.blit()
+                tb.update()
+
+            # p2curhp = max(0, (p2curhp - int((p1_movepower * (p1atk / p2def)))))
+            p2curhp = max(0, (p2curhp - p2_dmg_taken))
             p2_hpratio = p2curhp/p2maxhp
             p2_hpbarsize = 200 * (p2curhp/p2maxhp)
             p2_hpbarsize = round(p2_hpbarsize, 0)
@@ -968,14 +1141,41 @@ def battle_execute():
             time.sleep(3)
 
             if p2curhp > 0:
-                tb = thorpy.Element(text=(f'{p2_choice} used {p2_movename}! It did {int(p2_movepower * (p2atk/p1def))} damage to {p1_choice}'))
-                tb.set_font_size(20)
-                tb.set_size((750,150))
-                tb.stick_to(tb_h, target_side="bottom", self_side="top")
-                tb.blit()
-                tb.update()
+                p2_type_effect = type_effectiveness(p2_movetype, p1type1, p1type2)
+                p2_stab = stab_calc(p2_movetype, p2type1, p2type2)
+                p1_dmg_taken = int(p2_type_effect * (p2_stab * (p2_movepower * (p2atk / p1def))))
 
-                p1curhp = max(0, (p1curhp - int((p2_movepower * (p2atk / p1def)))))
+                if p2_type_effect > 1:
+                    tb = thorpy.Element(text=(f"{p2_choice} used {p2_movename}! It did {int(p1_dmg_taken)} damage to {p1_choice}. It was super effective!"))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+                elif p2_type_effect == 0:
+                    tb = thorpy.Element(text=(f"{p2_choice} used {p2_movename}! It did {int(p1_dmg_taken)} damage to {p1_choice}. It doesn't affect {p1_choice}."))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+                elif p2_type_effect < 1:
+                    tb = thorpy.Element(text=(f"{p2_choice} used {p2_movename}! It did {int(p1_dmg_taken)} damage to {p1_choice}. It wasn't very effective.."))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+                else:
+                    tb = thorpy.Element(text=(f"{p2_choice} used {p2_movename}! It did {int(p1_dmg_taken)} damage to {p1_choice}."))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+
+                # p1curhp = max(0, (p1curhp - int((p2_movepower * (p2atk / p1def)))))
+                p1curhp = max(0, (p1curhp - p1_dmg_taken))
                 p1_hpratio = p1curhp/p1maxhp
                 p1_hpbarsize = 200 * (p1curhp/p1maxhp)
                 p1_hpbarsize = round(p1_hpbarsize, 0)
