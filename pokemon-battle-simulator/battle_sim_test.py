@@ -828,16 +828,38 @@ def battle_execute():
 
         if p1_turnspeed > p2_turnspeed:
             print('p1fast gofirst')
-            tb = thorpy.Element(text=(f'{p1_choice} used {p1_movename}! It did {int(p1_movepower * (p1atk/p2def))} damage to {p2_choice}'))
-            tb.set_font_size(20)
-            tb.set_size((750,150))
-            tb.stick_to(tb_h, target_side="bottom", self_side="top")
-            tb.blit()
-            tb.update()
-
             p1_type_effect = type_effectiveness(p1_movetype, p2type1, p2type2)
             p1_stab = stab_calc(p1_movetype, p1type1, p1type2)
             p2_dmg_taken = int(p1_type_effect * (p1_stab * (p1_movepower * (p1atk / p2def))))
+
+            if p1_type_effect > 1:
+                tb = thorpy.Element(text=(f"{p1_choice} used {p1_movename}! It did {int(p2_dmg_taken)} damage to {p2_choice}. It was super effective!"))
+                tb.set_font_size(20)
+                tb.set_size((750,150))
+                tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                tb.blit()
+                tb.update()
+            elif p1_type_effect == 0:
+                tb = thorpy.Element(text=(f"{p1_choice} used {p1_movename}! It did {int(p2_dmg_taken)} damage to {p2_choice}. It doesn't affect {p2_choice}."))
+                tb.set_font_size(20)
+                tb.set_size((750,150))
+                tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                tb.blit()
+                tb.update()
+            elif p1_type_effect < 1:
+                tb = thorpy.Element(text=(f"{p1_choice} used {p1_movename}! It did {int(p2_dmg_taken)} damage to {p2_choice}. It wasn't very effective.."))
+                tb.set_font_size(20)
+                tb.set_size((750,150))
+                tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                tb.blit()
+                tb.update()
+            else:
+                tb = thorpy.Element(text=(f"{p1_choice} used {p1_movename}! It did {int(p2_dmg_taken)} damage to {p2_choice}."))
+                tb.set_font_size(20)
+                tb.set_size((750,150))
+                tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                tb.blit()
+                tb.update()
 
             # p2curhp = max(0, (p2curhp - int((p1_movepower * (p1atk / p2def)))))
             p2curhp = max(0, (p2curhp - p2_dmg_taken))
@@ -868,19 +890,39 @@ def battle_execute():
             time.sleep(3)
 
             print('p1atks', p2curhp)
-            if p2curhp > 0:
-                tb = thorpy.Element(text=(f'{p2_choice} used {p2_movename}! It did {int(p2_movepower * (p2atk/p1def))} damage to {p1_choice}'))
-                tb.set_font_size(20)
-                tb.set_size((750,150))
-                tb.stick_to(tb_h, target_side="bottom", self_side="top")
-                tb.blit()
-                tb.update()
-
                 p2_type_effect = type_effectiveness(p2_movetype, p1type1, p1type2)
                 p2_stab = stab_calc(p2_movetype, p2type1, p2type2)
                 p1_dmg_taken = int(p2_type_effect * (p2_stab * (p2_movepower * (p2atk / p1def))))
 
-                # p1curhp = max(0, (p1curhp - int((p2_movepower * (p2atk / p1def)))))
+                if p2_type_effect > 1:
+                    tb = thorpy.Element(text=(f"{p2_choice} used {p2_movename}! It did {int(p1_dmg_taken)} damage to {p1_choice}. It was super effective!"))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+                elif p2_type_effect == 0:
+                    tb = thorpy.Element(text=(f"{p2_choice} used {p2_movename}! It did {int(p1_dmg_taken)} damage to {p1_choice}. It doesn't affect {p1_choice}."))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+                elif p2_type_effect < 1:
+                    tb = thorpy.Element(text=(f"{p2_choice} used {p2_movename}! It did {int(p1_dmg_taken)} damage to {p1_choice}. It wasn't very effective.."))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+                else:
+                    tb = thorpy.Element(text=(f"{p2_choice} used {p2_movename}! It did {int(p1_dmg_taken)} damage to {p1_choice}."))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+
                 p1curhp = max(0, (p1curhp - p1_dmg_taken))
                 p1_hpratio = p1curhp/p1maxhp
                 p1_hpbarsize = 200 * (p1curhp/p1maxhp)
@@ -910,17 +952,38 @@ def battle_execute():
                 print('p2atks', p1curhp)
 
         elif p2_turnspeed > p1_turnspeed:
-            print('p2fast gofirst')
-            tb = thorpy.Element(text=(f'{p2_choice} used {p2_movename}! It did {int(p2_movepower * (p2atk/p1def))} damage to {p1_choice}'))
-            tb.set_font_size(20)
-            tb.set_size((750,150))
-            tb.stick_to(tb_h, target_side="bottom", self_side="top")
-            tb.blit()
-            tb.update()
-
             p2_type_effect = type_effectiveness(p2_movetype, p1type1, p1type2)
             p2_stab = stab_calc(p2_movetype, p2type1, p2type2)
             p1_dmg_taken = int(p2_type_effect * (p2_stab * (p2_movepower * (p2atk / p1def))))
+
+            if p2_type_effect > 1:
+                tb = thorpy.Element(text=(f"{p2_choice} used {p2_movename}! It did {int(p1_dmg_taken)} damage to {p1_choice}. It was super effective!"))
+                tb.set_font_size(20)
+                tb.set_size((750,150))
+                tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                tb.blit()
+                tb.update()
+            elif p2_type_effect == 0:
+                tb = thorpy.Element(text=(f"{p2_choice} used {p2_movename}! It did {int(p1_dmg_taken)} damage to {p1_choice}. It doesn't affect {p1_choice}."))
+                tb.set_font_size(20)
+                tb.set_size((750,150))
+                tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                tb.blit()
+                tb.update()
+            elif p2_type_effect < 1:
+                tb = thorpy.Element(text=(f"{p2_choice} used {p2_movename}! It did {int(p1_dmg_taken)} damage to {p1_choice}. It wasn't very effective.."))
+                tb.set_font_size(20)
+                tb.set_size((750,150))
+                tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                tb.blit()
+                tb.update()
+            else:
+                tb = thorpy.Element(text=(f"{p2_choice} used {p2_movename}! It did {int(p1_dmg_taken)} damage to {p1_choice}."))
+                tb.set_font_size(20)
+                tb.set_size((750,150))
+                tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                tb.blit()
+                tb.update()
 
             # p1curhp = max(0, (p1curhp - int((p2_movepower * (p2atk / p1def)))))
             p1curhp = max(0, (p1curhp - p1_dmg_taken))
@@ -952,16 +1015,39 @@ def battle_execute():
             time.sleep(3)
 
             if p1curhp > 0:
-                tb = thorpy.Element(text=(f'{p1_choice} used {p1_movename}! It did {int(p1_movepower * (p1atk/p2def))} damage to {p2_choice}'))
-                tb.set_font_size(20)
-                tb.set_size((750,150))
-                tb.stick_to(tb_h, target_side="bottom", self_side="top")
-                tb.blit()
-                tb.update()
-
                 p1_type_effect = type_effectiveness(p1_movetype, p2type1, p2type2)
                 p1_stab = stab_calc(p1_movetype, p1type1, p1type2)
                 p2_dmg_taken = int(p1_type_effect * (p1_stab * (p1_movepower * (p1atk / p2def))))
+
+                if p1_type_effect > 1:
+                    tb = thorpy.Element(text=(f"{p1_choice} used {p1_movename}! It did {int(p2_dmg_taken)} damage to {p2_choice}. It was super effective!"))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+                elif p1_type_effect == 0:
+                    tb = thorpy.Element(text=(f"{p1_choice} used {p1_movename}! It did {int(p2_dmg_taken)} damage to {p2_choice}. It doesn't affect {p2_choice}."))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+                elif p1_type_effect < 1:
+                    tb = thorpy.Element(text=(f"{p1_choice} used {p1_movename}! It did {int(p2_dmg_taken)} damage to {p2_choice}. It wasn't very effective.."))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+                else:
+                    tb = thorpy.Element(text=(f"{p1_choice} used {p1_movename}! It did {int(p2_dmg_taken)} damage to {p2_choice}."))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+                    
 
                 # p2curhp = max(0, (p2curhp - int((p1_movepower * (p1atk / p2def)))))
                 p2curhp = max(0, (p2curhp - p2_dmg_taken))
@@ -991,16 +1077,38 @@ def battle_execute():
                 print('p1atks', p2curhp)
         else:
             print('nobodyfast p1first')
-            tb = thorpy.Element(text=(f'{p1_choice} used {p1_movename}! It did {int(p1_movepower * (p1atk/p2def))} damage to {p2_choice}'))
-            tb.set_font_size(20)
-            tb.set_size((750,150))
-            tb.stick_to(tb_h, target_side="bottom", self_side="top")
-            tb.blit()
-            tb.update()
-
             p1_type_effect = type_effectiveness(p1_movetype, p2type1, p2type2)
             p1_stab = stab_calc(p1_movetype, p1type1, p1type2)
             p2_dmg_taken = int(p1_type_effect * (p1_stab * (p1_movepower * (p1atk / p2def))))
+
+            if p1_type_effect > 1:
+                tb = thorpy.Element(text=(f"{p1_choice} used {p1_movename}! It did {int(p2_dmg_taken)} damage to {p2_choice}. It was super effective!"))
+                tb.set_font_size(20)
+                tb.set_size((750,150))
+                tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                tb.blit()
+                tb.update()
+            elif p1_type_effect == 0:
+                tb = thorpy.Element(text=(f"{p1_choice} used {p1_movename}! It did {int(p2_dmg_taken)} damage to {p2_choice}. It doesn't affect {p2_choice}."))
+                tb.set_font_size(20)
+                tb.set_size((750,150))
+                tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                tb.blit()
+                tb.update()
+            elif p1_type_effect < 1:
+                tb = thorpy.Element(text=(f"{p1_choice} used {p1_movename}! It did {int(p2_dmg_taken)} damage to {p2_choice}. It wasn't very effective.."))
+                tb.set_font_size(20)
+                tb.set_size((750,150))
+                tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                tb.blit()
+                tb.update()
+            else:
+                tb = thorpy.Element(text=(f"{p1_choice} used {p1_movename}! It did {int(p2_dmg_taken)} damage to {p2_choice}."))
+                tb.set_font_size(20)
+                tb.set_size((750,150))
+                tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                tb.blit()
+                tb.update()
 
             # p2curhp = max(0, (p2curhp - int((p1_movepower * (p1atk / p2def)))))
             p2curhp = max(0, (p2curhp - p2_dmg_taken))
@@ -1032,16 +1140,38 @@ def battle_execute():
             time.sleep(3)
 
             if p2curhp > 0:
-                tb = thorpy.Element(text=(f'{p2_choice} used {p2_movename}! It did {int(p2_movepower * (p2atk/p1def))} damage to {p1_choice}'))
-                tb.set_font_size(20)
-                tb.set_size((750,150))
-                tb.stick_to(tb_h, target_side="bottom", self_side="top")
-                tb.blit()
-                tb.update()
-
                 p2_type_effect = type_effectiveness(p2_movetype, p1type1, p1type2)
                 p2_stab = stab_calc(p2_movetype, p2type1, p2type2)
                 p1_dmg_taken = int(p2_type_effect * (p2_stab * (p2_movepower * (p2atk / p1def))))
+
+                if p2_type_effect > 1:
+                    tb = thorpy.Element(text=(f"{p2_choice} used {p2_movename}! It did {int(p1_dmg_taken)} damage to {p1_choice}. It was super effective!"))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+                elif p2_type_effect == 0:
+                    tb = thorpy.Element(text=(f"{p2_choice} used {p2_movename}! It did {int(p1_dmg_taken)} damage to {p1_choice}. It doesn't affect {p1_choice}."))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+                elif p2_type_effect < 1:
+                    tb = thorpy.Element(text=(f"{p2_choice} used {p2_movename}! It did {int(p1_dmg_taken)} damage to {p1_choice}. It wasn't very effective.."))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
+                else:
+                    tb = thorpy.Element(text=(f"{p2_choice} used {p2_movename}! It did {int(p1_dmg_taken)} damage to {p1_choice}."))
+                    tb.set_font_size(20)
+                    tb.set_size((750,150))
+                    tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                    tb.blit()
+                    tb.update()
 
                 # p1curhp = max(0, (p1curhp - int((p2_movepower * (p2atk / p1def)))))
                 p1curhp = max(0, (p1curhp - p1_dmg_taken))
