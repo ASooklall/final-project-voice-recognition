@@ -9,6 +9,9 @@
 
 ### Goal:
 * Providing accessibility in gaming and facilitating novel methods for game control that companies can use to improve consumer purchases and demographics.
+    * Accessibility in gaming refers to the ability of a user to receive output, provide input, and understand the process or input/output of a game.
+        * Deficits in accessbility can be due to sensory impairment, mechanical disability, cognitive impairment, etc.
+    * https://en.wikipedia.org/wiki/Game_accessibility
 * Collecting data logs to improve the system to create a model or modes of input that improves user experience and utility.
 * Designing and creating a python based battle simulation game that utilizes voice recognition as primary method of control.
 
@@ -18,7 +21,9 @@
 
 <img src="/data/resources/vpc_screenshot02122020.png" alt="VPC_Emulation" width="1024" height="768">
 
-<!-- #### Purpose: -->
+#### Purpose:
+* To facilitate accessbility for individuals with physical sensory or mechanical disability in gaming by providing a method of control for users that does not require precise or dexterous tactile control. 
+* Voice Recognition based gaming that uses oral output to play the game instead of pressing buttons on a control.
 #### Requirements:
 * Emulator Software (in our case we used mgba)
 * Rom
@@ -51,7 +56,11 @@
 
 <img src="/data/resources/battle_sim_demo1.png" alt="BattleSimDemo" width="1024" height="768">
 
-<!-- #### Purpose: -->
+#### Purpose:
+* To demonstrate the feasability of designing a game based around voice recognition outside of the standard sandbox (games without linear development or purpose) or tag-along game (see Pokemon: Let's Go Eevee/Pikachu or N64 Hey You Pikachu!). 
+    * Games of this nature solely allow the user to give voice commands to an NPC (non-playable-character) that will then attempt to perform/follow those commands.
+    * Our goal instead is to allow users to play other types of games, such as a battle simulation, using primarily or solely their voice which would broaden the genre of games voice recognition could be used in.
+* Increase marketing and proliferation of voice recognition in gaming by providing an example that could impact a broader range of consumers that currently existing games or be utilized in more party-like environments.
 #### Installation:
 * Navigate inside the voice-command-peripheral directory
 * pip install requirements.txt
@@ -102,6 +111,11 @@
         * See requirements.txt
     * Pygame, Thorpy
         * Engine and library used to develop the battle simulation
+* Accessory Voice Modeling
+    * Teachable Machine
+        * Not used in the demonstration or application.
+        * Used to provide insight on the accuracy of specifically trained models vs. cloud based and broad trained models.
+        * https://teachablemachine.withgoogle.com/faq
 
 
 
