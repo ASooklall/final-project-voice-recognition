@@ -3,9 +3,19 @@
 
 ### Data Science Final Project
 * Andrew Sooklall
+    * https://github.com/ASooklall
 * Mikey Esteban
+    * https://github.com/Mikey-Esteban
 * Pratik Pathak
+    * https://github.com/PratikPathak07
 * Zane Christopher Lynch
+    * https://github.com/zclynchzc
+
+### Related Links:
+* Github Project Repository Share Link:
+    * https://github.com/ASooklall/final-project-voice-recognition
+* Tableau Story for VCP Analysis:
+    * https://public.tableau.com/profile/andrew.sooklall#!/vizhome/final_project_vcp_analysis/VoiceRecognitioninGamingEmulation
 
 ### Goal:
 * Providing accessibility in gaming and facilitating novel methods for game control that companies can use to improve consumer purchases and demographics.
@@ -26,8 +36,9 @@
 * Voice Recognition based gaming that uses oral output to play the game instead of pressing buttons on a control.
 #### Requirements:
 * Emulator Software (in our case we used mgba)
-* Rom
+* Game Rom
 * Python
+    * Modules/Libraries located in requirements.txt files stored in their respective directories. (pip install requirements.txt)
 #### Installation: 
 * download and install emulator of choice
 * download rom of choice
@@ -48,8 +59,19 @@
         * D
         * X
 * Play the game using your voice commands through the app. You do not have to type the commands into terminal to utilize the app, you may keep the game open.
-<!-- #### Our Process:  -->
-<!-- #### Analysis:  -->
+#### Significance: 
+* Designing this voice to control software for emulation proves the feasability and ease of design this concept has.
+* As a very manageable alternative or addition to mechanical/physical control using keyboard, controllers, etc. this option allows for users unable to physically press buttons accurately or quickly to still be able to play games and have a reason to purchase gaming products.
+* This opens the avenue to marketing to demographics that previously would not consider gaming due to disability by increasing accessibility as a whole.
+* As a side-note, this also can be marketed as an alternative way to play for individuals who simply want to use voice commands in their game or for communities like speed runners who might want to use voice as a novel way of inputting specific arrays of commands in sequence without having to worry about accidentally pressing the wrong button.
+* The software also logs key prompts in the developmental version which allows for testing which voice options are most used, what key buttons are most frequented, and how often mistakes occur. This can be used for both increasing the accuracy of a speech recognition model geared to emulation as well as providing information for marketing accessory products that could increase comfortability for users who would normally need to press these buttons often.
+* Providing insight into the habits and tendencies of gamer time consumption per play session, sessions per day, preferred weekday, etc. all have marketing value and weight when developing new consumer products. This software can log these times, dates, etc. and store them for future use.
+#### Analysis: 
+* Insert Tableau Link / Screenshots
+* As shown in the Tableau comparison:
+    * https://public.tableau.com/profile/andrew.sooklall#!/vizhome/final_project_vcp_analysis/VoiceRecognitioninGamingEmulation
+* It is important to note that while storing the recorded data in a database and cloud-hosting or locally hosting it on hard memory might be best, we chose to simply append a csv for demonstration purposes and ease of access for the scope of the project.
+    * As logs from multiple users could become massive, we recommend using a cloud-based hosting service for your database (such as AWS).
 
 
 
