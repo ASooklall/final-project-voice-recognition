@@ -23,7 +23,7 @@
 
 ## Project Breakdown:
 
-### Voice Simulation in Game Emulation:
+### Voice Command Peripheral in Game Emulation:
 
 <img src="/data/resources/vpc_screenshot02122020.png" alt="VPC_Emulation" width="900" height="600">
 
