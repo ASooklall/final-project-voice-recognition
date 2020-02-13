@@ -70,7 +70,7 @@ def rec():
         with mic as source:
     #         rt.adjust_for_ambient_noise(source)
             # rt.energy_threshold = 20000
-            rt.energy_threshole = 3000
+            rt.energy_threshold = 3000
             rt.dynamic_energy_threshold = True
             rt.adjust_for_ambient_noise(source, duration = 0.6)
             # audio = rt.listen(source, timeout = 0.5)
@@ -89,7 +89,7 @@ def rec():
         print('Please issue a voice command.')
 
         
-def dict_test2():
+def demo():
 
     try:
         # Record in '(Pokemon Name) use (move)' format
@@ -1554,7 +1554,7 @@ while playing_game:
                         tb.blit()
                         tb.update()
                 elif event.key == pygame.K_m:
-                    dict_test2()
+                    demo()
                     try:
                         tb = thorpy.Element(text=(f'{pkmn1} used {mvnm1}! It did 1 damage, just because.'))
                     except NameError:

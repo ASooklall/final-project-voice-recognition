@@ -1,0 +1,8 @@
+speech_recognition
+pyaudio
+pygame
+thorpy
+keyboard
+time
+os
+pynput

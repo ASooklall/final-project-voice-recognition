@@ -1,0 +1,7 @@
+speech_recognition
+pyaudio
+keyboard
+time
+datetime
+pynput
+csv
