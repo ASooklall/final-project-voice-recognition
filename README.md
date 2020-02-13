@@ -25,7 +25,7 @@
 
 ### Voice Simulation in Game Emulation:
 
-<img src="/data/resources/vpc_screenshot02122020.png" alt="VPC_Emulation" width="900" height="400">
+<img src="/data/resources/vpc_screenshot02122020.png" alt="VPC_Emulation" width="900" height="600">
 
 #### Purpose:
 * To facilitate accessbility for individuals with physical sensory or mechanical disability in gaming by providing a method of control for users that does not require precise or dexterous tactile control. 
@@ -87,7 +87,7 @@
 * The software also logs key prompts in the developmental version which allows for testing which voice options are most used, what key buttons are most frequented, and how often mistakes occur. This can be used for both increasing the accuracy of a speech recognition model geared to emulation as well as providing information for marketing accessory products that could increase comfortability for users who would normally need to press these buttons often.
 * Providing insight into the habits and tendencies of gamer time consumption per play session, sessions per day, preferred weekday, etc. all have marketing value and weight when developing new consumer products. This software can log these times, dates, etc. and store them for future use.
 #### Analysis: 
-<img src="/data/resources/tableau_ss1.png" alt="tableau_screenshot" width="900" height="400">
+<img src="/data/resources/tableau_ss1.png" alt="tableau_screenshot" width="900" height="600">
 
 * As shown in the Tableau comparison:
     * https://public.tableau.com/profile/andrew.sooklall#!/vizhome/final_project_vcp_analysis/VoiceRecognitioninGamingEmulation
@@ -102,7 +102,7 @@
 
 ### Pokemon Voice Battle Simulator:
 
-<img src="/data/resources/battle_sim_demo1.png" alt="BattleSimDemo" width="900" height="400">
+<img src="/data/resources/battle_sim_demo1.png" alt="BattleSimDemo" width="900" height="600">
 
 #### Purpose:
 * To demonstrate the feasability of designing a game based around voice recognition outside of the standard sandbox (games without linear development or purpose) or tag-along game (see Pokemon: Let's Go Eevee/Pikachu or N64 Hey You Pikachu!). 
@@ -125,7 +125,7 @@
 * use voice to choose pokemon, moves, etc. when prompted
 * game is fully playable within the pygame screen, you do not need to use your terminal after launching the .py file
 * The main menu looks like:
-<img src="/data/resources/battle_sim_home1.png" alt="BattleSimHome" width="900" height="400">
+<img src="/data/resources/battle_sim_home1.png" alt="BattleSimHome" width="900" height="450">
     * In the center Announcement box, relative game text and instructions appear as needed.
     * You can begin the game by pressing the "S" key and after selecting your pokemon with voice input, use the "A" key to choose.
     * A full list of pokemon can be found in the game dictionary but are also below:
