@@ -54,9 +54,33 @@
     * Commands:
         * D
         * X
+<img src="/data/resources/gba.png" alt="gba_controller" width="900" height="400">
+
+* Words Mapped To Controller Buttons:
+    * Start Button
+        * 'Start'
+    * Select Button
+        * 'Select'
+    * Up Arrow / D-Pad Up
+        * 'Up'
+    * Down Arrow / D-Pad Down
+        * 'Down'
+    * Left Arrow / D-Pad Left
+        * 'Left'
+    * Right Arrow / D-Pad Right
+        * 'Right'
+    * A Button
+        * 'Confirm', 'Accept', 'Yes'
+    * B Button
+        * 'Back', 'No'
+    * L / Left Shoulder
+        * 'L'
+    * R / Right Shoulder
+        * 'R'
 * Play the game using your voice commands through the app. You do not have to type the commands into terminal to utilize the app, you may keep the game open.
 #### Significance: 
 * Designing this voice to control software for emulation proves the feasability and ease of design this concept has.
+    * Voice commands are mappable to any key and key outputs are customizeable to allow full access to all systems.
 * As a very manageable alternative or addition to mechanical/physical control using keyboard, controllers, etc. this option allows for users unable to physically press buttons accurately or quickly to still be able to play games and have a reason to purchase gaming products.
 * This opens the avenue to marketing to demographics that previously would not consider gaming due to disability by increasing accessibility as a whole.
 * As a side-note, this also can be marketed as an alternative way to play for individuals who simply want to use voice commands in their game or for communities like speed runners who might want to use voice as a novel way of inputting specific arrays of commands in sequence without having to worry about accidentally pressing the wrong button.
@@ -146,6 +170,7 @@
 * Emulator: mgba
     * Disclaimer: We used emulation software for the development of our program. We do not aim to or condome promotion of using emulation instead of purchasing the retail game and devices. However, the use of emulator software is legal for the purpose of development and research.
     * https://mgba.io/faq.html
+    * GBA.png taken from mgba docs: https://docs.libretro.com/library/mgba/
 * Rom: Pokemon Emerald
     * Disclaimer: See Above. For legal purposes, we cannot and are not providing a link to the rom used. We own a physical copy of the game and the rom was used solely to allow projecting of the game on the PC platform for testing and demonstration purposes.
     * It is legal to own a backup of a game you physically own as a rom. The distribution or sharing of any rom is illegal.
