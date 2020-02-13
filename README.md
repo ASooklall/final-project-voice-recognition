@@ -52,11 +52,12 @@
     * Note: If your software (ex; Visual Studio Code) indicates missing modules after you've successfully pip installed them, this can be due to anaconda not locating the files because they weren't installed through conda (there is no conda package for these files). However, it should run as expected because python has the packages through pip install.
 * Follow instructions on terminal for button presses to activate voice command types
     * Commands:
-        * D
-        * X
+        * X = Sequence Command: one or more basic commands can be entered then executed in order
+        * C = Special Command: a single basic command can be entered and executed, or a special command
+            * 'Go (direction)': the same direction will be executed the number of times inputted on the keyboard (1-9)
 <img src="/data/resources/gba.png" alt="gba_controller" width="900" height="400">
 
-* Words Mapped To Controller Buttons:
+* Words Mapped To Controller Buttons (basic commands):
     * Start Button
         * 'Start'
     * Select Button
@@ -70,12 +71,12 @@
     * Right Arrow / D-Pad Right
         * 'Right'
     * A Button
-        * 'Confirm', 'Accept', 'Yes'
+        * 'Confirm', 'Accept', 'Yes', 'Talk', 'Okay'
     * B Button
         * 'Back', 'No'
-    * L / Left Shoulder
+    * L / Left Shoulder (future mapping)
         * 'L'
-    * R / Right Shoulder
+    * R / Right Shoulder (future mapping)
         * 'R'
 * Play the game using your voice commands through the app. You do not have to type the commands into terminal to utilize the app, you may keep the game open.
 #### Significance: 
