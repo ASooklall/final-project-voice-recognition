@@ -42,6 +42,27 @@ pokemon_list = [
  'moves':[{'name':'aurora beam','power':21,'type':'ice','priority':0},{'name':'megahorn','power':21,'type':'bug','priority':0},{'name':'aqua jet','power':15,'type':'water','priority':1},{'name':'drill run','power':21,'type':'ground','priority':0}],},
 ]
 
+type_effectiveness_dict = {
+    'atk': ['normal', 'fighting', 'flying', 'poison', 'ground', 'rock', 'bug', 'ghost', 'steel', 'fire', 'water', 'grass', 'electric', 'psychic', 'ice', 'dragon', 'dark'],
+    'normal':   [1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
+    'fighting': [1.0, 1.0, 2.0, 1.0, 1.0, 0.5, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 0.5],
+    'flying':   [1.0, 0.5, 1.0, 1.0, 0.0, 2.0, 0.5, 1.0, 1.0, 1.0, 1.0, 0.5, 2.0, 1.0, 2.0, 1.0, 1.0],
+    'poison':   [1.0, 0.5, 1.0, 0.5, 2.0, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 2.0, 1.0, 1.0, 1.0],
+    'ground':   [1.0, 1.0, 1.0, 0.5, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 0.0, 1.0, 2.0, 1.0, 1.0],
+    'rock':     [0.5, 2.0, 0.5, 0.5, 2.0, 1.0, 1.0, 1.0, 2.0, 0.5, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0],
+    'bug':      [1.0, 0.5, 2.0, 1.0, 0.5, 2.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0],
+    'ghost':    [0.0, 0.0, 1.0, 0.5, 1.0, 1.0, 0.5, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0],
+    'steel':    [0.5, 2.0, 0.5, 0.0, 2.0, 0.5, 0.5, 1.0, 0.5, 2.0, 1.0, 0.5, 1.0, 0.5, 0.5, 0.5, 1.0],
+    'fire':     [1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 0.5, 1.0, 0.5, 0.5, 2.0, 0.5, 1.0, 1.0, 0.5, 1.0, 1.0],
+    'water':    [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 0.5, 0.5, 2.0, 2.0, 1.0, 0.5, 1.0, 1.0],
+    'grass':    [1.0, 1.0, 2.0, 2.0, 0.5, 1.0, 2.0, 1.0, 1.0, 2.0, 0.5, 0.5, 0.5, 1.0, 2.0, 1.0, 1.0],
+    'electric': [1.0, 1.0, 0.5, 1.0, 2.0, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0],
+    'psychic':  [1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0, 2.0],
+    'ice':      [1.0, 2.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0],
+    'dragon':   [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 0.5, 0.5, 0.5, 1.0, 2.0, 2.0, 1.0],
+    'dark':     [1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 0.5]
+}
+
 def rec():
     try:
         rt = sr.Recognizer()
@@ -558,10 +579,24 @@ def hpbarcolor(ratio):
   else:
     return((0,255,0))
 
+def stab_calc(move_type, pokemon_type1, pokemon_type2):
+    if move_type == pokemon_type1:
+        stab = 1.2
+    elif move_type == pokemon_type2:
+        stab = 1.2
+    else:
+        stab = 1
+    return stab
+
+def type_effectiveness(atk_type, def_type1, def_type2):
+    atk_index = type_effectiveness_dict['atk'].index(atk_type)
+    def_eff1 = type_effectiveness_dict[def_type1][atk_index]
+    def_eff2 = 1 if def_type2 == 'none' else type_effectiveness_dict[def_type2][atk_index]
+    return def_eff1 * def_eff2
 
 def battle_execute():
-    global p1_pokemon, p1_choice, p1_movepriority, p1_movetype, p1_movepower, p1_movename, p1curhp, p1atk, p1speed, p1def, p1_m1, p1_m2, p1_m3, p1_m4, p1maxhp, p1_hpbarsize
-    global p2_pokemon, p2_choice, p2_movepriority, p2_movetype, p2_movepower, p2_movename, p2curhp, p2atk, p2speed, p2def, p2_m1, p2_m2, p2_m3, p2_m4, p2maxhp, p2_hpbarsize
+    global p1_pokemon, p1_choice, p1_movepriority, p1_movetype, p1_movepower, p1_movename, p1curhp, p1atk, p1speed, p1def, p1_m1, p1_m2, p1_m3, p1_m4, p1maxhp, p1_hpbarsize, p1type1, p2type2
+    global p2_pokemon, p2_choice, p2_movepriority, p2_movetype, p2_movepower, p2_movename, p2curhp, p2atk, p2speed, p2def, p2_m1, p2_m2, p2_m3, p2_m4, p2maxhp, p2_hpbarsize, p2type1, p2type2
     global winner, loser, loser_pokemon
     
     print(p1_pokemon, '\n',p2_pokemon)
@@ -800,7 +835,12 @@ def battle_execute():
             tb.blit()
             tb.update()
 
-            p2curhp = max(0, (p2curhp - int((p1_movepower * (p1atk / p2def)))))
+            p1_type_effect = type_effectiveness(p1_movetype, p2type1, p2type2)
+            p1_stab = stab_calc(p1_movetype, p1type1, p1type2)
+            p2_dmg_taken = int(p1_type_effect * (p1_stab * (p1_movepower * (p1atk / p2def))))
+
+            # p2curhp = max(0, (p2curhp - int((p1_movepower * (p1atk / p2def)))))
+            p2curhp = max(0, (p2curhp - p2_dmg_taken))
             p2_hpratio = p2curhp/p2maxhp
             p2_hpbarsize = 200 * (p2curhp/p2maxhp)
             p2_hpbarsize = round(p2_hpbarsize, 0)
@@ -836,7 +876,12 @@ def battle_execute():
                 tb.blit()
                 tb.update()
 
-                p1curhp = max(0, (p1curhp - int((p2_movepower * (p2atk / p1def)))))
+                p2_type_effect = type_effectiveness(p2_movetype, p1type1, p1type2)
+                p2_stab = stab_calc(p2_movetype, p2type1, p2type2)
+                p1_dmg_taken = int(p2_type_effect * (p2_stab * (p2_movepower * (p2atk / p1def))))
+
+                # p1curhp = max(0, (p1curhp - int((p2_movepower * (p2atk / p1def)))))
+                p1curhp = max(0, (p1curhp - p1_dmg_taken))
                 p1_hpratio = p1curhp/p1maxhp
                 p1_hpbarsize = 200 * (p1curhp/p1maxhp)
                 p1_hpbarsize = round(p1_hpbarsize, 0)
@@ -873,7 +918,12 @@ def battle_execute():
             tb.blit()
             tb.update()
 
-            p1curhp = max(0, (p1curhp - int((p2_movepower * (p2atk / p1def)))))
+            p2_type_effect = type_effectiveness(p2_movetype, p1type1, p1type2)
+            p2_stab = stab_calc(p2_movetype, p2type1, p2type2)
+            p1_dmg_taken = int(p2_type_effect * (p2_stab * (p2_movepower * (p2atk / p1def))))
+
+            # p1curhp = max(0, (p1curhp - int((p2_movepower * (p2atk / p1def)))))
+            p1curhp = max(0, (p1curhp - p1_dmg_taken))
             p1_hpratio = p1curhp/p1maxhp
             p1_hpbarsize = 200 * (p1curhp/p1maxhp)
             p1_hpbarsize = round(p1_hpbarsize, 0)
@@ -909,7 +959,12 @@ def battle_execute():
                 tb.blit()
                 tb.update()
 
-                p2curhp = max(0, (p2curhp - int((p1_movepower * (p1atk / p2def)))))
+                p1_type_effect = type_effectiveness(p1_movetype, p2type1, p2type2)
+                p1_stab = stab_calc(p1_movetype, p1type1, p1type2)
+                p2_dmg_taken = int(p1_type_effect * (p1_stab * (p1_movepower * (p1atk / p2def))))
+
+                # p2curhp = max(0, (p2curhp - int((p1_movepower * (p1atk / p2def)))))
+                p2curhp = max(0, (p2curhp - p2_dmg_taken))
                 p2_hpratio = p2curhp/p2maxhp
                 p2_hpbarsize = 200 * (p2curhp/p2maxhp)
                 p2_hpbarsize = round(p2_hpbarsize, 0)
@@ -943,7 +998,12 @@ def battle_execute():
             tb.blit()
             tb.update()
 
-            p2curhp = max(0, (p2curhp - int((p1_movepower * (p1atk / p2def)))))
+            p1_type_effect = type_effectiveness(p1_movetype, p2type1, p2type2)
+            p1_stab = stab_calc(p1_movetype, p1type1, p1type2)
+            p2_dmg_taken = int(p1_type_effect * (p1_stab * (p1_movepower * (p1atk / p2def))))
+
+            # p2curhp = max(0, (p2curhp - int((p1_movepower * (p1atk / p2def)))))
+            p2curhp = max(0, (p2curhp - p2_dmg_taken))
             p2_hpratio = p2curhp/p2maxhp
             p2_hpbarsize = 200 * (p2curhp/p2maxhp)
             p2_hpbarsize = round(p2_hpbarsize, 0)
@@ -979,7 +1039,12 @@ def battle_execute():
                 tb.blit()
                 tb.update()
 
-                p1curhp = max(0, (p1curhp - int((p2_movepower * (p2atk / p1def)))))
+                p2_type_effect = type_effectiveness(p2_movetype, p1type1, p1type2)
+                p2_stab = stab_calc(p2_movetype, p2type1, p2type2)
+                p1_dmg_taken = int(p2_type_effect * (p2_stab * (p2_movepower * (p2atk / p1def))))
+
+                # p1curhp = max(0, (p1curhp - int((p2_movepower * (p2atk / p1def)))))
+                p1curhp = max(0, (p1curhp - p1_dmg_taken))
                 p1_hpratio = p1curhp/p1maxhp
                 p1_hpbarsize = 200 * (p1curhp/p1maxhp)
                 p1_hpbarsize = round(p1_hpbarsize, 0)
