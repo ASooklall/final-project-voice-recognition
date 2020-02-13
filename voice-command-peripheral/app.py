@@ -130,7 +130,7 @@ def special_commands(cmnd):
             inputter.press('a')
             time.sleep(input_sleep)
             inputter.release('a')
-            append_vcp_log([datetime.now(),'go up','special'])
+            append_vcp_log([datetime.now(),'go left','special'])
     elif cmnd.lower().startswith('go down'):
         print('How many steps? (up to 9)')
         distance = keyboard.read_key()
@@ -138,7 +138,7 @@ def special_commands(cmnd):
             inputter.press('s')
             time.sleep(input_sleep)
             inputter.release('s')
-            append_vcp_log([datetime.now(),'go up','special'])
+            append_vcp_log([datetime.now(),'go down','special'])
     elif cmnd.lower().startswith('go right'):
         print('How many steps? (up to 9)')
         distance = keyboard.read_key()
@@ -146,7 +146,7 @@ def special_commands(cmnd):
             inputter.press('d')
             time.sleep(input_sleep)
             inputter.release('d')
-            append_vcp_log([datetime.now(),'go up','special'])
+            append_vcp_log([datetime.now(),'go right','special'])
     else:
         basic_commands(cmnd, 'special')
         # time.sleep(input_sleep)
