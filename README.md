@@ -63,7 +63,8 @@
 * The software also logs key prompts in the developmental version which allows for testing which voice options are most used, what key buttons are most frequented, and how often mistakes occur. This can be used for both increasing the accuracy of a speech recognition model geared to emulation as well as providing information for marketing accessory products that could increase comfortability for users who would normally need to press these buttons often.
 * Providing insight into the habits and tendencies of gamer time consumption per play session, sessions per day, preferred weekday, etc. all have marketing value and weight when developing new consumer products. This software can log these times, dates, etc. and store them for future use.
 #### Analysis: 
-<img src = "/data/resources'tableau_ss1.png" alt="tableau_screenshot" width="1024" height="900">
+<img src="/data/resources/tableau_ss1.png" alt="tableau_screenshot" width="1024" height="900">
+
 * As shown in the Tableau comparison:
     * https://public.tableau.com/profile/andrew.sooklall#!/vizhome/final_project_vcp_analysis/VoiceRecognitioninGamingEmulation
     * Even with a broad-spectrum pre-trained cloud model (Google Cloud API) we were able to have less than 5% of input error. With a specifically trained/weighted model this number could be further reduced resulting in a very accurate mode of control for gaming. 
