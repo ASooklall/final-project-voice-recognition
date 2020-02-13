@@ -19,7 +19,7 @@
 
 ### Voice Simulation in Game Emulation:
 
-<img src="/data/resources/vpc_screenshot02122020.png" alt="VPC_Emulation" width="1024" height="768">
+<img src="/data/resources/vpc_screenshot02122020.png" alt="VPC_Emulation" width="1024" height="720">
 
 #### Purpose:
 * To facilitate accessbility for individuals with physical sensory or mechanical disability in gaming by providing a method of control for users that does not require precise or dexterous tactile control. 
@@ -55,7 +55,7 @@
 
 ### Pokemon Voice Battle Simulator:
 
-<img src="/data/resources/battle_sim_demo1.png" alt="BattleSimDemo" width="1024" height="768">
+<img src="/data/resources/battle_sim_demo1.png" alt="BattleSimDemo" width="1024" height="720">
 
 #### Purpose:
 * To demonstrate the feasability of designing a game based around voice recognition outside of the standard sandbox (games without linear development or purpose) or tag-along game (see Pokemon: Let's Go Eevee/Pikachu or N64 Hey You Pikachu!). 
@@ -78,7 +78,7 @@
 * use voice to choose pokemon, moves, etc. when prompted
 * game is fully playable within the pygame screen, you do not need to use your terminal after launching the .py file
 * The main menu looks like:
-    * <img src="/data/resources/battle_sim_home1.png" alt="BattleSimHome" width="900" height="400">
+<img src="/data/resources/battle_sim_home1.png" alt="BattleSimHome" width="900" height="400">
     * In the center Announcement box, relative game text and instructions appear as needed.
     * You can begin the game by pressing the "S" key and after selecting your pokemon with voice input, use the "A" key to choose.
     * A full list of pokemon can be found in the game dictionary but are also below:
