@@ -106,13 +106,16 @@
     * It is legal to own a backup of a game you physically own as a rom. The distribution or sharing of any rom is illegal.
 * Databases:
     * Pokemon Stat Makeups: Bulbapedia (Used as a reference for stats. Stat breakdown in the simulation is our custom formula.)
+        * https://bulbapedia.bulbagarden.net/wiki/Main_Page
     * Pokemon Images: Kaggle
         * https://github.com/fudgenuggets1/hax_free_pokemon
 * Libraries:
     * Python
         * See requirements.txt
     * Pygame, Thorpy
-        * Engine and library used to develop the battle simulation
+        * Engine and library used to develop the battle simulation.
+        * https://www.pygame.org/docs/
+        * http://thorpy.org/documentation.html
 * Accessory Voice Modeling
     * Teachable Machine
         * Not used in the demonstration or application.
