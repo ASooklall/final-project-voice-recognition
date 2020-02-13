@@ -18,13 +18,32 @@
 
 <img src="/data/resources/vpc_screenshot02122020.png" alt="VPC_Emulation" width="1024" height="768">
 
-#### Purpose:
+<!-- #### Purpose: -->
 #### Requirements:
 * Emulator Software (in our case we used mgba)
+* Rom
+* Python
 #### Installation: 
+* download and install emulator of choice
+* download rom of choice
+* Navigate inside the voice-command-peripheral directory
+* pip install requirements.txt
+* If you have issues utilizing PyAudio:
+    * try removing PyAudio with 'pip remove pyaudio'
+    * utilize 'pip install pipwin' for the custom package installer for python 3.7
+    * use 'pipwin install pyaudio' to install the python 3.7 specific pyaudio package
+* If your PyAudio is working:
+    * installation complete, follow instructions for use
 #### Instructions: 
-#### Our Process: 
-#### Analysis: 
+* Launch your emulator software and load your rom
+* Launch app.py in terminal
+* Follow instructions on terminal for button presses to activate voice command types
+    * Commands:
+        * D
+        * X
+* Play the game using your voice commands through the app. You do not have to type the commands into terminal to utilize the app, you may keep the game open.
+<!-- #### Our Process:  -->
+<!-- #### Analysis:  -->
 
 
 
@@ -32,11 +51,23 @@
 
 <img src="/data/resources/battle_sim_demo1.png" alt="BattleSimDemo" width="1024" height="768">
 
-#### Purpose:
+<!-- #### Purpose: -->
 #### Installation:
+* Navigate inside the voice-command-peripheral directory
+* pip install requirements.txt
+* If you have issues utilizing PyAudio:
+    * try removing PyAudio with 'pip remove pyaudio'
+    * utilize 'pip install pipwin' for the custom package installer for python 3.7
+    * use 'pipwin install pyaudio' to install the python 3.7 specific pyaudio package
+* If your PyAudio is working:
+    * installation complete, follow instructions for use
 #### Instructions:
-#### Our Process:
-#### Analysis:
+* launch battle_sim.py or demo.py (for demo)
+* follow instructions on screen for key presses or voice prompts
+* use voice to choose pokemon, moves, etc. when prompted
+* game is fully playable within the pygame screen, you do not need to use your terminal after launching the .py file
+<!-- #### Our Process: -->
+<!-- #### Analysis: -->
 
 ### Conclusion:
 * The final project turned out much different than the initial proposal. While the main theme of voice recognition and accessibility remain unchanged, and the battle simulator was created, the original concept of using the Nintendo Switch was scrapped due to hardware issues with Nintendo banning the modification of consoles thus rendering this method beyond the scope of the project. In turn, we decided to use an emulator to control handheld games instead. The initial project proposal can be found under 'data/resources' in .docx format.
