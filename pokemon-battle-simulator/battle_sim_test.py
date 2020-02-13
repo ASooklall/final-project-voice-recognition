@@ -8,37 +8,37 @@ controller = Controller()
 
 #move powers: 15 = priority (non-normal), 18 = priority (normal), 21 = non priority (non-normal), 24 = non priority (normal)
 pokemon_list = [
-{'name':'pikachu','stats': {'health':8,'attack':15,'defense':10,'speed':17, 'type1':'electric','type2':'none'}, 
+{'name':'pikachu','type1':'electric','type2':'none','stats': {'health':8,'attack':15,'defense':10,'speed':17}, 
  'moves':[{'name':'thunderbolt','power':21,'type':'electric','priority':0},{'name':'quick attack','power':18,'type':'normal','priority':1},{'name':'slam','power':24,'type':'normal','priority':0},{'name':'iron tail','power':21,'type':'steel','priority':0}],},
-{'name':'mewtwo','stats':{'health':12,'attack':16,'defense':9,'speed':13,'type1':'psychic','type2':'none'},
+{'name':'mewtwo','type1':'psychic','type2':'none','stats':{'health':12,'attack':16,'defense':9,'speed':13},
  'moves':[{'name':'psychic','power':21,'type':'psychic','priority':0},{'name':'hyper beam','power':24,'type':'normal','priority':0},{'name':'shadow ball','power':21,'type':'ghost','priority':0},{'name':'poison jab','power':21,'type':'poison','priority':0}],},
-{'name':'charizard','stats':{'health':11,'attack':15,'defense':11,'speed':13,'type1':'fire','type2':'flying'},
+{'name':'charizard','type1':'fire','type2':'flying','stats':{'health':11,'attack':15,'defense':11,'speed':13},
  'moves':[{'name':'fire blast','power':21,'type':'fire','priority':0},{'name':'slash','power':24,'type':'normal','priority':0},{'name':'dragon claw','power':21,'type':'dragon','priority':0},{'name':'hurricane','power':21,'type':'flying','priority':0}],},
-{'name':'venusaur','stats':{'health':12,'attack':13,'defense':14,'speed':11,'type1':'grass','type2':'poison'},
+{'name':'venusaur','stats':{'health':12,'attack':13,'defense':14,'speed':11},
  'moves':[{'name':'solar beam','power':21,'type':'grass','priority':0},{'name':'sludge bomb','power':21,'type':'poison','priority':0},{'name':'take down','power':24,'type':'normal','priority':0},{'name':'earthquake','power':21,'type':'ground','priority':0}],},
-{'name':'blastoise','stats':{'health':11,'attack':13,'defense':15,'speed':11,'type1':'water','type2':'none'},
+{'name':'blastoise','type1':'water','type2':'none','stats':{'health':11,'attack':13,'defense':15,'speed':11},
  'moves':[{'name':'hydro pump','power':21,'type':'water','priority':0},{'name':'skull bash','power':24,'type':'normal','priority':0},{'name':'blizzard','power':21,'type':'ice','priority':0},{'name':'flash cannon','power':21,'type':'steel','priority':0}],},
-{'name':'eevee','stats':{'health':12,'attack':11,'defense':14,'speed':13,'type1':'normal','type2':'none'},
+{'name':'eevee','type1':'normal','type2':'none','stats':{'health':12,'attack':11,'defense':14,'speed':13},
  'moves':[{'name':'swift','power':24,'type':'normal','priority':0},{'name':'quick attack','power':18,'type':'normal','priority':1},{'name':'bite','power':21,'type':'dark','priority':0},{'name':'iron tail','power':21,'type':'steel','priority':0}],},
-{'name':'onyx','stats':{'health':8,'attack':8,'defense':24,'speed':10,'type1':'rock','type2':'ground'},
+{'name':'onyx','type1':'rock','type2':'ground','stats':{'health':8,'attack':8,'defense':24,'speed':10},
  'moves':[{'name':'stone edge','power':21,'type':'rock','priority':0},{'name':'earthquake','power':21,'type':'ground','priority':0},{'name':'dragon breath','power':21,'type':'dragon','priority':0},{'name':'slam','power':24,'type':'normal','priority':0}],},
-{'name':'alakazam','stats':{'health':7,'attack':17,'defense':11,'speed':15,'type1':'psychic','type2':'none'},
+{'name':'alakazam','type1':'psychic','type2':'none','stats':{'health':7,'attack':17,'defense':11,'speed':15},
  'moves':[{'name':'psychic','power':21,'type':'psychic','priority':0},{'name':'seismic toss','power':21,'type':'fighting','priority':0},{'name':'thunder punch','power':21,'type':'electric','priority':0},{'name':'ice punch','power':21,'type':'ice','priority':0}],},
-{'name':'gengar','stats':{'health':8,'attack':18,'defense':10,'speed':14,'type1':'ghost','type2':'poison'},
+{'name':'gengar','type1':'ghost','type2':'poison','stats':{'health':8,'attack':18,'defense':10,'speed':14},
  'moves':[{'name':'shadow ball','power':21,'type':'ghost','priority':0},{'name':'sucker punch','power':15,'type':'dark','priority':1},{'name':'thunder','power':21,'type':'electric','priority':0},{'name':'dream eater','power':21,'type':'psychic','priority':0}],},
-{'name':'nidoqueen','stats':{'health':14,'attack':13,'defense':12,'speed':11,'type1':'ground','type2':'poison'},
+{'name':'nidoqueen','type1':'ground','type2':'poison','stats':{'health':14,'attack':13,'defense':12,'speed':11},
  'moves':[{'name':'earthquake','power':21,'type':'ground','priority':0},{'name':'super power','power':21,'type':'fighting','priority':0},{'name':'poison jab','power':21,'type':'poison','priority':0},{'name':'dragon tail','power':21,'type':'dragon','priority':0}],},
-{'name':'machamp','stats':{'health':13,'attack':18,'defense':12,'speed':7,'type1':'fighting','type2':'none'},
+{'name':'machamp','type1':'fighting','type2':'none','stats':{'health':13,'attack':18,'defense':12,'speed':7},
  'moves':[{'name':'cross chop','power':21,'type':'fighting','priority':0},{'name':'payback','power':21,'type':'dark','priority':0},{'name':'giga impact','power':24,'type':'normal','priority':0},{'name':'dual chop','power':21,'type':'dragon','priority':0}],},
- {'name':'gyarados','stats':{'health':12,'attack':16,'defense':12,'speed':10,'type1':'water','type2':'flying'},
+ {'name':'gyarados','type1':'water','type2':'flying','stats':{'health':12,'attack':16,'defense':12,'speed':10},
  'moves':[{'name':'hydro pump','power':21,'type':'water','priority':0},{'name':'thunder','power':21,'type':'electric','priority':0},{'name':'crunch','power':21,'type':'dark','priority':0},{'name':'dragon pulse','power':21,'type':'dragon','priority':0}],},
- {'name':'scizor','stats':{'health':11,'attack':17,'defense':14,'speed':8,'type1':'bug','type2':'steel'},
+ {'name':'scizor','type1':'bug','type2':'steel','stats':{'health':11,'attack':17,'defense':14,'speed':8},
  'moves':[{'name':'fury cutter','power':21,'type':'bug','priority':0},{'name':'bullet punch','power':15,'type':'steel','priority':1},{'name':'vacuum wave','power':15,'type':'fighting','priority':1},{'name':'night slash','power':21,'type':'dark','priority':0}],},
- {'name':'snorlax','stats':{'health':18,'attack':13,'defense':13,'speed':6,'type1':'normal','type2':'none'},
+ {'name':'snorlax','type1':'normal','type2':'none','stats':{'health':18,'attack':13,'defense':13,'speed':6},
  'moves':[{'name':'body slam','power':24,'type':'normal','priority':0},{'name':'psychic','power':21,'type':'psychic','priority':0},{'name':'fire blast','power':21,'type':'fire','priority':0},{'name':'surf','power':21,'type':'water','priority':0}],},
- {'name':'dragonite','stats':{'health':13,'attack':16,'defense':12,'speed':9,'type1':'dragon','type2':'flying'},
+ {'name':'dragonite','type1':'dragon','type2':'flying','stats':{'health':13,'attack':16,'defense':12,'speed':9},
  'moves':[{'name':'dragon rage','power':21,'type':'dragon','priority':0},{'name':'aqua jet','power':15,'type':'water','priority':1},{'name':'wing attack','power':21,'type':'flying','priority':0},{'name':'fire punch','power':21,'type':'fire','priority':0}],},
- {'name':'dewgong','stats':{'health':13,'attack':11,'defense':14,'speed':12,'type1':'water','type2':'ice'},
+ {'name':'dewgong','type1':'water','type2':'ice','stats':{'health':13,'attack':11,'defense':14,'speed':12},
  'moves':[{'name':'aurora beam','power':21,'type':'ice','priority':0},{'name':'megahorn','power':21,'type':'bug','priority':0},{'name':'aqua jet','power':15,'type':'water','priority':1},{'name':'drill run','power':21,'type':'ground','priority':0}],},
 ]
 
@@ -122,8 +122,8 @@ def dict_test2():
         
         
 def battle_init():
-    global p1_pokemon, p1_choice, p1_name_check, p1speed, p1atk, p1def, p1move1, p1move2, p1move3, p1move4, p1maxhp, p1curhp, p1_hpbarsize
-    global p2_pokemon, p2_choice, p2_name_check, p2speed, p2atk, p2def, p2move1, p2move2, p2move3, p2move4, p2maxhp, p2curhp, p2_hpbarsize
+    global p1_pokemon, p1_choice, p1_name_check, p1speed, p1atk, p1def, p1move1, p1move2, p1move3, p1move4, p1maxhp, p1curhp, p1_hpbarsize, p1type1, p1type2
+    global p2_pokemon, p2_choice, p2_name_check, p2speed, p2atk, p2def, p2move1, p2move2, p2move3, p2move4, p2maxhp, p2curhp, p2_hpbarsize, p2type1, p2type2
 
     p1_name_check = False
     p2_name_check = False
@@ -197,6 +197,8 @@ def battle_init():
                     p1move2 = pokemon['moves'][1]['name']
                     p1move3 = pokemon['moves'][2]['name']
                     p1move4 = pokemon['moves'][3]['name']
+                    p1type1 = pokemon['type1']
+                    p1type2 = pokemon['type2']
                     p1speed = int(pokemon['stats']['speed'])
                     p1atk = int(pokemon['stats']['attack'])
                     p1def = int(pokemon['stats']['defense'])
@@ -356,6 +358,8 @@ def battle_init():
                     p2move2 = pokemon['moves'][1]['name']
                     p2move3 = pokemon['moves'][2]['name']
                     p2move4 = pokemon['moves'][3]['name']
+                    p2type1 = pokemon['type1']
+                    p2type2 = pokemon['type2']
                     p2speed = int(pokemon['stats']['speed'])
                     p2atk = int(pokemon['stats']['attack'])
                     p2def = int(pokemon['stats']['defense'])
