@@ -42,6 +42,7 @@
 #### Instructions: 
 * Launch your emulator software and load your rom
 * Launch app.py in terminal
+    * Note: If your software (ex; Visual Studio Code) indicates missing modules after you've successfully pip installed them, this can be due to anaconda not locating the files because they weren't installed through conda (there is no conda package for these files). However, it should run as expected because python has the packages through pip install.
 * Follow instructions on terminal for button presses to activate voice command types
     * Commands:
         * D
@@ -62,7 +63,7 @@
     * Our goal instead is to allow users to play other types of games, such as a battle simulation, using primarily or solely their voice which would broaden the genre of games voice recognition could be used in.
 * Increase marketing and proliferation of voice recognition in gaming by providing an example that could impact a broader range of consumers that currently existing games or be utilized in more party-like environments.
 #### Installation:
-* Navigate inside the voice-command-peripheral directory
+* Navigate inside the pokemon-battle-simulator directory
 * pip install requirements.txt
 * If you have issues utilizing PyAudio:
     * try removing PyAudio with 'pip remove pyaudio'
@@ -72,6 +73,7 @@
     * installation complete, follow instructions for use
 #### Instructions:
 * launch battle_sim.py or demo.py (for demo)
+    * Note: If your software (ex; Visual Studio Code) indicates missing modules after you've successfully pip installed them, this can be due to anaconda not locating the files because they weren't installed through conda (there is no conda package for these files). However, it should run as expected because python has the packages through pip install.
 * follow instructions on screen for key presses or voice prompts
 * use voice to choose pokemon, moves, etc. when prompted
 * game is fully playable within the pygame screen, you do not need to use your terminal after launching the .py file
