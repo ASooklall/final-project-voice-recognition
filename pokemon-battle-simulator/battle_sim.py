@@ -89,7 +89,7 @@ def rec():
         print('Please issue a voice command.')
 
         
-def dict_test2():
+def demo():
 
     try:
         # Record in '(Pokemon Name) use (move)' format
@@ -1554,7 +1554,7 @@ while playing_game:
                         tb.blit()
                         tb.update()
                 elif event.key == pygame.K_m:
-                    dict_test2()
+                    demo()
                     try:
                         tb = thorpy.Element(text=(f'{pkmn1} used {mvnm1}! It did 1 damage, just because.'))
                     except NameError:
