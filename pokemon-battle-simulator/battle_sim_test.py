@@ -890,6 +890,7 @@ def battle_execute():
             time.sleep(3)
 
             print('p1atks', p2curhp)
+            if p2curhp > 0:
                 p2_type_effect = type_effectiveness(p2_movetype, p1type1, p1type2)
                 p2_stab = stab_calc(p2_movetype, p2type1, p2type2)
                 p1_dmg_taken = int(p2_type_effect * (p2_stab * (p2_movepower * (p2atk / p1def))))
