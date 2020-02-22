@@ -127,6 +127,8 @@
 * game is fully playable within the pygame screen, you do not need to use your terminal after launching the .py file
 * The main menu looks like:
 <img src="/data/resources/battle_sim_home1.png" alt="BattleSimHome" width="900" height="450">
+
+* 
     * In the center Announcement box, relative game text and instructions appear as needed.
     * You can begin the game by pressing the "S" key and after selecting your pokemon with voice input, use the "A" key to choose.
     * A full list of pokemon can be found in the game dictionary but are also below:
