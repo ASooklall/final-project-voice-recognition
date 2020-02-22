@@ -1292,6 +1292,7 @@ playing_game = True
 newgame = True
 first_attempt = True
 choice_locked = False
+game_over = False
 
 while playing_game:
 
@@ -1308,7 +1309,7 @@ while playing_game:
                         battle_init()
 
                         time.sleep(2)
-                        tb = thorpy.Element(text=(f'Press A to accept choices, Press R to reroll.'))
+                        tb = thorpy.Element(text=(f"Press 'A' to accept choices, Press 'R' to reroll."))
                         tb.set_font_size(20)
                         tb.set_size((750,150))
                         tb.stick_to(tb_h, target_side="bottom", self_side="top")
@@ -1319,7 +1320,7 @@ while playing_game:
 
                 elif event.key == pygame.K_a:
                     if first_attempt == False and choice_locked == False:
-                        tb = thorpy.Element(text=(f'Choices Confirmed.'))
+                        tb = thorpy.Element(text=(f"Choices Confirmed."))
                         tb.set_font_size(20)
                         tb.set_size((750,150))
                         tb.stick_to(tb_h, target_side="bottom", self_side="top")
@@ -1340,7 +1341,7 @@ while playing_game:
                         tb.blit()
                         tb.update()
                     elif first_attempt == True:
-                        tb = thorpy.Element(text=(f'Press S to start game before confirming choices.'))
+                        tb = thorpy.Element(text=(f"Press 'S' to start game before confirming choices."))
                         tb.set_font_size(20)
                         tb.set_size((750,150))
                         tb.stick_to(tb_h, target_side="bottom", self_side="top")
@@ -1355,7 +1356,7 @@ while playing_game:
                             tb.blit()
                             tb.update()
                         elif first_attempt == True:
-                            tb = thorpy.Element(text=(f"Start the game using S. You cannot reroll without starting the game."))
+                            tb = thorpy.Element(text=(f"Start the game using 'S'. You cannot reroll without starting the game."))
                             tb.set_font_size(20)
                             tb.set_size((750,150))
                             tb.stick_to(tb_h, target_side="bottom", self_side="top")
@@ -1366,7 +1367,7 @@ while playing_game:
                             battle_init()
                             time.sleep(2)
                             
-                            tb = thorpy.Element(text=(f'Press A to accept choices, Press R to reroll.'))
+                            tb = thorpy.Element(text=(f"Press 'A' to accept choices, Press 'R' to reroll."))
                             tb.set_font_size(20)
                             tb.set_size((750,150))
                             tb.stick_to(tb_h, target_side="bottom", self_side="top")
@@ -1376,7 +1377,7 @@ while playing_game:
                 elif event.key == pygame.K_z:
                     if choice_locked == True and newgame == True:
                         newgame = False
-                        tb = thorpy.Element(text=(f'Begin Game!'))
+                        tb = thorpy.Element(text=(f"Begin Game!"))
                         tb.set_font_size(20)
                         tb.set_size((750,150))
                         tb.stick_to(tb_h, target_side="bottom", self_side="top")
@@ -1388,12 +1389,14 @@ while playing_game:
                         battle_execute()
                         
                         tb = thorpy.Element(text=(f"All of {loser}'s Pokemon have fainted. {winner} is the winner! \n\
-                                    (ESC to close)"))
+            (Press 'ESC' to close or 'SPACE' for new game)"))
                         tb.set_font_size(20)
                         tb.set_size((750,150))
                         tb.stick_to(tb_h, target_side="bottom", self_side="top")
                         tb.blit()
                         tb.update()
+
+                        game_over = True
 
                     elif choice_locked == True and newgame == False:
                         tb = thorpy.Element(text=(f"Match has already started."))
@@ -1403,12 +1406,38 @@ while playing_game:
                         tb.blit()
                         tb.update()
                     else:
-                        tb = thorpy.Element(text=(f'Please start the game with S then confirm choices with A first.'))
+                        tb = thorpy.Element(text=(f"Please start the game with 'S' then confirm choices with 'A' first."))
                         tb.set_font_size(20)
                         tb.set_size((750,150))
                         tb.stick_to(tb_h, target_side="bottom", self_side="top")
                         tb.blit()
                         tb.update()
+                elif event.key == pygame.K_SPACE:
+                    if game_over == True:
+                        newgame = True
+                        first_attempt = True
+                        choice_locked = False
+                        game_over = False
+
+                        tb = thorpy.Element(text=(f"Please wait a moment as the game restarts."))
+                        tb.set_font_size(20)
+                        tb.set_size((750,150))
+                        tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                        tb.blit()
+                        tb.update()
+
+                        tb = thorpy.Element(text=("\
+            Welcome to Pokemon Battle Simulator! \n \
+Use voice commands to choose your pokemon and battle. \n \
+            Please read prompts to play the game. \n \
+                    To begin a match, press S."))
+                        tb.set_font_size(20)
+                        tb.set_size((750,150))
+                        tb.stick_to(tb_h, target_side="bottom", self_side="top")
+                        tb.blit()
+                        tb.update()
+
+
                 elif event.key == pygame.K_m:
                     demo()
                     try:
