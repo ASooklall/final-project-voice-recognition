@@ -68,7 +68,7 @@ def rec():
         rt = sr.Recognizer()
         mic = sr.Microphone(device_index=0)
         with mic as source:
-    #         rt.adjust_for_ambient_noise(source)
+            # rt.adjust_for_ambient_noise(source)
             # rt.energy_threshold = 20000
             rt.energy_threshold = 3000
             rt.dynamic_energy_threshold = True
@@ -95,9 +95,6 @@ def demo():
         # Record in '(Pokemon Name) use (move)' format
         audio_play = rec().lower()
         audio_list = audio_play.split(' use')
-        
-#         print(audio_play)
-#         print('---------')
 
         pokemon_name = audio_list[0].lower()
 
@@ -118,12 +115,9 @@ def demo():
         if flag == False:
             print("Sorry, we couldn't find your pokemon", pokemon_name)
         
-#         print(temp_moves)
-#         print ('-------------- \n')
         
         for mvs in temp_moves:
             if mvs['name'] in move_audio:
-#                 print(mvs)
                 global mvnm1
                 choose_move = mvs
                 choose_move_name = mvs['name']
@@ -505,72 +499,6 @@ def battle_init():
     tb.update()
 
 
-# def choose_move():
-#     #record audio
-#     #split audio
-#     #search split array for match in player's movepement m1/m2/m3/m4 list
-#     #if move matches -> return move info as vars for name, priority (0 for now) type, power
-#     # save values to player vars
-                
-    # audio_play = rec().lower()
-    # audio_list = audio_play.split(' ')
-
-
-
-    # temp_moves = p1_pokemon['moves']
-    # for mvs in temp_moves:
-    #     if mvs['name'] in audio_list:
-    #         p1_movename = mvs['name']
-    #         p1_movetype = mvs['type']
-    #         p1_movepower = int(mvs['power'])
-
-#             if pokemon['name'] == pokemon_name:
-#                 global pkmn1
-#                 flag = True
-#                 temp_moves = pokemon['moves']   # becomes our movelist
-#                 choose_pokemon = pokemon
-#                 choose_pokemon_name = pokemon['name']
-#                 pkmn1 = choose_pokemon_name #test
-        
-#         if flag == False:
-#             print("Sorry, we couldn't find your pokemon", pokemon_name)
-        
-# #         print(temp_moves)
-# #         print ('-------------- \n')
-        
-#         for mvs in temp_moves:
-#             if mvs['name'] in move_audio:
-# #                 print(mvs)
-#                 global mvnm1
-#                 choose_move = mvs
-#                 choose_move_name = mvs['name']
-#                 mvnm1 = choose_move_name
-
-# for pokemon in pokemon_list:
-#     if pokemon['name'] == p1_choice
-
-
-#     for word in audio_list:
-#         if word == p1_m4:
-#             p1_movepriority = 0
-#             p1_movetype = str(p1_pokemon['moves'][3]['type'])
-#             p1_movepower = int(p1_pokemon['moves'][3]['power'])
-#         elif word == p1_m3:
-#             p1_movepriority = 0
-#             p1_movetype = str(p1_pokemon['moves'][2]['type'])
-#             p1_movepower = int(p1_pokemon['moves'][2]['power'])
-#         elif word == p1_m2:
-#             p1_movepriority = 0
-#             p1_movetype = str(p1_pokemon['moves'][1]['type'])
-#             p1_movepower = int(p1_pokemon['moves'][1]['power'])
-#         else:
-#             #default to move1
-#             p1_movepriority = 0
-#             p1_movetype = str(p1_pokemon['moves'][0]['type'])
-#             p1_movepower = int(p1_pokemon['moves'][0]['power'])
-
-
-
 def hpbarcolor(ratio):
   if ratio < 0.2:
     return((255,0,0))
@@ -624,7 +552,6 @@ def battle_execute():
             try:
                 global p1_movename
                 audio_play = rec().lower()
-                # audio_list = audio_play.split(' ')
 
                 temp_moves = p1_pokemon['moves']
                 print('temp_moves: ', temp_moves)
@@ -663,7 +590,6 @@ def battle_execute():
                     time.sleep(0.5)
 
                     audio_play = rec().lower()
-                    # audio_list = audio_play.split(' ')
 
                     temp_moves = p1_pokemon['moves']
                     for mvs in temp_moves:
@@ -723,29 +649,8 @@ def battle_execute():
 
             time.sleep(0.2)
 
-            # audio_play = rec().lower()
-
-            # temp_moves = p2_pokemon['moves']
-            # for mvs in temp_moves:
-            #     if mvs['name'] in audio_play:
-            #         p2_movename = mvs['name']
-            #         p2_movetype = mvs['type']
-            #         p2_movepower = int(mvs['power'])
-            #         p2_movepriority = 0
-            #     elif mvs['name'].title() in audio_play:
-            #         p2_movename = mvs['name']
-            #         p2_movetype = mvs['type']
-            #         p2_movepower = int(mvs['power'])
-            #         p2_movepriority = 0
-            #     else:
-            #         p2_movename = temp_moves[0]['name']
-            #         p2_movetype = temp_moves[0]['type']
-            #         p2_movepower = int(temp_moves[0]['power'])
-            #         p2_movepriority = 0
-
             try:
                 audio_play = rec().lower()
-                # audio_list = audio_play.split(' ')
 
                 temp_moves = p2_pokemon['moves']
                 print('temp_moves: ', temp_moves)
@@ -780,7 +685,6 @@ def battle_execute():
                     time.sleep(0.5)
 
                     audio_play = rec().lower()
-                    # audio_list = audio_play.split(' ')
 
                     temp_moves = p2_pokemon['moves']
                     for mvs in temp_moves:
@@ -861,7 +765,6 @@ def battle_execute():
                 tb.blit()
                 tb.update()
 
-            # p2curhp = max(0, (p2curhp - int((p1_movepower * (p1atk / p2def)))))
             p2curhp = max(0, (p2curhp - p2_dmg_taken))
             p2_hpratio = p2curhp/p2maxhp
             p2_hpbarsize = 200 * (p2curhp/p2maxhp)
@@ -986,7 +889,6 @@ def battle_execute():
                 tb.blit()
                 tb.update()
 
-            # p1curhp = max(0, (p1curhp - int((p2_movepower * (p2atk / p1def)))))
             p1curhp = max(0, (p1curhp - p1_dmg_taken))
             p1_hpratio = p1curhp/p1maxhp
             p1_hpbarsize = 200 * (p1curhp/p1maxhp)
@@ -1050,7 +952,6 @@ def battle_execute():
                     tb.update()
                     
 
-                # p2curhp = max(0, (p2curhp - int((p1_movepower * (p1atk / p2def)))))
                 p2curhp = max(0, (p2curhp - p2_dmg_taken))
                 p2_hpratio = p2curhp/p2maxhp
                 p2_hpbarsize = 200 * (p2curhp/p2maxhp)
@@ -1111,7 +1012,6 @@ def battle_execute():
                 tb.blit()
                 tb.update()
 
-            # p2curhp = max(0, (p2curhp - int((p1_movepower * (p1atk / p2def)))))
             p2curhp = max(0, (p2curhp - p2_dmg_taken))
             p2_hpratio = p2curhp/p2maxhp
             p2_hpbarsize = 200 * (p2curhp/p2maxhp)
@@ -1174,7 +1074,6 @@ def battle_execute():
                     tb.blit()
                     tb.update()
 
-                # p1curhp = max(0, (p1curhp - int((p2_movepower * (p2atk / p1def)))))
                 p1curhp = max(0, (p1curhp - p1_dmg_taken))
                 p1_hpratio = p1curhp/p1maxhp
                 p1_hpbarsize = 200 * (p1curhp/p1maxhp)
@@ -1333,24 +1232,6 @@ p1_m4.stick_to(p1_m3, target_side="bottom", self_side="top")
 p1_m4.blit()
 p1_m4.update()
 
-# Player 1 Pokemon Image
-# p1_i = thorpy.Element(text=('P1 Image'))
-# p1_i.set_font_size(20)
-# p1_i.set_font_color((0,0,255))
-# p1_i.set_size((300,300))
-# p1_i.set_topleft((300,575))
-# p1_i.blit()
-# p1_i.update()
-
-
-# p1_i = pygame.image.load(os.path.join("images","blastoise_back.png")).convert()
-# p1_i = pygame.transform.scale(p1_i, (300,300))
-# # You can then get the bounding rectangle of picture with
-# p1_i_r = p1_i.get_rect()
-# # and move the picture with
-# p1_i_r = p1_i_r.move((300,575))
-# screen.blit(p1_i, p1_i_r)
-
 
 ##############################
 ########## Player 2 ##########
@@ -1402,35 +1283,10 @@ p2_m4.stick_to(p2_m3, target_side="bottom", self_side="top")
 p2_m4.blit()
 p2_m4.update()
 
-# Player 2 Pokemon Image
-# p2_i = thorpy.Element(text=('P2 Image'))
-# p2_i.set_font_size(20)
-# p2_i.set_font_color((255,0,0))
-# p2_i.set_size((300,300))
-# p2_i.set_topleft((840,25))
-# p2_i.blit()
-# p2_i.update()
-
-# p2_i = pygame.image.load(os.path.join("images","blastoise_front.png")).convert()
-# p2_i = pygame.transform.scale(p2_i, (300,300))
-# # You can then get the bounding rectangle of picture with
-# p2_i_r = p2_i.get_rect()
-# # and move the picture with
-# p2_i_r = p2_i_r.move((840,25))
-# screen.blit(p2_i, p2_i_r)
-
-
 
 ################################
 ##### Launch Pygame Engine #####
 ################################
-
-# screen = pygame.display.get_surface()
-# font = pygame.font.Font(None, 40)
-
-# font_surface = font.render("original", True, (255,255,255), (255,255,255))
-# screen.blit(font_surface, (0, 0))
-
 
 playing_game = True
 newgame = True
@@ -1528,7 +1384,7 @@ while playing_game:
                         tb.update()
 
                         time.sleep(1)
-                        # battlecommand here
+
                         battle_execute()
                         
                         tb = thorpy.Element(text=(f"All of {loser}'s Pokemon have fainted. {winner} is the winner! \n\
