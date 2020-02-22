@@ -128,10 +128,10 @@
 * The main menu looks like:
 <img src="/data/resources/battle_sim_home1.png" alt="BattleSimHome" width="900" height="450">
 
-* 
-    * In the center Announcement box, relative game text and instructions appear as needed.
+* In the center Announcement box, relative game text and instructions appear as needed.
     * You can begin the game by pressing the "S" key and after selecting your pokemon with voice input, use the "A" key to choose.
-    * A full list of pokemon can be found in the game dictionary but are also below:
+    * A full list of pokemon can be found in the game dictionary or pokemon_battle_sim folder but are also below:
+        * Demo pokemon list is located within PokemonDemoList.docx
         * Pikachu, Mewtwo, Charizard, Venusaur, Blastoise, Eevee, Onyx, Alakazam, Gengar, Nidoqueen, Machamp, Gyarados, Scizor, Snorlax, Dragonite, Dewgong
         * This list is up-to-date as of the demo.py
     * Before confirming with "A" you have the option to reroll/reselect your Pokemon with the "R" key as many times as you'd like.
