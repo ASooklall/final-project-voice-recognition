@@ -194,6 +194,13 @@
         * Not used in the demonstration or application.
         * Used to provide insight on the accuracy of specifically trained models vs. cloud based and broad trained models.
         * https://teachablemachine.withgoogle.com/faq
+* Accessibility and Disability Data
+    * Accessibility in Gaming
+        * Citations taken from: https://www.cse.unr.edu/~fredh/papers/journal/29-gaas/paper.pdf
+    * Disability Census
+        * From US Cenesus:
+            * 2002: https://www.census.gov/sipp/p70s/p70-107.pdf 
+            * 2012: https://www2.census.gov/library/publications/2012/demo/p70-131.pdf
 
 
 
