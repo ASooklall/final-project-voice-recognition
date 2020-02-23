@@ -1147,14 +1147,21 @@ screen = pygame.display.set_mode((1440,900))
 BackGround1 = Background('images/bg5_rescaled.png', [0,0])
 BackGround2 = Background('images/bg6_rescaled.png', [0,0])
 
-
+pokeball_icon = pygame.image.load('images/pokeball.png')
+pokeball_icon = pygame.transform.scale(pokeball_icon, (32,32))
+pygame.display.set_icon(pokeball_icon)
 pygame.display.set_caption('Pokemon Voice Battle Simulator')
+
 
 screen.fill((255,255,255))
 screen.blit(BackGround1.image, BackGround1.rect)
 
 clock = pygame.time.Clock()
 pygame.display.flip()
+
+# pokeball_icon = pygame.image.load('images/pokeball.png')
+# pokeball_icon = pygame.transform.scale(pokeball_icon, (32,32))
+# pygame.display.set_icon(pokeball_icon)
 
 pkmn1 = ''
 
@@ -1310,6 +1317,7 @@ while playing_game:
 
                         time.sleep(2)
                         tb = thorpy.Element(text=(f"Press 'A' to accept choices, Press 'R' to reroll."))
+                        # tb = thorpy.Element(text=(f"All required button and voice input / prompts\n     and game text will appear in this box."))
                         tb.set_font_size(20)
                         tb.set_size((750,150))
                         tb.stick_to(tb_h, target_side="bottom", self_side="top")
